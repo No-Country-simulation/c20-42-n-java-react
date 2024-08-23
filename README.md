@@ -30,9 +30,9 @@ Requerimientos:
    git clone https://github.com/23737k/c20-42-n-java-react-telemedicina.git
    ```
 
-2. Navega hasta el directorio `c20-42-n-java-react-telemedicina` :
+2. Navega hasta el directorio `c20-42-n-java-react-telemedicina/backend` :
    ```
-   cd c20-42-n-java-react-telemedicina
+   cd c20-42-n-java-react-telemedicina/backend
    ```
 3. Instala las dependencias (asumimos que tienes Maven instalado):
    ```
