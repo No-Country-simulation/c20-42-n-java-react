@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: TelemedicinaApp
+server:
+  port: 8080
+
+springdoc:
+  swagger-ui:
+    path: /doc/swagger-ui.html
+
+
