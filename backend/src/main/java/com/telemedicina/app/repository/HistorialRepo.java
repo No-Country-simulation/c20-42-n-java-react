@@ -1,6 +1,6 @@
 package com.telemedicina.app.repository;
 
-import com.telemedicina.app.model.PdfFile;
+import com.telemedicina.app.model.HistorialPaciente;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -10,6 +10,6 @@ import org.springframework.stereotype.Repository;
  */
 
 @Repository
-public interface IPdfFileRepository extends JpaRepository<PdfFile, Long> {
+public interface HistorialRepo extends JpaRepository<HistorialPaciente, Long> {
     
 }

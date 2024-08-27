@@ -1,7 +1,7 @@
 package com.telemedicina.app.service;
 
 import com.telemedicina.app.model.PdfFile;
-import com.telemedicina.app.repository.IPdfFileRepository;
+import com.telemedicina.app.repository.PdfFileRepo;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.logging.Level;
@@ -19,7 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class PdfFileService implements IPdfFileService {
     
     @Autowired
-    private IPdfFileRepository pdfRepository;
+    private PdfFileRepo pdfRepository;
 
     //Metodo para guardar el pdf
     @Override

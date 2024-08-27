@@ -1,10 +1,9 @@
 package com.telemedicina.app.service;
 
 import com.telemedicina.app.model.Paciente;
-import com.telemedicina.app.repository.IPacienteRepository;
+import com.telemedicina.app.repository.PacienteRepo;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -14,31 +13,26 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class PacienteService implements IPacienteService{
+public class PacienteService{
 
-    private final IPacienteRepository pacienteRepository;
+    private final PacienteRepo pacienteRepository;
 
-    @Override
     public List<Paciente> obtenerPacientes() {
       return pacienteRepository.findAll();
     }
 
-    @Override
     public void agregarPaciente(Paciente paciente) {
         pacienteRepository.save(paciente);
     }
 
-    @Override
     public void editarPaciente(Paciente paciente) {
         //TODO
     }
 
-    @Override
     public void eliminarPaciente(Long id) {
         pacienteRepository.deleteById(id);
     }
 
-    @Override
     public Paciente encontrarPaciente(Long id) {
       return pacienteRepository.findById(id).orElse(null);
     }

@@ -1,11 +1,9 @@
 package com.telemedicina.app.controller;
 
 import com.telemedicina.app.model.Paciente;
-import com.telemedicina.app.service.IPacienteService;
-import jakarta.websocket.server.PathParam;
+import com.telemedicina.app.service.PacienteService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/pacientes")
 public class PacienteController {
-    private final IPacienteService pacienteService;
+    private final PacienteService pacienteService;
 
 
     @GetMapping()

@@ -5,8 +5,9 @@
 package com.telemedicina.app.service;
 
 import com.telemedicina.app.model.HistorialPaciente;
-import com.telemedicina.app.repository.IHistorialPacienteRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.telemedicina.app.repository.HistorialRepo;
+import java.util.List;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,33 +16,28 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
-public class HistorialPacienteService implements IHistorialPacienteService {
+@RequiredArgsConstructor
+public class HistorialPacienteService{
+    private final HistorialRepo historialRepo;
 
-    @Autowired
-    private IHistorialPacienteRepository historialPaRepo;
+    public List<HistorialPaciente> obtenerTodosLosHistoriales(){
+        return historialRepo.findAll();
+    }
 
-    //Metodo para obtener el historial de un paciente
-    @Override
     public HistorialPaciente obtenerHistorial(Long id) {
-        return historialPaRepo.findById(id).orElse(null);
+        return historialRepo.findById(id).orElse(null);
     }
 
-    //Metodo para crear el historial del paciente
-    @Override
     public void crearHistorial(HistorialPaciente historialPaciente) {
-        historialPaRepo.save(historialPaciente);
+        historialRepo.save(historialPaciente);
     }
 
-    //Metodo para editar el historial del paciente
-    @Override
     public void editarHistorial(HistorialPaciente historialPaciente) {
-        this.crearHistorial(historialPaciente);
+        //TODO
     }
 
-    //Metodo para elimianr el historial
-    @Override
     public void eliminarHistorial(Long id) {
-        historialPaRepo.deleteById(id);
+        historialRepo.deleteById(id);
     }
 
 }
