@@ -22,7 +22,7 @@ public class Doctor extends Persona{
     public Doctor() {
     }
 
-    public Doctor(int numero_doctor, double ganancias, Especialidad especialidad, List<Paciente> paciente, Long id_persona, String nombre_persona, int edad_persona, int dni, int telefono, String correo) {
+    public Doctor(int numero_doctor, double ganancias, Especialidad especialidad, List<Paciente> paciente, Long id_persona, String nombre_persona, int edad_persona, String dni, String telefono, String correo) {
         super(id_persona, nombre_persona, edad_persona, dni, telefono, correo);
         this.numero_doctor = numero_doctor;
         this.ganancias = ganancias;

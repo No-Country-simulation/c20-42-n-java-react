@@ -1,18 +1,21 @@
 spring:
   application:
     name: TelemedicinaApp
-  server:
-    port: 8080
+
   datasource:
-      url: jdbc:mysql://localhost:3306/telemedicina?useSSL=false&serverTimeZone=UTC
-      username: root
-      password: root
+    url: jdbc:mysql://localhost:3306/telemedicina?useSSL=false&serverTimeZone=UTC&createDatabaseIfNotExist=true
+    username: root
+    password:
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
-      hibernate:
-          ddl-auto: update
-          show-sql: true
-    
-  
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database: mysql
+
+server:
+  port: 8080
+
   
  
 springdoc:

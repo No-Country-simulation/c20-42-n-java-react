@@ -1,6 +1,15 @@
 package com.telemedicina.app.model;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
@@ -8,16 +17,14 @@ import lombok.Setter;
  * @author olive
  */
 
-@Getter
-@Setter
-public class Paciente extends Persona {
-
-    public Paciente() {
-    }
-
-    public Paciente(Long id_persona, String nombre_persona, int edad_persona, int dni, int telefono, String correo) {
-        super(id_persona, nombre_persona, edad_persona, dni, telefono, correo);
-    }
-    
+@Data
+@NoArgsConstructor
+@Entity
+public class Paciente{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Persona persona;
     
 }

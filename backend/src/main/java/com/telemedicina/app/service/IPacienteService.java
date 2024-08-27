@@ -9,13 +9,13 @@ import java.util.List;
  */
 public interface IPacienteService {
     
-    public List<Paciente> obtenerPacientes();
+    List<Paciente> obtenerPacientes();
     
-    public void agregarPaciente(Paciente paciente);
+    void agregarPaciente(Paciente paciente);
     
-    public void editarPaciente(Paciente paciente);
+    void editarPaciente(Paciente paciente);
+
+    void eliminarPaciente(Long id);
     
-    public void eliminarPaciente(Long id);
-    
-    public Paciente encontrarPaciente(Long id);
+    Paciente encontrarPaciente(Long id);
 }

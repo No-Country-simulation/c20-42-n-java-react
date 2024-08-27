@@ -1,5 +1,10 @@
 package com.telemedicina.app.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Transient;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,14 +15,18 @@ import lombok.Setter;
 
 @Getter
 @Setter
+@Entity
 public class HistorialPaciente {
-    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private Long id_historial;
     private String descripcion;
     
     
-    
+    @Transient
     private PdfFile pdfFile;
+    @Transient
     private Paciente paciente;
 
     public HistorialPaciente() {
