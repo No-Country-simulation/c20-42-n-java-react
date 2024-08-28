@@ -1,6 +1,6 @@
 # c20-42-n-java-react-telemedicina
 
-# TelemedicinaApp (inserte nombre creativo aquí)
+# HealthTech
 App de telemedicina
 
 Features
@@ -27,12 +27,12 @@ Requerimientos:
 
 1. Clona el repositorio:
    ```
-   git clone https://github.com/23737k/c20-42-n-java-react-telemedicina.git
+   git clone https://github.com/No-Country-simulation/c20-42-n-java-react.git
    ```
 
 2. Navega hasta el directorio `c20-42-n-java-react-telemedicina/backend` :
    ```
-   cd c20-42-n-java-react-telemedicina/backend
+   cd c20-42-n-java-react/backend
    ```
 3. Instala las dependencias (asumimos que tienes Maven instalado):
    ```
@@ -42,9 +42,11 @@ Requerimientos:
    ```
    mvn spring-boot:run
    ```
-5. Accede a la documentación de la api utilizando Swagger UI:
+5. Accede a la documentación de la api:
 
-   Abre tu navegador preferido y ve a http://localhost:8080/doc/swagger-ui.html
+   - Swagger UI:  http://localhost:8080/doc/swagger-ui.html
+   - Api doc : http://localhost:8080/api-docs
+   
 
 
 -> La aplicación estará disponible en  http://localhost:8080
