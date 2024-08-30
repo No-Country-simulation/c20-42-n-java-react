@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+
+.custom-btn-verde {
+    background-color: #09525e;
+    color: white; /* Asegura que el texto sea blanco para un buen contraste */
+    border: none; /* Opcional: elimina el borde */
+}
+
+.custom-btn-verde:hover {
+    background-color: #073f48; /* Un color ligeramente más oscuro para el efecto hover */
+}
+
