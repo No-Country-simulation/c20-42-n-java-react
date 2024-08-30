@@ -1,3 +1,4 @@
-.transparent-green {
-    opacity: 0.85; /* Ajusta el nivel de transparencia según sea necesario */
+.jumbotron {
+    background-color: rgba(13, 115, 133, 0.47); /* Color #0d7385 con 47% de opacidad */
+    color: white; /* Asegura que el texto sea blanco y no transparente */
 }
