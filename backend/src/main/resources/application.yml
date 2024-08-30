@@ -23,3 +23,4 @@ springdoc:
     path: /doc/swagger-ui.html
   api-docs:
     path: /api-docs
+  default-produces-media-type: application/json
