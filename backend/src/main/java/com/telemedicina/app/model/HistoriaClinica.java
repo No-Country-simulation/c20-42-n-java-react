@@ -1,16 +1,19 @@
 package com.telemedicina.app.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Transient;
 import java.util.List;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 /**
  *
@@ -20,18 +23,15 @@ import lombok.Setter;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Entity
-public class HistorialPaciente {
+public class HistoriaClinica {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Transient
-    private List<Consulta> consultas;
-
-    @Transient
-    private PdfFile pdfFile;
-    @Transient
+    @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
+    @JoinColumn
+    private List<RegistroMedico> registroMedicos;
+    @OneToOne(cascade = CascadeType.ALL)
     private Paciente paciente;
-        
-    
 }

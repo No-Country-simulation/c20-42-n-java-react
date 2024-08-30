@@ -26,5 +26,7 @@ public class Paciente{
     private Long id;
     @OneToOne(cascade = CascadeType.ALL)
     private Persona persona;
+    @OneToOne(orphanRemoval = true)
+    private HistoriaClinica historiaClinica;
     
 }

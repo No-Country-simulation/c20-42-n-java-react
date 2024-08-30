@@ -1,11 +1,13 @@
 package com.telemedicina.app.controller;
 
-import com.telemedicina.app.model.HistorialPaciente;
-import com.telemedicina.app.service.HistorialPacienteService;
-import jakarta.websocket.server.PathParam;
+import com.telemedicina.app.dto.request.HistoriaClinicaReq;
+import com.telemedicina.app.dto.response.HistoriaClinicaRes;
+import com.telemedicina.app.model.HistoriaClinica;
+import com.telemedicina.app.service.HistoriaClinicaService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,36 +25,36 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/historial")
 @RestController
 @RequiredArgsConstructor
-public class HistorialController {
+public class HistoriaClinicaController {
+    private final HistoriaClinicaService historiaClinicaService;
 
-    private final HistorialPacienteService historialPacienteService;
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public HistorialPaciente obtenerHistorial(@PathVariable("id") Long id) {
-        return historialPacienteService.obtenerHistorial(id);
+    public HistoriaClinicaRes obtenerHistorial(@PathVariable("id") Long id) {
+        return historiaClinicaService.obtenerHistorial(id);
     }
 
     @GetMapping("")
     @ResponseStatus(HttpStatus.OK)
-    public List<HistorialPaciente> obtenerTodoLosHistoriales() {
-        return historialPacienteService.obtenerTodosLosHistoriales();
+    public List<HistoriaClinicaRes> obtenerTodoLosHistoriales() {
+        return historiaClinicaService.obtenerTodosLosHistoriales();
     }
 
 
     //Endpoint para crear un historial
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public String crearHistorial(@RequestBody HistorialPaciente historialPaciente) {
-        historialPacienteService.crearHistorial(historialPaciente);
-        return "Historial creado exitosamente!";
+    public void crearHistorial(@RequestBody @Validated HistoriaClinicaReq historiaClinicaReq) {
+        historiaClinicaService.crearHistorial(historiaClinicaReq);
     }
 
     //Endpoint para editar un historial
     @PutMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
-    public String editarHistorial(@PathVariable("id") Long id, @RequestBody HistorialPaciente historialPaciente) {
-        historialPacienteService.editarHistorial(historialPaciente);
+    public String editarHistorial(@PathVariable("id") Long id, @RequestBody
+    HistoriaClinica historiaClinica) {
+        historiaClinicaService.editarHistorial(historiaClinica);
         return "Historial editado correctamente!";
     }
 
@@ -60,7 +62,7 @@ public class HistorialController {
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public String eliminarHistorial(@PathVariable("id") Long id) {
-        historialPacienteService.eliminarHistorial(id);
+        historiaClinicaService.eliminarHistorial(id);
         return "Historial eliminado correctamente!";
     }
 }

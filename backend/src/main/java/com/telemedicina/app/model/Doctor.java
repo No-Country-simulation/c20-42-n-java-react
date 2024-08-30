@@ -1,7 +1,17 @@
 package com.telemedicina.app.model;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Transient;
 import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
@@ -9,26 +19,23 @@ import lombok.Setter;
  * @author oliver
  */
 
-@Getter
-@Setter
-public class Doctor extends Persona{
-    
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+public class Doctor{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @OneToOne(orphanRemoval = true, cascade = CascadeType.ALL)
+    private Persona persona;
     private int numero_doctor; //Licencia del doctor
     private double ganancias;
-    
+    @Transient
     private Especialidad especialidad;
+    @Transient
     private List<Paciente> paciente;
 
-    public Doctor() {
-    }
-
-    public Doctor(int numero_doctor, double ganancias, Especialidad especialidad, List<Paciente> paciente, Long id_persona, String nombre_persona, int edad_persona, String dni, String telefono, String correo) {
-        super(id_persona, nombre_persona, edad_persona, dni, telefono, correo);
-        this.numero_doctor = numero_doctor;
-        this.ganancias = ganancias;
-        this.especialidad = especialidad;
-        this.paciente = paciente;
-    }
 
     
     
