@@ -1,36 +1,43 @@
 package com.telemedicina.app.model;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.validation.constraints.NotBlank;
 import java.util.List;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  *
  * @author oliver
  */
 
-@Getter
-@Setter
-public class Doctor extends Persona{
-    
-    private int numero_doctor; //Licencia del doctor
+@Data
+@NoArgsConstructor
+@Entity
+public class Doctor {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @NotBlank(message = "Debes ingresar tu licencia")
+    private String licencia; //Licencia del doctor
     private double ganancias;
     
+    @OneToOne(cascade = CascadeType.ALL)
+    private Persona persona;
+    
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Especialidad especialidad;
+    
+    //Relacion OneToMany para el manejo de la lista de pacientes
+    @OneToMany(mappedBy = "doctor", cascade = CascadeType.PERSIST)
     private List<Paciente> paciente;
 
-    public Doctor() {
-    }
-
-    public Doctor(int numero_doctor, double ganancias, Especialidad especialidad, List<Paciente> paciente, Long id_persona, String nombre_persona, int edad_persona, String dni, String telefono, String correo) {
-        super(id_persona, nombre_persona, edad_persona, dni, telefono, correo);
-        this.numero_doctor = numero_doctor;
-        this.ganancias = ganancias;
-        this.especialidad = especialidad;
-        this.paciente = paciente;
-    }
-
-    
-    
-    
 }

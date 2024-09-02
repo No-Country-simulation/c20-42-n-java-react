@@ -8,8 +8,6 @@ import lombok.Setter;
  * @author olive
  */
 
-@Getter
-@Setter
 public class Turno {
     
         

@@ -5,16 +5,15 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 /**
  *
- * @author olive
+ * @author oliver
  */
 
 @Data
@@ -26,5 +25,10 @@ public class Paciente{
     private Long id;
     @OneToOne(cascade = CascadeType.ALL)
     private Persona persona;
+    
+    //Relacion ManyToOne para manejar la lista de pacientes asociadas al doctor
+    @ManyToOne
+    @JoinColumn(name="doctor_id") //Columna que se creara en la tabla Paciente
+    private Doctor doctor;
     
 }
