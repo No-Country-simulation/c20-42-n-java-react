@@ -19,6 +19,7 @@ import { DoctorUserSidebarComponent } from './shared/components/doctor-user-layo
 import { DoctorUserLayoutComponent } from './shared/components/doctor-user-layout/doctor-user-layout/doctor-user-layout.component';
 import { HighlightDirective } from './shared/directives/highlight.directive';
 import { CustomPipe } from './shared/pipes/custom.pipe';
+import {provideHttpClient} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -44,7 +45,9 @@ import { CustomPipe } from './shared/pipes/custom.pipe';
     DoctorModule,
     UserModule
   ],
-  providers: [],
+  providers: [
+    provideHttpClient()
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

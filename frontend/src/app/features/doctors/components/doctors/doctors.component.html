@@ -1,1 +1,5 @@
 <p>doctors works!</p>
+
+@for(paciente of pacientes; track paciente){
+  <div>{{paciente.persona?.nombre}}</div>
+}
