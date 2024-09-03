@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {Paciente} from "../../../../core/services/api-client/models/paciente";
+import {PacienteControllerService} from "../../../../core/services/api-client/services/paciente-controller.service";
 
 @Component({
   selector: 'app-doctors',
@@ -7,4 +9,20 @@ import { Component } from '@angular/core';
 })
 export class DoctorsComponent {
 
+  //Esto no va aca, obviamente jeje. Es para probar
+  pacientes:Paciente[]=[];
+
+  constructor(private pacientesService: PacienteControllerService) {
+    pacientesService.obtenerPacientes().subscribe({
+      next: (value) => {
+        this.pacientes = value;
+      },
+      error: (err) => {
+        console.error('Error fetching pacientes:', err);
+      },
+      complete: () => {
+        console.log('Pacientes fetching completed');
+      }
+    });
+  }
 }
