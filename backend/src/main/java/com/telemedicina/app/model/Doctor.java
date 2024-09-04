@@ -23,7 +23,7 @@ public class Doctor{
     private Persona persona;
     private String licencia;
     private double honorarios;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Especialidad especialidad;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn
