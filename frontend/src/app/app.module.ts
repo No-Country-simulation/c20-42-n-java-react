@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -20,6 +20,11 @@ import { DoctorUserLayoutComponent } from './shared/components/doctor-user-layou
 import { HighlightDirective } from './shared/directives/highlight.directive';
 import { CustomPipe } from './shared/pipes/custom.pipe';
 import {provideHttpClient} from "@angular/common/http";
+import {KeycloakService} from "./core/services/keycloak/keycloak.service";
+
+export function kcFactory(keycloakService: KeycloakService) {
+  return ()=> keycloakService.init();
+}
 
 @NgModule({
   declarations: [
@@ -46,7 +51,13 @@ import {provideHttpClient} from "@angular/common/http";
     UserModule
   ],
   providers: [
-    provideHttpClient()
+    provideHttpClient(),
+    {
+      provide: APP_INITIALIZER,
+      deps: [KeycloakService],
+      useFactory: kcFactory,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
