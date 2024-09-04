@@ -36,7 +36,7 @@ Requerimientos:
    ```
 3. Instala las dependencias (asumimos que tienes Maven instalado):
    ```
-   mvn clean install
+   mvn clean install -DskipTests
    ```
 4. Corre el proyecto
    ```
