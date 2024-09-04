@@ -6,14 +6,17 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { PacienteRes } from '../../models/paciente-res';
+import { DoctorReq } from '../../models/doctor-req';
+import { DoctorRes } from '../../models/doctor-res';
 
-export interface ObtenerPacientes$Params {
+export interface CrearDoctor$Params {
+      body: DoctorReq
 }
 
-export function obtenerPacientes(http: HttpClient, rootUrl: string, params?: ObtenerPacientes$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<PacienteRes>>> {
-  const rb = new RequestBuilder(rootUrl, obtenerPacientes.PATH, 'get');
+export function crearDoctor(http: HttpClient, rootUrl: string, params: CrearDoctor$Params, context?: HttpContext): Observable<StrictHttpResponse<DoctorRes>> {
+  const rb = new RequestBuilder(rootUrl, crearDoctor.PATH, 'post');
   if (params) {
+    rb.body(params.body, 'application/json');
   }
 
   return http.request(
@@ -21,9 +24,9 @@ export function obtenerPacientes(http: HttpClient, rootUrl: string, params?: Obt
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<Array<PacienteRes>>;
+      return r as StrictHttpResponse<DoctorRes>;
     })
   );
 }
 
-obtenerPacientes.PATH = '/pacientes';
+crearDoctor.PATH = '/doctores';

@@ -1,7 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-export interface Especialidad {
+export interface EspecialidadReq {
   descripcion?: string;
-  id?: number;
-  nombre?: string;
+  nombre: string;
 }

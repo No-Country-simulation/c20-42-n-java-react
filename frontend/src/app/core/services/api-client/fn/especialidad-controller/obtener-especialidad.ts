@@ -6,13 +6,13 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { PacienteRes } from '../../models/paciente-res';
+import { Especialidad } from '../../models/especialidad';
 
-export interface ObtenerPacientes$Params {
+export interface ObtenerEspecialidad$Params {
 }
 
-export function obtenerPacientes(http: HttpClient, rootUrl: string, params?: ObtenerPacientes$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<PacienteRes>>> {
-  const rb = new RequestBuilder(rootUrl, obtenerPacientes.PATH, 'get');
+export function obtenerEspecialidad(http: HttpClient, rootUrl: string, params?: ObtenerEspecialidad$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<Especialidad>>> {
+  const rb = new RequestBuilder(rootUrl, obtenerEspecialidad.PATH, 'get');
   if (params) {
   }
 
@@ -21,9 +21,9 @@ export function obtenerPacientes(http: HttpClient, rootUrl: string, params?: Obt
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<Array<PacienteRes>>;
+      return r as StrictHttpResponse<Array<Especialidad>>;
     })
   );
 }
 
-obtenerPacientes.PATH = '/pacientes';
+obtenerEspecialidad.PATH = '/especialidades';

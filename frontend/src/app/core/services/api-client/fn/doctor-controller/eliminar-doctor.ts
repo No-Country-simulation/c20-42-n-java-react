@@ -6,14 +6,15 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { PacienteRes } from '../../models/paciente-res';
 
-export interface ObtenerPacientes$Params {
+export interface EliminarDoctor$Params {
+  id: number;
 }
 
-export function obtenerPacientes(http: HttpClient, rootUrl: string, params?: ObtenerPacientes$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<PacienteRes>>> {
-  const rb = new RequestBuilder(rootUrl, obtenerPacientes.PATH, 'get');
+export function eliminarDoctor(http: HttpClient, rootUrl: string, params: EliminarDoctor$Params, context?: HttpContext): Observable<StrictHttpResponse<string>> {
+  const rb = new RequestBuilder(rootUrl, eliminarDoctor.PATH, 'delete');
   if (params) {
+    rb.path('id', params.id, {});
   }
 
   return http.request(
@@ -21,9 +22,9 @@ export function obtenerPacientes(http: HttpClient, rootUrl: string, params?: Obt
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<Array<PacienteRes>>;
+      return r as StrictHttpResponse<string>;
     })
   );
 }
 
-obtenerPacientes.PATH = '/pacientes';
+eliminarDoctor.PATH = '/doctores/{id}';
