@@ -35,8 +35,12 @@ public class PacienteService{
         pacienteRepository.deleteById(id);
     }
 
-    public Paciente encontrarPaciente(Long id) {
-      return pacienteRepository.findById(id).orElse(null);
+    public PacienteRes encontrarPaciente(Long id) {
+      return pacienteMapper.toPacienteRes(pacienteRepository.findById(id).orElseThrow(()-> new EntityNotFoundException("Paciente con id " + id + " no encontrado")));
+    }
+
+    public Paciente encontrarPacientePorId(Long id) {
+        return pacienteRepository.findById(id).orElseThrow(()-> new EntityNotFoundException("Paciente no encontrado"));
     }
     
     

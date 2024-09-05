@@ -1,6 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
-import { PersonaReq } from '../models/persona-req';
+import {PersonaReq} from '../models/persona-req';
+
 export interface DoctorReq {
   especialidadId: number;
   honorarios: number;

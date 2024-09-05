@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {Paciente} from "../../../../core/services/api-client/models/paciente";
 import {PacienteControllerService} from "../../../../core/services/api-client/services/paciente-controller.service";
 

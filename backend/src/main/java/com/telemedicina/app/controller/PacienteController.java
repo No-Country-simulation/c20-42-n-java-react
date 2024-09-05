@@ -50,7 +50,7 @@ public class PacienteController {
     }
 
     @GetMapping("/{id}")
-    public Paciente obtenerPaciente(@PathVariable("id") Long id) {
+    public PacienteRes obtenerPaciente(@PathVariable("id") Long id) {
         return pacienteService.encontrarPaciente(id);
     }
 
