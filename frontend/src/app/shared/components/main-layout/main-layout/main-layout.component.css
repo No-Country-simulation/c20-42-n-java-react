@@ -1,8 +1,18 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%; /* Asegura que el ancho de la página sea del 100% */
+}
+
+
 .mi-fondo {
-  height: 100vh;
-  width: 100vw;
+  min-height: 100%;
+  width: 100%;
   background-image: url('/assets/images/doctor-computadora-inicio.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
 }

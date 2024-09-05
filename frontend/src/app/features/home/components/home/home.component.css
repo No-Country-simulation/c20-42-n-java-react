@@ -1,9 +1,21 @@
-.transparent-green {
-    background-color: rgba(0, 128, 0, 0.47); /* Verde con 47% de opacidad */
-}
-
-.jumbotron {
+.jumbotron1 {
     background-color: rgba(13, 115, 133, 0.47); /* Color #0d7385 con 47% de opacidad */
     color: white; /* Asegura que el texto sea blanco y no transparente */
+    padding: 5rem 1rem;
+    text-align: center;
+}
+
+.jumbotron1 .container {
+    max-width: 800px;
+}
+
+.jumbotron1 .display-4 {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.jumbotron1 .lead {
+    font-size: 1.25rem;
+    margin-top: 1.5rem;
 }
 
