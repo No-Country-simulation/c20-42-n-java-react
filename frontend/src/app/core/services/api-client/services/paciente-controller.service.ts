@@ -5,20 +5,20 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { BaseService } from '../base-service';
-import { ApiConfiguration } from '../api-configuration';
-import { StrictHttpResponse } from '../strict-http-response';
+import { BaseService } from '../../../base-service';
+import { ApiConfiguration } from '../../../api-configuration';
+import { StrictHttpResponse } from '../../../strict-http-response';
 
-import { crearPaciente } from '../fn/paciente-controller/crear-paciente';
-import { CrearPaciente$Params } from '../fn/paciente-controller/crear-paciente';
-import { editarPaciente } from '../fn/paciente-controller/editar-paciente';
-import { EditarPaciente$Params } from '../fn/paciente-controller/editar-paciente';
-import { eliminarPaciente } from '../fn/paciente-controller/eliminar-paciente';
-import { EliminarPaciente$Params } from '../fn/paciente-controller/eliminar-paciente';
-import { obtenerPaciente } from '../fn/paciente-controller/obtener-paciente';
-import { ObtenerPaciente$Params } from '../fn/paciente-controller/obtener-paciente';
-import { obtenerPacientes } from '../fn/paciente-controller/obtener-pacientes';
-import { ObtenerPacientes$Params } from '../fn/paciente-controller/obtener-pacientes';
+import { crearPaciente } from '../../../fn/paciente-controller/crear-paciente';
+import { CrearPaciente$Params } from '../../../fn/paciente-controller/crear-paciente';
+import { editarPaciente } from '../../../fn/paciente-controller/editar-paciente';
+import { EditarPaciente$Params } from '../../../fn/paciente-controller/editar-paciente';
+import { eliminarPaciente } from '../../../fn/paciente-controller/eliminar-paciente';
+import { EliminarPaciente$Params } from '../../../fn/paciente-controller/eliminar-paciente';
+import { obtenerPaciente } from '../../../fn/paciente-controller/obtener-paciente';
+import { ObtenerPaciente$Params } from '../../../fn/paciente-controller/obtener-paciente';
+import { obtenerPacientes } from '../../../fn/paciente-controller/obtener-pacientes';
+import { ObtenerPacientes$Params } from '../../../fn/paciente-controller/obtener-pacientes';
 import { Paciente } from '../models/paciente';
 import { PacienteRes } from '../models/paciente-res';
 

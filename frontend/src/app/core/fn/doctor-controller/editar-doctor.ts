@@ -1,14 +1,13 @@
 /* tslint:disable */
 /* eslint-disable */
-import { HttpClient, HttpContext, HttpResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
-import { StrictHttpResponse } from '../../strict-http-response';
-import { RequestBuilder } from '../../request-builder';
+import {HttpClient, HttpContext, HttpResponse} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {filter, map} from 'rxjs/operators';
+import {StrictHttpResponse} from '../../strict-http-response';
+import {RequestBuilder} from '../../request-builder';
 
-import { DoctorReq } from '../../models/doctor-req';
-import { DoctorRes } from '../../models/doctor-res';
-
+import { DoctorRes } from '../../services/api-client/models/doctor-res';
+import { DoctorReq } from '../../services/api-client/models/doctor-req';
 export interface EditarDoctor$Params {
   id: number;
       body: DoctorReq

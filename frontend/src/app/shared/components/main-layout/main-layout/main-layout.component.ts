@@ -10,5 +10,4 @@ export class MainLayoutComponent {
 
   constructor(public router: Router) {}
 
-
 }

@@ -1,13 +1,13 @@
 /* tslint:disable */
 /* eslint-disable */
-import { NgModule, ModuleWithProviders, SkipSelf, Optional } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { ApiConfiguration, ApiConfigurationParams } from './api-configuration';
+import {ModuleWithProviders, NgModule, Optional, SkipSelf} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {ApiConfiguration, ApiConfigurationParams} from './api-configuration';
 
-import { PacienteControllerService } from './services/paciente-controller.service';
-import { HistoriaClinicaControllerService } from './services/historia-clinica-controller.service';
-import { EspecialidadControllerService } from './services/especialidad-controller.service';
-import { DoctorControllerService } from './services/doctor-controller.service';
+import {PacienteControllerService} from './services/paciente-controller.service';
+import {HistoriaClinicaControllerService} from './services/historia-clinica-controller.service';
+import {EspecialidadControllerService} from './services/especialidad-controller.service';
+import {DoctorControllerService} from './services/doctor-controller.service';
 
 /**
  * Module that provides all services and configuration.
@@ -37,7 +37,7 @@ export class ApiModule {
     }
   }
 
-  constructor( 
+  constructor(
     @Optional() @SkipSelf() parentModule: ApiModule,
     @Optional() http: HttpClient
   ) {

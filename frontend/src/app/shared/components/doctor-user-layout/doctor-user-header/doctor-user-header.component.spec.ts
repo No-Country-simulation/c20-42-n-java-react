@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { DoctorUserHeaderComponent } from './doctor-user-header.component';
+import {DoctorUserHeaderComponent} from './doctor-user-header.component';
 
 describe('DoctorUserHeaderComponent', () => {
   let component: DoctorUserHeaderComponent;

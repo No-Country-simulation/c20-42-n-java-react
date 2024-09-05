@@ -1,14 +1,16 @@
-import { NgModule } from '@angular/core';
-import { LoginComponent } from './features/auth/login/login.component';
-import { RouterModule, Routes } from '@angular/router';
-import { RegisterComponent } from './features/auth/register/register.component';
-import { DoctorDashboardComponent } from './features/doctor/components/doctor-dashboard/doctor-dashboard.component';
-import { UserDashboardComponent } from './features/user/components/user-dashboard/user-dashboard.component';
-import { MainLayoutComponent } from './shared/components/main-layout/main-layout/main-layout.component';
-import { HomeComponent } from './features/home/components/home/home.component';
-import { SpecialtiesComponent } from './features/specialties/components/specialties/specialties.component';
-import { DoctorsComponent } from './features/doctors/components/doctors/doctors.component';
-import { DoctorUserLayoutComponent } from './shared/components/doctor-user-layout/doctor-user-layout/doctor-user-layout.component';
+import {NgModule} from '@angular/core';
+import {LoginComponent} from './features/auth/login/login.component';
+import {RouterModule, Routes} from '@angular/router';
+import {RegisterComponent} from './features/auth/register/register.component';
+import {DoctorDashboardComponent} from './features/doctor/components/doctor-dashboard/doctor-dashboard.component';
+import {UserDashboardComponent} from './features/user/components/user-dashboard/user-dashboard.component';
+import {MainLayoutComponent} from './shared/components/main-layout/main-layout/main-layout.component';
+import {HomeComponent} from './features/home/components/home/home.component';
+import {SpecialtiesComponent} from './features/specialties/components/specialties/specialties.component';
+import {DoctorsComponent} from './features/doctors/components/doctors/doctors.component';
+import {
+  DoctorUserLayoutComponent
+} from './shared/components/doctor-user-layout/doctor-user-layout/doctor-user-layout.component';
 
 const routes: Routes = [
   {

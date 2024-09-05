@@ -1,6 +1,7 @@
 package com.telemedicina.app.service.mapper;
 
 import com.telemedicina.app.dto.request.RegistroMedicoReq;
+import com.telemedicina.app.dto.response.RegistroMedicoRes;
 import com.telemedicina.app.model.Doctor;
 import com.telemedicina.app.model.RegistroMedico;
 import com.telemedicina.app.repository.DoctorRepo;
@@ -26,6 +27,20 @@ public class RegistroMedicoMapper {
         .tratamiento(registroMedico.getTratamiento())
         .seguimiento(registroMedico.getSeguimiento())
         .observaciones(registroMedico.getObservaciones())
+        .build();
+  }
+
+  public RegistroMedicoRes toRegistroMedicoRes(RegistroMedico r) {
+    return RegistroMedicoRes.builder()
+        .id(r.getId())
+        .fecha(r.getFecha())
+        .doctorId(r.getDoctor().getId())
+        .motivoDeLaConsulta(r.getMotivoDeLaConsulta())
+        .sintomas(r.getSintomas())
+        .diagnostico(r.getDiagnostico())
+        .tratamiento(r.getTratamiento())
+        .seguimiento(r.getSeguimiento())
+        .observaciones(r.getObservaciones())
         .build();
   }
 

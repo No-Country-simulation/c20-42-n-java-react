@@ -28,7 +28,6 @@ public class PacienteMapper {
     return PacienteRes.builder()
         .id(p.getId())
         .persona(p.getPersona())
-        .historiaClinica(historiaClinicaMapper.toHistoriaClinicaRes(p.getHistoriaClinica()))
         .build();
   }
 

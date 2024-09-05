@@ -5,21 +5,21 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { BaseService } from '../base-service';
-import { ApiConfiguration } from '../api-configuration';
-import { StrictHttpResponse } from '../strict-http-response';
+import { BaseService } from '../../../base-service';
+import { ApiConfiguration } from '../../../api-configuration';
+import { StrictHttpResponse } from '../../../strict-http-response';
 
-import { crearEspecialidad } from '../fn/especialidad-controller/crear-especialidad';
-import { CrearEspecialidad$Params } from '../fn/especialidad-controller/crear-especialidad';
-import { editarEspecialidad } from '../fn/especialidad-controller/editar-especialidad';
-import { EditarEspecialidad$Params } from '../fn/especialidad-controller/editar-especialidad';
-import { eliminarEspecialidad } from '../fn/especialidad-controller/eliminar-especialidad';
-import { EliminarEspecialidad$Params } from '../fn/especialidad-controller/eliminar-especialidad';
+import { crearEspecialidad } from '../../../fn/especialidad-controller/crear-especialidad';
+import { CrearEspecialidad$Params } from '../../../fn/especialidad-controller/crear-especialidad';
+import { editarEspecialidad } from '../../../fn/especialidad-controller/editar-especialidad';
+import { EditarEspecialidad$Params } from '../../../fn/especialidad-controller/editar-especialidad';
+import { eliminarEspecialidad } from '../../../fn/especialidad-controller/eliminar-especialidad';
+import { EliminarEspecialidad$Params } from '../../../fn/especialidad-controller/eliminar-especialidad';
 import { Especialidad } from '../models/especialidad';
-import { obtenerEspecialidad } from '../fn/especialidad-controller/obtener-especialidad';
-import { ObtenerEspecialidad$Params } from '../fn/especialidad-controller/obtener-especialidad';
-import { obtenerEspecialidad1 } from '../fn/especialidad-controller/obtener-especialidad-1';
-import { ObtenerEspecialidad1$Params } from '../fn/especialidad-controller/obtener-especialidad-1';
+import { obtenerEspecialidad } from '../../../fn/especialidad-controller/obtener-especialidad';
+import { ObtenerEspecialidad$Params } from '../../../fn/especialidad-controller/obtener-especialidad';
+import { obtenerEspecialidad1 } from '../../../fn/especialidad-controller/obtener-especialidad-1';
+import { ObtenerEspecialidad1$Params } from '../../../fn/especialidad-controller/obtener-especialidad-1';
 
 @Injectable({ providedIn: 'root' })
 export class EspecialidadControllerService extends BaseService {
