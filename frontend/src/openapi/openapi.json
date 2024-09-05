@@ -65,7 +65,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Paciente"
+                "$ref": "#/components/schemas/PacienteReq"
               }
             }
           },
@@ -77,7 +77,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/PacienteRes"
                 }
               }
             }
@@ -213,6 +213,204 @@
         }
       }
     },
+    "/especialidades/{id}": {
+      "get": {
+        "tags": [
+          "especialidad-controller"
+        ],
+        "operationId": "obtenerEspecialidad_1",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "302": {
+            "description": "Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Especialidad"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "especialidad-controller"
+        ],
+        "operationId": "editarEspecialidad",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EspecialidadReq"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Especialidad"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "especialidad-controller"
+        ],
+        "operationId": "eliminarEspecialidad",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/doctores/{id}": {
+      "get": {
+        "tags": [
+          "doctor-controller"
+        ],
+        "operationId": "obtenerDoctor",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "302": {
+            "description": "Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DoctorRes"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "doctor-controller"
+        ],
+        "operationId": "editarDoctor",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DoctorReq"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DoctorRes"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "doctor-controller"
+        ],
+        "operationId": "eliminarDoctor",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/pacientes": {
       "get": {
         "tags": [
@@ -227,7 +425,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Paciente"
+                    "$ref": "#/components/schemas/PacienteRes"
                   }
                 }
               }
@@ -244,7 +442,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Paciente"
+                "$ref": "#/components/schemas/PacienteReq"
               }
             }
           },
@@ -256,7 +454,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/PacienteRes"
                 }
               }
             }
@@ -307,10 +505,145 @@
           }
         }
       }
+    },
+    "/especialidades": {
+      "get": {
+        "tags": [
+          "especialidad-controller"
+        ],
+        "operationId": "obtenerEspecialidad",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Especialidad"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "especialidad-controller"
+        ],
+        "operationId": "crearEspecialidad",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EspecialidadReq"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Especialidad"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/doctores": {
+      "get": {
+        "tags": [
+          "doctor-controller"
+        ],
+        "operationId": "obtenerDoctores",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DoctorRes"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "doctor-controller"
+        ],
+        "operationId": "crearDoctor",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DoctorReq"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DoctorRes"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
     "schemas": {
+      "PacienteReq": {
+        "type": "object",
+        "properties": {
+          "persona": {
+            "$ref": "#/components/schemas/Persona"
+          }
+        }
+      },
+      "Persona": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "nombre": {
+            "type": "string"
+          },
+          "edad": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dni": {
+            "type": "string"
+          },
+          "telefono": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        }
+      },
       "Doctor": {
         "type": "object",
         "properties": {
@@ -321,18 +654,17 @@
           "persona": {
             "$ref": "#/components/schemas/Persona"
           },
-          "numero_doctor": {
-            "type": "integer",
-            "format": "int32"
+          "licencia": {
+            "type": "string"
           },
-          "ganancias": {
+          "honorarios": {
             "type": "number",
             "format": "double"
           },
           "especialidad": {
             "$ref": "#/components/schemas/Especialidad"
           },
-          "paciente": {
+          "pacientes": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Paciente"
@@ -343,11 +675,11 @@
       "Especialidad": {
         "type": "object",
         "properties": {
-          "id_especialidad": {
+          "id": {
             "type": "integer",
             "format": "int64"
           },
-          "especialidad_nombre": {
+          "nombre": {
             "type": "string"
           },
           "descripcion": {
@@ -373,6 +705,25 @@
           }
         }
       },
+      "HistoriaClinicaRes": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "registroMedicos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RegistroMedico"
+            }
+          },
+          "pacienteId": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
       "Paciente": {
         "type": "object",
         "properties": {
@@ -388,28 +739,18 @@
           }
         }
       },
-      "Persona": {
+      "PacienteRes": {
         "type": "object",
         "properties": {
           "id": {
             "type": "integer",
             "format": "int64"
           },
-          "nombre": {
-            "type": "string"
+          "persona": {
+            "$ref": "#/components/schemas/Persona"
           },
-          "edad": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "dni": {
-            "type": "string"
-          },
-          "telefono": {
-            "type": "string"
-          },
-          "mail": {
-            "type": "string"
+          "historiaClinica": {
+            "$ref": "#/components/schemas/HistoriaClinicaRes"
           }
         }
       },
@@ -450,6 +791,97 @@
           },
           "observaciones": {
             "type": "string"
+          }
+        }
+      },
+      "EspecialidadReq": {
+        "required": [
+          "nombre"
+        ],
+        "type": "object",
+        "properties": {
+          "nombre": {
+            "pattern": "^[a-zA-Z]+$",
+            "type": "string"
+          },
+          "descripcion": {
+            "type": "string"
+          }
+        }
+      },
+      "DoctorReq": {
+        "required": [
+          "especialidadId",
+          "honorarios",
+          "licencia"
+        ],
+        "type": "object",
+        "properties": {
+          "persona": {
+            "$ref": "#/components/schemas/PersonaReq"
+          },
+          "licencia": {
+            "type": "string"
+          },
+          "honorarios": {
+            "type": "number",
+            "format": "double"
+          },
+          "especialidadId": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "PersonaReq": {
+        "required": [
+          "dni",
+          "edad",
+          "email",
+          "nombre",
+          "telefono"
+        ],
+        "type": "object",
+        "properties": {
+          "nombre": {
+            "pattern": "^[a-zA-Z]+$",
+            "type": "string"
+          },
+          "edad": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dni": {
+            "type": "string"
+          },
+          "telefono": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        }
+      },
+      "DoctorRes": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "persona": {
+            "$ref": "#/components/schemas/Persona"
+          },
+          "licencia": {
+            "type": "string"
+          },
+          "honorarios": {
+            "type": "number",
+            "format": "double"
+          },
+          "especialidadId": {
+            "type": "integer",
+            "format": "int64"
           }
         }
       },
@@ -512,25 +944,6 @@
           },
           "observaciones": {
             "type": "string"
-          }
-        }
-      },
-      "HistoriaClinicaRes": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "registroMedicos": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/RegistroMedico"
-            }
-          },
-          "pacienteId": {
-            "type": "integer",
-            "format": "int64"
           }
         }
       }

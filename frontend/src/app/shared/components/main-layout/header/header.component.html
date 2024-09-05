@@ -19,10 +19,16 @@
                         <a class="nav-link" [ngClass]="{'text-black': isSpecialtiesOrDoctors() || router.url === '/doctors', 'text-white': !isSpecialtiesOrDoctors() && router.url !== '/doctors'}" routerLink="/doctors">Médicos</a>
                     </li>
                 </ul>
+              @if (authenticated){
                 <div class="d-flex">
-                    <button class="btn custom-btn-verde me-2" routerLink="/register" type="submit">Registro</button>
-                    <button class="btn custom-btn-verde" routerLink="/login" type="submit">Inicio sesión</button>
+                  <button class="btn custom-btn-verde text-white" (click)="logout()" type="submit">Cerrar Sesión</button>
                 </div>
+              } @else {
+                <div class="d-flex">
+                  <button class="btn custom-btn-verde text-white me-2" (click)="register()" type="submit">Registro</button>
+                  <button class="btn custom-btn-verde text-white" (click)="login()" type="submit">Inicio sesión</button>
+                </div>
+              }
             </div>
         </div>
     </nav>

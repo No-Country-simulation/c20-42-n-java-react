@@ -1,43 +1,32 @@
 package com.telemedicina.app.model;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Transient;
-import java.util.List;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-/**
- *
- * @author oliver
- */
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Builder
 public class Doctor{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @OneToOne(orphanRemoval = true, cascade = CascadeType.ALL)
     private Persona persona;
-    private int numero_doctor; //Licencia del doctor
-    private double ganancias;
-    @Transient
+    private String licencia;
+    private double honorarios;
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Especialidad especialidad;
-    @Transient
-    private List<Paciente> paciente;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn
+    private List<Paciente> pacientes = new ArrayList<>();
 
-
-    
-    
-    
 }

@@ -2,6 +2,6 @@
 /* eslint-disable */
 export interface Especialidad {
   descripcion?: string;
-  especialidad_nombre?: string;
-  id_especialidad?: number;
+  id?: number;
+  nombre?: string;
 }

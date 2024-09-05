@@ -1,11 +1,7 @@
 package com.telemedicina.app.model;
 
-import jakarta.persistence.ElementCollection;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Transient;
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -24,7 +20,7 @@ public class RegistroMedico {
   protected Long id;
   private String expediente;
   private LocalDate fecha;
-  @Transient
+  @ManyToOne
   private Doctor doctor;
   private String motivoDeLaConsulta;
   @ElementCollection

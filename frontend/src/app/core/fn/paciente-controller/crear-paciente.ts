@@ -6,13 +6,14 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { Paciente } from '../../models/paciente';
+import { PacienteReq } from '../../models/paciente-req';
+import { PacienteRes } from '../../models/paciente-res';
 
 export interface CrearPaciente$Params {
-      body: Paciente
+      body: PacienteReq
 }
 
-export function crearPaciente(http: HttpClient, rootUrl: string, params: CrearPaciente$Params, context?: HttpContext): Observable<StrictHttpResponse<string>> {
+export function crearPaciente(http: HttpClient, rootUrl: string, params: CrearPaciente$Params, context?: HttpContext): Observable<StrictHttpResponse<PacienteRes>> {
   const rb = new RequestBuilder(rootUrl, crearPaciente.PATH, 'post');
   if (params) {
     rb.body(params.body, 'application/json');
@@ -23,7 +24,7 @@ export function crearPaciente(http: HttpClient, rootUrl: string, params: CrearPa
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<string>;
+      return r as StrictHttpResponse<PacienteRes>;
     })
   );
 }

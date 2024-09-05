@@ -8,6 +8,7 @@ import com.telemedicina.app.dto.request.HistoriaClinicaReq;
 import com.telemedicina.app.dto.response.HistoriaClinicaRes;
 import com.telemedicina.app.model.HistoriaClinica;
 import com.telemedicina.app.repository.HistoriaClinicaRepo;
+import com.telemedicina.app.repository.PacienteRepo;
 import com.telemedicina.app.service.mapper.HistoriaClinicaMapper;
 import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
@@ -22,6 +23,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class HistoriaClinicaService {
+
     private final HistoriaClinicaRepo historiaClinicaRepo;
     private final HistoriaClinicaMapper historiaClinicaMapper;
 

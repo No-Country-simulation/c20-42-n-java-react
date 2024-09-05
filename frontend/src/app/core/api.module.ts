@@ -6,6 +6,8 @@ import { ApiConfiguration, ApiConfigurationParams } from './api-configuration';
 
 import { PacienteControllerService } from './services/paciente-controller.service';
 import { HistoriaClinicaControllerService } from './services/historia-clinica-controller.service';
+import { EspecialidadControllerService } from './services/especialidad-controller.service';
+import { DoctorControllerService } from './services/doctor-controller.service';
 
 /**
  * Module that provides all services and configuration.
@@ -17,6 +19,8 @@ import { HistoriaClinicaControllerService } from './services/historia-clinica-co
   providers: [
     PacienteControllerService,
     HistoriaClinicaControllerService,
+    EspecialidadControllerService,
+    DoctorControllerService,
     ApiConfiguration
   ],
 })

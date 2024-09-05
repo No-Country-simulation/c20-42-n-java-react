@@ -1,5 +1,7 @@
 package com.telemedicina.app.controller;
 
+import com.telemedicina.app.dto.request.PacienteReq;
+import com.telemedicina.app.dto.response.PacienteRes;
 import com.telemedicina.app.model.Paciente;
 import com.telemedicina.app.service.PacienteService;
 import java.util.List;
@@ -15,10 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- *
- * @author oliver
- */
+
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/pacientes")
@@ -28,23 +27,19 @@ public class PacienteController {
 
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
-    public List<Paciente> obtenerPacientes() {
+    public List<PacienteRes> obtenerPacientes() {
         return pacienteService.obtenerPacientes();
     }
 
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
-    public String crearPaciente(@RequestBody Paciente paciente) {
-        pacienteService.agregarPaciente(paciente);
-        //TODO retornar al paciente creado
-        return "Paciente creado exitosamente!";
+    public PacienteRes crearPaciente(@RequestBody PacienteReq paciente) {
+        return pacienteService.agregarPaciente(paciente);
     }
 
     @PutMapping("/{id}")
-    public String editarPaciente(@PathVariable Long id, @RequestBody Paciente paciente) {
-        pacienteService.editarPaciente(paciente);
-        //TODO retornar al paciente modificado
-        return "Paciente editado exitosamente!";
+    public PacienteRes editarPaciente(@PathVariable Long id, @RequestBody PacienteReq paciente) {
+        return pacienteService.editarPaciente(id, paciente);
     }
 
     @DeleteMapping("/{id}")
@@ -54,7 +49,6 @@ public class PacienteController {
         return "Paciente eliminado exitosamente!";
     }
 
-    //Endpoint para obetener un paciente por id
     @GetMapping("/{id}")
     public Paciente obtenerPaciente(@PathVariable("id") Long id) {
         return pacienteService.encontrarPaciente(id);

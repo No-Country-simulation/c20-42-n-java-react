@@ -1,7 +1,6 @@
 package com.telemedicina.app.model;
 
-import lombok.Getter;
-import lombok.Setter;
+
 
 /**
  *
@@ -10,8 +9,6 @@ import lombok.Setter;
 
 
 //Gettter y Setters
-@Getter
-@Setter
 public class MetodoPago {
     
     private Long id_metodo_pago;

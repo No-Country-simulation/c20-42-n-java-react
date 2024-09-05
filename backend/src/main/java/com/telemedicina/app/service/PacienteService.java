@@ -1,32 +1,34 @@
 package com.telemedicina.app.service;
 
+import com.telemedicina.app.dto.request.PacienteReq;
+import com.telemedicina.app.dto.response.PacienteRes;
 import com.telemedicina.app.model.Paciente;
 import com.telemedicina.app.repository.PacienteRepo;
+import com.telemedicina.app.service.mapper.PacienteMapper;
+import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-/**
- *
- * @author olive
- */
-
 @Service
 @RequiredArgsConstructor
 public class PacienteService{
-
+    private final PacienteMapper pacienteMapper;
     private final PacienteRepo pacienteRepository;
 
-    public List<Paciente> obtenerPacientes() {
-      return pacienteRepository.findAll();
+    public List<PacienteRes> obtenerPacientes() {
+      return pacienteRepository.findAll().stream().map(pacienteMapper::toPacienteRes).toList();
     }
 
-    public void agregarPaciente(Paciente paciente) {
-        pacienteRepository.save(paciente);
+    public PacienteRes agregarPaciente(PacienteReq paciente) {
+        return pacienteMapper.toPacienteRes(pacienteRepository.save(pacienteMapper.toPaciente(paciente)));
     }
 
-    public void editarPaciente(Paciente paciente) {
-        //TODO
+    public PacienteRes editarPaciente(Long id, PacienteReq paciente) {
+        pacienteRepository.findById(id).orElseThrow(()-> new EntityNotFoundException("Paciente con id " + id + " no encontrado"));
+        Paciente pacienteActual = pacienteMapper.toPaciente(paciente);
+        pacienteActual.setId(id);
+        return pacienteMapper.toPacienteRes(pacienteRepository.save(pacienteActual));
     }
 
     public void eliminarPaciente(Long id) {

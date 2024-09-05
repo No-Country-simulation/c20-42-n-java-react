@@ -1,29 +1,25 @@
 package com.telemedicina.app.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-/**
- *
- * @author oliver
- */
-
-@Getter
-@Setter
-class Especialidad {
-    
-    private Long id_especialidad;
-    private String especialidad_nombre;
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Entity
+public class Especialidad {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String nombre;
     private String descripcion;
-
-    public Especialidad() {
-    }
-
-    public Especialidad(Long id_especialidad, String especialidad_nombre, String descripcion) {
-        this.id_especialidad = id_especialidad;
-        this.especialidad_nombre = especialidad_nombre;
-        this.descripcion = descripcion;
-    }
     
     
 }

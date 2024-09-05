@@ -5,19 +5,14 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-/**
- *
- * @author oliver
- */
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Entity
 public class Persona {
     @Id
@@ -27,9 +22,6 @@ public class Persona {
     private int edad;
     private String dni;
     private String telefono;
-    private String mail;
+    private String email;
 
-
-
-    
 }

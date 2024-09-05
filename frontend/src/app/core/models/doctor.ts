@@ -5,9 +5,9 @@ import { Paciente } from './paciente';
 import { Persona } from './persona';
 export interface Doctor {
   especialidad?: Especialidad;
-  ganancias?: number;
+  honorarios?: number;
   id?: number;
-  numero_doctor?: number;
-  paciente?: Array<Paciente>;
+  licencia?: string;
+  pacientes?: Array<Paciente>;
   persona?: Persona;
 }
