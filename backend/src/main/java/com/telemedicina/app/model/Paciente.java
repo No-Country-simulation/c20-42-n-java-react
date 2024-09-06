@@ -20,7 +20,7 @@ public class Paciente{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     private Persona persona;
     @OneToOne(orphanRemoval = true, cascade = CascadeType.ALL)
     private HistoriaClinica historiaClinica;

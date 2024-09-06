@@ -23,12 +23,12 @@ public class HistoriaClinicaService {
 
     public HistoriaClinicaRes obtenerHistorial(Long pacienteId) {
         Paciente paciente = pacienteService.encontrarPacientePorId(pacienteId);
-        return historiaClinicaMapper.toHistoriaClinicaRes(historiaClinicaRepo.findByPaciente(paciente));
+        return historiaClinicaMapper.toHistoriaClinicaRes(paciente.getHistoriaClinica());
     }
 
     public HistoriaClinica obtenerHistoriaClinica(Long pacienteId) {
         Paciente paciente = pacienteService.encontrarPacientePorId(pacienteId);
-        return historiaClinicaRepo.findByPaciente(paciente);
+        return paciente.getHistoriaClinica();
     }
 
     public void agregarRegistroMedico(Long pacienteId, RegistroMedico registroMedico) {

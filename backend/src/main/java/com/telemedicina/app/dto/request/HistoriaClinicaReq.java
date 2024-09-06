@@ -16,6 +16,4 @@ import lombok.NoArgsConstructor;
 public class HistoriaClinicaReq {
     @Valid
     private List<RegistroMedicoReq> registroMedicos = new ArrayList<>();
-    @NotNull(message = "El id del paciente no puede estar vacío")
-    private Long pacienteId;
 }

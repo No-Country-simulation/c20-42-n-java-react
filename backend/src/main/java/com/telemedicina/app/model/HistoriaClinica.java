@@ -27,6 +27,4 @@ public class HistoriaClinica {
     @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
     @JoinColumn(name = "historia_clinica_id")
     private List<RegistroMedico> registroMedicos;
-    @OneToOne(cascade = CascadeType.ALL)
-    private Paciente paciente;
 }
