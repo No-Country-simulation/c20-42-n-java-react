@@ -2,9 +2,13 @@ package com.telemedicina.app.controller;
 
 import com.telemedicina.app.dto.request.DoctorReq;
 import com.telemedicina.app.dto.response.DoctorRes;
+import com.telemedicina.app.model.Doctor;
 import com.telemedicina.app.service.DoctorService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import net.kaczmarzyk.spring.data.jpa.domain.Equal;
+import net.kaczmarzyk.spring.data.jpa.web.annotation.Spec;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,8 +29,11 @@ public class DoctorController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<DoctorRes> obtenerDoctores(){
-        return doctorService.obtenerDoctores();
+    public List<DoctorRes> obtenerDoctores(
+            @Spec(path = "especialidad.nombre", params = "especialidad", spec = Equal.class)
+            Specification<Doctor> doctorSpec
+    ){
+        return doctorService.obtenerDoctores(doctorSpec);
     }
     
     @PostMapping
