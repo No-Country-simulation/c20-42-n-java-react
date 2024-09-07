@@ -34,7 +34,7 @@ public class DoctorController {
     @ResponseStatus(HttpStatus.OK)
     public List<DoctorRes> obtenerDoctores(
             @And({
-                @Spec(path = "especialidad.nombre", params = "especialidad", spec = Equal.class),
+                @Spec(path = "especialidad.id", params = "especialidad", spec = Equal.class),
                 @Spec(path = "persona.nombre", params = "nombre", spec = Like.class),
             })
             Specification<Doctor> doctorSpec
