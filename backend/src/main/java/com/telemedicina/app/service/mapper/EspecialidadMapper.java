@@ -10,6 +10,7 @@ public class EspecialidadMapper {
         return Especialidad.builder()
                 .nombre(e.getNombre())
                 .descripcion(e.getDescripcion())
+                .fotoUrl(e.getFotoUrl())
                 .build();
     }
 }
