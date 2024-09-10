@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotBlank;
@@ -28,7 +29,7 @@ public class Doctor {
 
     @NotBlank(message = "Debes ingresar tu licencia")
     private String licencia; //Licencia del doctor
-    private double ganancias;
+    private double honorarios;
     
     @OneToOne(cascade = CascadeType.ALL)
     private Persona persona;
