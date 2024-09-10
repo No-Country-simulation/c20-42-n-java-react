@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: TelemedicinaApp
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/telemedicina?useSSL=false&serverTimeZone=UTC&createDatabaseIfNotExist=true
+    username: root
+    password:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database: mysql
+
+    #Esto lo hacemos porque tenemos las dependencias de GCP, y por defecto GCP SQL esta activado aunque tengamos el perfil dev activo. Por lo cual va a esperar
+    # conexiones apropiadas. Lo desactivamos en el perfil dev
+  cloud:
+    gcp:
+      core:
+        enabled: false
+      sql:
+        enabled: false
+
+server:
+  port: 8080
+
+
+
+springdoc:
+  swagger-ui:
+    path: /doc/swagger-ui.html
+  api-docs:
+    path: /api-docs
+  default-produces-media-type: application/json

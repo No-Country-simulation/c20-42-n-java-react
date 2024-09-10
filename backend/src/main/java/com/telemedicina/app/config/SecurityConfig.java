@@ -11,7 +11,7 @@ public class SecurityConfig implements WebMvcConfigurer {
   @Override
   public void addCorsMappings(CorsRegistry registry) {
     registry.addMapping("/**") // Permite CORS para todas las rutas
-        .allowedOrigins("http://localhost:4200") // Permite solicitudes desde tu frontend
+        .allowedOrigins("https://telemedicina-536ac.web.app", "https://telemedicina-536ac.firebaseapp.com") // Permite solicitudes desde tu frontend
         .allowedMethods("GET", "POST", "PUT", "DELETE") // Métodos HTTP permitidos
         .allowedHeaders("*") // Permite todos los encabezados
         .allowCredentials(true); // Permite enviar cookies si es necesario
