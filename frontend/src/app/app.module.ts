@@ -27,8 +27,23 @@ import {
 import {HighlightDirective} from './shared/directives/highlight.directive';
 import {CustomPipe} from './shared/pipes/custom.pipe';
 import {provideHttpClient} from "@angular/common/http";
+import {initializeApp, provideFirebaseApp} from "@angular/fire/app";
+import {getAuth, provideAuth} from "@angular/fire/auth";
+import {FormsModule} from "@angular/forms";
+import {RouterModule} from "@angular/router";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyD9S8qVCdnWpzM0rtJN_EKlkcW3V3FhlPQ",
+  authDomain: "telemedicina-536ac.firebaseapp.com",
+  projectId: "telemedicina-536ac",
+  storageBucket: "telemedicina-536ac.appspot.com",
+  messagingSenderId: "319445915661",
+  appId: "1:319445915661:web:954263b6a45b7be7ad9d44",
+}
 
 
+// @ts-ignore
+// @ts-ignore
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,10 +66,15 @@ import {provideHttpClient} from "@angular/common/http";
     DoctorsModule,
     AuthModule,
     DoctorModule,
-    UserModule
+    UserModule,
+    RouterModule,
+    FormsModule
   ],
   providers: [
-    provideHttpClient()
+    provideHttpClient(),
+    provideFirebaseApp(() => initializeApp(firebaseConfig)),
+    provideAuth(()=> getAuth())
+
   ],
   bootstrap: [AppComponent]
 })

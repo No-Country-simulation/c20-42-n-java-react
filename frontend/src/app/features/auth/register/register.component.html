@@ -1,1 +1,12 @@
-<p>register works!</p>
+<div class="container mt-5">
+  <form>
+    <label class="form-label">Usuario</label>
+    <input class="form-control" type="text" [ngModel]="username" name="username">
+    <label class="form-label">Email</label>
+    <input class="form-control" type="email" [ngModel]="email" name="email">
+    <label class="form-label">Contraseña</label>
+    <input class="form-control" type="password" [ngModel]="password" name="password">
+    <input type="submit" (click)="onSubmit()">
+  </form>
+</div>
+
