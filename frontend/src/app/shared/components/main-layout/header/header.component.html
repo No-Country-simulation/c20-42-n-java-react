@@ -19,16 +19,12 @@
                         <a class="nav-link text-white" routerLink="/doctors">Médicos</a>
                     </li>
                 </ul>
-              @if (authenticated){
+
                 <div class="d-flex">
-                  <button class="btn custom-btn-verde text-white" (click)="logout()" type="submit">Cerrar Sesión</button>
+                  <button class="btn custom-btn-verde text-white me-2" type="submit">Registro</button>
+                  <button class="btn custom-btn-verde text-white" type="submit">Inicio sesión</button>
                 </div>
-              } @else {
-                <div class="d-flex">
-                  <button class="btn custom-btn-verde text-white me-2" (click)="register()" type="submit">Registro</button>
-                  <button class="btn custom-btn-verde text-white" (click)="login()" type="submit">Inicio sesión</button>
-                </div>
-              }
+
             </div>
         </div>
     </nav>
