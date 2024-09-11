@@ -1,1 +1,35 @@
-<p>register works!</p>
+<div class="container d-flex justify-content-center align-items-center mt-3">
+  <div class="w-50">
+    <h2 class="text-center">Registro de Usuario</h2>
+    <form (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="username" class="form-label">Nombre de Usuario</label>
+        <input type="text" class="form-control" id="username" required formControlName="username">
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Correo Electrónico</label>
+        <input type="email" class="form-control" id="email" formControlName="email">
+        <div *ngIf="registroForm.get('email')?.invalid && registroForm.get('email')?.touched" class="text-danger">
+          Email no válido
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Contraseña</label>
+        <input type="password" class="form-control" id="password" required formControlName="password">
+      </div>
+      <div class="mb-3">
+        <label for="dni" class="form-label">DNI</label>
+        <input type="text" class="form-control" id="dni" required formControlName="dni">
+      </div>
+      <div class="mb-3">
+        <label for="telefono" class="form-label">Teléfono</label>
+        <input type="text" class="form-control" id="telefono" required formControlName="telefono">
+      </div>
+      <div class="mb-3">
+        <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento</label>
+        <input type="date" class="form-control" id="fechaNacimiento" required formControlName="fechaNacimiento">
+      </div>
+      <button type="submit" class="btn custom-btn-verde w-100">Registrarse</button>
+    </form>
+  </div>
+</div>

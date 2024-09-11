@@ -11,6 +11,8 @@ import {DoctorsComponent} from './features/doctors/components/doctors/doctors.co
 import {
   DoctorUserLayoutComponent
 } from './shared/components/doctor-user-layout/doctor-user-layout/doctor-user-layout.component';
+import { HistorialMedicoComponent } from './features/historial-medico/historial-medico.component';
+import { TurnosComponent } from './features/turnos/turnos.component';
 
 const routes: Routes = [
   {
@@ -21,23 +23,12 @@ const routes: Routes = [
       { path: 'specialties', component: SpecialtiesComponent },
       { path: 'doctors', component: DoctorsComponent },
       { path: 'login', component: LoginComponent },
-      { path: 'register', component: RegisterComponent }
-    ]
-  },
-  {
-    path: 'doctor',
-    component: DoctorUserLayoutComponent,
-    children: [
-      { path: '', component: DoctorDashboardComponent }
-      // Otras rutas específicas del doctor
-    ]
-  },
-  {
-    path: 'user',
-    component: DoctorUserLayoutComponent,
-    children: [
-      { path: '', component: UserDashboardComponent }
-      // Otras rutas específicas del usuario
+      { path: 'register', component: RegisterComponent },
+      { path: 'historial-medico', component: HistorialMedicoComponent },
+      { path: 'turnos', component: TurnosComponent },
+      { path: 'doctor', component: DoctorDashboardComponent },
+      { path: 'user', component: UserDashboardComponent }
+
     ]
   }
 ];

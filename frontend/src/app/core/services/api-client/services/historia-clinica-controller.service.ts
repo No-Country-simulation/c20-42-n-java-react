@@ -5,21 +5,21 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { BaseService } from '../../../base-service';
-import { ApiConfiguration } from '../../../api-configuration';
-import { StrictHttpResponse } from '../../../strict-http-response';
+import { BaseService } from '../base-service';
+import { ApiConfiguration } from '../api-configuration';
+import { StrictHttpResponse } from '../strict-http-response';
 
-import { crearHistorial } from '../../../fn/historia-clinica-controller/crear-historial';
-import { CrearHistorial$Params } from '../../../fn/historia-clinica-controller/crear-historial';
-import { editarHistorial } from '../../../fn/historia-clinica-controller/editar-historial';
-import { EditarHistorial$Params } from '../../../fn/historia-clinica-controller/editar-historial';
-import { eliminarHistorial } from '../../../fn/historia-clinica-controller/eliminar-historial';
-import { EliminarHistorial$Params } from '../../../fn/historia-clinica-controller/eliminar-historial';
+import { crearHistorial } from '../fn/historia-clinica-controller/crear-historial';
+import { CrearHistorial$Params } from '../fn/historia-clinica-controller/crear-historial';
+import { editarHistorial } from '../fn/historia-clinica-controller/editar-historial';
+import { EditarHistorial$Params } from '../fn/historia-clinica-controller/editar-historial';
+import { eliminarHistorial } from '../fn/historia-clinica-controller/eliminar-historial';
+import { EliminarHistorial$Params } from '../fn/historia-clinica-controller/eliminar-historial';
 import { HistoriaClinicaRes } from '../models/historia-clinica-res';
-import { obtenerHistorial } from '../../../fn/historia-clinica-controller/obtener-historial';
-import { ObtenerHistorial$Params } from '../../../fn/historia-clinica-controller/obtener-historial';
-import { obtenerTodoLosHistoriales } from '../../../fn/historia-clinica-controller/obtener-todo-los-historiales';
-import { ObtenerTodoLosHistoriales$Params } from '../../../fn/historia-clinica-controller/obtener-todo-los-historiales';
+import { obtenerHistorial } from '../fn/historia-clinica-controller/obtener-historial';
+import { ObtenerHistorial$Params } from '../fn/historia-clinica-controller/obtener-historial';
+import { obtenerTodoLosHistoriales } from '../fn/historia-clinica-controller/obtener-todo-los-historiales';
+import { ObtenerTodoLosHistoriales$Params } from '../fn/historia-clinica-controller/obtener-todo-los-historiales';
 
 @Injectable({ providedIn: 'root' })
 export class HistoriaClinicaControllerService extends BaseService {

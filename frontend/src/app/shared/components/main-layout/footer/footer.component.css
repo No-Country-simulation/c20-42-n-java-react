@@ -1,6 +1,7 @@
 html, body {
     height: 100%;
 }
+
 body {
     display: flex;
     flex-direction: column;
@@ -8,6 +9,8 @@ body {
 
 .footer {
     background-color: #6c757d;
-    color: white;
-    padding: 10px 0;
+
+    width: 100%;
+    position: absolute;
+
 }

@@ -1,8 +1,8 @@
 /* tslint:disable */
 /* eslint-disable */
-import { Especialidad } from './especialidad';
-import { Paciente } from './paciente';
-import { Persona } from './persona';
+import { Especialidad } from '../models/especialidad';
+import { Paciente } from '../models/paciente';
+import { Persona } from '../models/persona';
 export interface Doctor {
   especialidad?: Especialidad;
   honorarios?: number;

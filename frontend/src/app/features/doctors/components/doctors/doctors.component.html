@@ -1,5 +1,25 @@
-<p>doctors works!</p>
-
-@for(paciente of pacientes; track paciente){
-  <div>{{paciente.persona?.nombre}}</div>
-}
+<div class="container-fluid mt-0">
+  <button type="button" class="btn custom-btn-verde mb-3 text-white">Medicina General</button>
+  <div class="row justify-content-center">
+    <!-- Tarjeta de Pacientes -->
+    <div class="col-md-4 mb-4" *ngFor="let doctor of doctores">
+      <div class="card h-100">
+        <div class="row g-0">
+          <div class="col-md-4 d-flex flex-column align-items-center">
+            <img alt="{{doctor.persona?.nombre}}"
+              class="img-fluid rounded-start img-padding">
+            <p class="card-text text-center price-text"><small class="text-muted">precio</small></p>
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">{{doctor.persona?.nombre}}</h5>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae ratione quia omnis
+                maxime pariatur debitis architecto, magnam in voluptas libero iure eos eveniet laborum aliquam
+                veritatis? Iusto, aspernatur blanditiis. Ipsum!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

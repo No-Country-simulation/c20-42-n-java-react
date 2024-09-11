@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-import { Doctor } from './doctor';
+import { Doctor } from '../models/doctor';
 export interface RegistroMedico {
   diagnostico?: string;
   doctor?: Doctor;
