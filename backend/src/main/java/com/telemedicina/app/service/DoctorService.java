@@ -9,6 +9,8 @@ import com.telemedicina.app.service.mapper.DoctorMapper;
 import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,8 +20,8 @@ public class DoctorService {
     private final EspecialidadRepo especialidadRepository;
     private final DoctorMapper doctorMapper;
 
-    public List<DoctorRes> obtenerDoctores() {
-        return doctorRepository.findAll().stream().map(doctorMapper::toDoctorRes).toList();
+    public List<DoctorRes> obtenerDoctores(Specification<Doctor> doctorSpec) {
+        return doctorRepository.findAll(doctorSpec).stream().map(doctorMapper::toDoctorRes).toList();
     }
 
     public DoctorRes agregarDoctor(DoctorReq doctor) {

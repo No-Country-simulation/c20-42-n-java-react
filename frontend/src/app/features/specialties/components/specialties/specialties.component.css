@@ -1,4 +1,5 @@
-.jumbotron {
-    background-color: rgba(13, 115, 133, 0.47); /* Color #0d7385 con 47% de opacidad */
-    color: white; /* Asegura que el texto sea blanco y no transparente */
+.custom-img {
+    width: 100%; /* Ajusta el ancho al 100% del contenedor */
+    max-width: 200px; /* Establece un ancho máximo para las imágenes */
+    height: auto; /* Mantiene la proporción de aspecto */
 }

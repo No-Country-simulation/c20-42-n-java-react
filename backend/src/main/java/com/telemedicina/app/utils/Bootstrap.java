@@ -136,7 +136,6 @@ public class Bootstrap {
             .build();
         paciente.setHistoriaClinica(HistoriaClinica.builder()
             .registroMedicos(new ArrayList<>())
-            .paciente(paciente)
             .build());
         pacienteRepo.save(paciente);
       });

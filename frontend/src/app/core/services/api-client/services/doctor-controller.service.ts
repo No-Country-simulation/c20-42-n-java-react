@@ -1,20 +1,25 @@
 /* tslint:disable */
 /* eslint-disable */
-import {HttpClient, HttpContext} from '@angular/common/http';
-import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
+import { HttpClient, HttpContext } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
-import {BaseService} from '../base-service';
-import {ApiConfiguration} from '../api-configuration';
-import {StrictHttpResponse} from '../strict-http-response';
+import { BaseService } from '../base-service';
+import { ApiConfiguration } from '../api-configuration';
+import { StrictHttpResponse } from '../strict-http-response';
 
-import {crearDoctor, CrearDoctor$Params} from '../fn/doctor-controller/crear-doctor';
-import {DoctorRes} from '../models/doctor-res';
-import {editarDoctor, EditarDoctor$Params} from '../fn/doctor-controller/editar-doctor';
-import {eliminarDoctor, EliminarDoctor$Params} from '../fn/doctor-controller/eliminar-doctor';
-import {obtenerDoctor, ObtenerDoctor$Params} from '../fn/doctor-controller/obtener-doctor';
-import {obtenerDoctores, ObtenerDoctores$Params} from '../fn/doctor-controller/obtener-doctores';
+import { crearDoctor } from '../fn/doctor-controller/crear-doctor';
+import { CrearDoctor$Params } from '../fn/doctor-controller/crear-doctor';
+import { DoctorRes } from '../models/doctor-res';
+import { editarDoctor } from '../fn/doctor-controller/editar-doctor';
+import { EditarDoctor$Params } from '../fn/doctor-controller/editar-doctor';
+import { eliminarDoctor } from '../fn/doctor-controller/eliminar-doctor';
+import { EliminarDoctor$Params } from '../fn/doctor-controller/eliminar-doctor';
+import { obtenerDoctor } from '../fn/doctor-controller/obtener-doctor';
+import { ObtenerDoctor$Params } from '../fn/doctor-controller/obtener-doctor';
+import { obtenerDoctores } from '../fn/doctor-controller/obtener-doctores';
+import { ObtenerDoctores$Params } from '../fn/doctor-controller/obtener-doctores';
 
 @Injectable({ providedIn: 'root' })
 export class DoctorControllerService extends BaseService {

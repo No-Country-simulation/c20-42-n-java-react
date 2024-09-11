@@ -10,5 +10,6 @@ public class EspecialidadReq {
     @Pattern(regexp = "^[a-zA-Z]+$", message = "La especialidad debe contener solo letras")
     private String nombre;
     private String descripcion;
+    private String fotoUrl;
 
 }

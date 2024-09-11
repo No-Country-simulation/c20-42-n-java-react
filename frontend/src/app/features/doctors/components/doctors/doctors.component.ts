@@ -1,6 +1,7 @@
-import {Component} from '@angular/core';
-import {Paciente} from "../../../../core/services/api-client/models/paciente";
-import {PacienteControllerService} from "../../../../core/services/api-client/services/paciente-controller.service";
+import { Component } from '@angular/core';
+import { Paciente } from '../../../../core/services/api-client/models/paciente';
+import { DoctorControllerService, EspecialidadControllerService, PacienteControllerService } from '../../../../core/services';
+import { Doctor } from '../../../../core/services/api-client/models/doctor';
 
 @Component({
   selector: 'app-doctors',
@@ -9,20 +10,31 @@ import {PacienteControllerService} from "../../../../core/services/api-client/se
 })
 export class DoctorsComponent {
 
-  //Esto no va aca, obviamente jeje. Es para probar
-  pacientes:Paciente[]=[];
+  doctores:Doctor[]=[];
 
-  constructor(private pacientesService: PacienteControllerService) {
-    pacientesService.obtenerPacientes().subscribe({
+  constructor(private doctoresService: DoctorControllerService,
+              private especialidadService: EspecialidadControllerService
+  ) {}
+
+  ngOnInit() {
+    this.obtenerDoctoresPorEspecialidad();
+  }
+
+  obtenerDoctoresPorEspecialidad() {
+
+    //obtiene
+    this.doctoresService.obtenerDoctores().subscribe({
       next: (value) => {
-        this.pacientes = value;
+        this.doctores = value;
       },
       error: (err) => {
-        console.error('Error fetching pacientes:', err);
+        console.error('Error fetching doctores:', err);
       },
       complete: () => {
-        console.log('Pacientes fetching completed');
+        console.log('Doctores fetching completed');
       }
     });
   }
+  
+    
 }

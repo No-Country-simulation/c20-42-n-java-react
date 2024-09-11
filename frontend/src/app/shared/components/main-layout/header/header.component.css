@@ -1,0 +1,53 @@
+.text-black {
+    color: black !important;
+  }
+  
+  .text-white {
+    color: white !important;
+  }
+
+  .nav-link {
+    position: relative;
+    transition: color 0.3s;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    display: block;
+    margin-top: 5px;
+    right: 0;
+    background: #000; /* Cambia el color según tu preferencia */
+    transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+    left: 0;
+    background: #000; /* Cambia el color según tu preferencia */
+}
+
+.nav-link.active::after {
+    width: 100%;
+    left: 0;
+    background: #000; /* Cambia el color según tu preferencia */
+}
+
+.header-container {
+  border-bottom: 2px solid #000; /* Cambia el color y grosor según tu preferencia */
+  padding-bottom: 10px; /* Añade un poco de espacio debajo del contenido */
+}
+
+.custom-brand {
+  font-size: 2rem; /* Ajusta el tamaño del texto */
+  margin-right: 20px; /* Ajusta el margen derecho */
+}
+
+@media (max-width: 992px) {
+  .custom-brand {
+      font-size: 1.5rem; /* Ajusta el tamaño del texto para pantallas más pequeñas */
+      margin-right: 0; /* Elimina el margen derecho en pantallas más pequeñas */
+  }
+}
