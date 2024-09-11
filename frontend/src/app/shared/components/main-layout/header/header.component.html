@@ -38,15 +38,11 @@
                 </ul>
               @if(){
                 <div class="d-flex">
-                  <button class="btn custom-btn-verde text-white me-2" type="submit">Registro</button>
-                  <button class="btn custom-btn-verde text-white" type="submit">Inicio sesión</button>
+                  <button class="btn custom-btn-verde text-white me-2" type="submit"
+                  routerLink="/register">Registro</button>
+                  <button class="btn custom-btn-verde text-white" type="submit"
+                  routerLink="/login">Inicio sesión</button>
                 </div>
-              } @else {
-                <div class="d-flex">
-                  <button class="btn custom-btn-verde text-white me-2" (click)="register()" type="submit">Registro</button>
-                  <button class="btn custom-btn-verde text-white" (click)="login()" type="submit">Inicio sesión</button>
-                </div>
-              }
             </div>
         </div>
     </nav>
