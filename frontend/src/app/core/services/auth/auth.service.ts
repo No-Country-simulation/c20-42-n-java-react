@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Auth, createUserWithEmailAndPassword, updateProfile} from "@angular/fire/auth";
+import {Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile} from "@angular/fire/auth";
 import {from, Observable} from "rxjs";
 
 @Injectable({
@@ -15,6 +15,17 @@ export class AuthService {
         result => updateProfile(result.user, {displayName: username})
       )
       .catch(err => console.log(err));
+    return from(promise);
+  }
+
+  login(email:string, password:string): Observable<void> {
+    const promise = signInWithEmailAndPassword(this._authService,email, password)
+      .then(
+        result => console.log(result.user.providerData)
+      )
+      .catch(
+        err => console.log(err)
+      )
     return from(promise);
   }
 

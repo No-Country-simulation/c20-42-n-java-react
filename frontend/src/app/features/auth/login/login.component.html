@@ -1,14 +1,14 @@
 <div class="container d-flex justify-content-center align-items-center mt-3">
     <div class="w-50">
         <h2 class="text-center">Iniciar Sesión</h2>
-        <form>
+        <form [formGroup]="registroForm" (ngSubmit)="onSubmit()">
             <div class="mb-3">
                 <label for="loginEmail" class="form-label">Correo Electrónico </label>
-                <input type="email" class="form-control" id="loginEmail" required>
+                <input type="email" class="form-control" id="loginEmail" required formControlName="email">
             </div>
             <div class="mb-3">
                 <label for="loginPassword" class="form-label">Contraseña</label>
-                <input type="password" class="form-control" id="loginPassword" required>
+                <input type="password" class="form-control" id="loginPassword" required formControlName="password">
             </div>
             <button type="submit" class="btn custom-btn-verde">Iniciar Sesión</button>
             <div class="mt-2 text-center mb-3">

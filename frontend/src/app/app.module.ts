@@ -1,7 +1,5 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-
-import {ReactiveFormsModule} from '@angular/forms';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HomeModule} from './features/home/home.module';
@@ -34,6 +32,10 @@ import {getAuth, provideAuth} from "@angular/fire/auth";
 import {initializeApp, provideFirebaseApp} from "@angular/fire/app";
 import {AngularFireModule} from "@angular/fire/compat";
 import {AngularFireAuthModule} from "@angular/fire/compat/auth";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {RegisterComponent} from "./features/auth/register/register.component";
+import {LoginComponent} from "./features/auth/login/login.component";
+import {AuthModule} from "./features/auth/auth.module";
 
 const firebaseConfig = {
   apiKey: "AIzaSyD9S8qVCdnWpzM0rtJN_EKlkcW3V3FhlPQ",
@@ -59,7 +61,7 @@ const firebaseConfig = {
     HighlightDirective,
     CustomPipe,
     TurnosComponent,
-    HistorialMedicoComponent,
+    HistorialMedicoComponent
   ],
   imports: [
     BrowserModule,
@@ -67,11 +69,13 @@ const firebaseConfig = {
     HomeModule,
     SpecialtiesModule,
     DoctorsModule,
-    ReactiveFormsModule,
     DoctorModule,
+    ReactiveFormsModule,
+    FormsModule,
     UserModule,
-    AngularFireModule.initializeApp(firebaseConfig),  // Inicialización Firebase
-    AngularFireAuthModule,  // Módulo para Firebase Auth
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireAuthModule,
+    AuthModule
   ],
   providers: [
     provideHttpClient(),

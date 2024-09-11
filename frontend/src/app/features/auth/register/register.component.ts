@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from "../../../core/services/auth/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-register',
@@ -10,7 +11,7 @@ import {AuthService} from "../../../core/services/auth/auth.service";
 export class RegisterComponent implements OnInit {
   registroForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {}
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     this.registroForm = this.fb.group({
@@ -27,7 +28,10 @@ export class RegisterComponent implements OnInit {
     if (this.registroForm.valid) {
       const controls = this.registroForm.controls;
       this.authService.register(controls['username'].value, controls['email'].value, controls['password'].value).subscribe({
-        next: result => console.log('Usuario registrado:', this.registroForm.value),
+        next: result => {
+          console.log('Usuario registrado:', this.registroForm.value);
+          this.router.navigate(['']);
+        },
         error: err => console.log(err)
       })
     }

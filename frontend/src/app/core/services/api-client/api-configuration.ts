@@ -10,7 +10,7 @@ import { Injectable } from '@angular/core';
 })
 export class ApiConfiguration {
   // DESCOMENTAR EN DEPLOY
-  // rootUrl: string = 'https://telemedicina-backend-306263743918.us-central1.run.app';
+  //rootUrl: string = 'https://telemedicina-backend-306263743918.us-central1.run.app';
   rootUrl: string = 'http://localhost:8080';
 }
 
