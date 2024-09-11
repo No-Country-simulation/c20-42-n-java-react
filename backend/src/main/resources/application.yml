@@ -1,26 +1,3 @@
 spring:
-  application:
-    name: TelemedicinaApp
-
-  datasource:
-    url: jdbc:mysql://localhost:3306/telemedicina?useSSL=false&serverTimeZone=UTC&createDatabaseIfNotExist=true
-    username: root
-    password: root
-    driver-class-name: com.mysql.cj.jdbc.Driver
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
-    database: mysql
-
-server:
-  port: 8080
-
-  
- 
-springdoc:
-  swagger-ui:
-    path: /doc/swagger-ui.html
-  api-docs:
-    path: /api-docs
-  default-produces-media-type: application/json
+  profiles:
+    active: dev

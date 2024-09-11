@@ -1,4 +1,4 @@
-import {APP_INITIALIZER, NgModule} from '@angular/core';
+import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
 import { ReactiveFormsModule } from '@angular/forms';
@@ -29,13 +29,9 @@ import {
 import {HighlightDirective} from './shared/directives/highlight.directive';
 import {CustomPipe} from './shared/pipes/custom.pipe';
 import {provideHttpClient} from "@angular/common/http";
-import {KeycloakService} from "./core/services/keycloak/keycloak.service";
 import { TurnosComponent } from './features/turnos/turnos.component';
 import { HistorialMedicoComponent } from './features/historial-medico/historial-medico.component';
 
-export function kcFactory(keycloakService: KeycloakService) {
-  return ()=> keycloakService.init();
-}
 
 @NgModule({
   declarations: [
@@ -64,13 +60,7 @@ export function kcFactory(keycloakService: KeycloakService) {
     UserModule
   ],
   providers: [
-    provideHttpClient(),
-    {
-      provide: APP_INITIALIZER,
-      deps: [KeycloakService],
-      useFactory: kcFactory,
-      multi: true
-    }
+    provideHttpClient()
   ],
   bootstrap: [AppComponent]
 })
