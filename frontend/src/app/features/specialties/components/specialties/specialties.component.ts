@@ -1,6 +1,8 @@
 import {Component} from '@angular/core';
 import { Especialidad } from '../../../../core/services/api-client/models/especialidad';
-import { EspecialidadControllerService } from '../../../../core/services';
+import {
+  EspecialidadControllerService
+} from "../../../../core/services/api-client/services/especialidad-controller.service";
 
 @Component({
   selector: 'app-specialties',
