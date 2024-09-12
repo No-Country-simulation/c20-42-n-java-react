@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { Especialidad } from '../../../../core/services/api-client/models/especialidad';
 import {
   EspecialidadControllerService
@@ -9,11 +9,13 @@ import {
   templateUrl: './specialties.component.html',
   styleUrl: './specialties.component.css'
 })
-export class SpecialtiesComponent {
+export class SpecialtiesComponent implements OnInit{
 
   especialidades: Especialidad[] = [];
 
-  constructor(private especialidadService: EspecialidadControllerService) {}
+  constructor(private especialidadService: EspecialidadControllerService) {
+
+  }
 
   ngOnInit() {
     this.obtenerEspecialidades();

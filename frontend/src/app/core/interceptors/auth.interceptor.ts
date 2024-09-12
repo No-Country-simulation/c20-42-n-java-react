@@ -5,7 +5,7 @@ import {AngularFireAuth} from "@angular/fire/compat/auth";
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const afAuth = inject(AngularFireAuth);
-  return from(afAuth.currentUser).pipe(
+  return from(afAuth.authState).pipe(
     switchMap(user => {
       if (user) {
         // Obtiene el token del usuario autenticado
