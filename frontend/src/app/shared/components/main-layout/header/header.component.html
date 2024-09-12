@@ -36,12 +36,22 @@
                             routerLink="/turnos" [class.active]="router.url === '/turnos'">Turnos</a>
                     </li>
                 </ul>
+              @if(authStateObs$ | async; as user){
+                <div class="d-flex">
+                  <div class="me-4 mt-2">Bienvenido {{user.displayName}}</div>
+                  <button class="btn custom-btn-verde text-white me-2"
+                          (click)="logout()">Cerrar sesión</button>
+                </div>
+              }
+              @else{
                 <div class="d-flex">
                   <button class="btn custom-btn-verde text-white me-2" type="submit"
                   routerLink="/register">Registro</button>
                   <button class="btn custom-btn-verde text-white" type="submit"
                   routerLink="/login">Inicio sesión</button>
                 </div>
+              }
+
             </div>
         </div>
     </nav>

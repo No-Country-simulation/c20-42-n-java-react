@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import {
   Auth, authState,
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  updateProfile
+  signInWithEmailAndPassword, signOut,
+  updateProfile,
+  User
 } from "@angular/fire/auth";
 import {from, Observable} from "rxjs";
 
@@ -12,7 +13,7 @@ import {from, Observable} from "rxjs";
 })
 export class AuthService {
 
-  readonly authState;
+  readonly authState : Observable<User>;
 
   constructor(private _authService: Auth) {
     this.authState = authState(this._authService);
@@ -30,6 +31,10 @@ export class AuthService {
   login(email:string, password:string): Observable<any> {
     const promise = signInWithEmailAndPassword(this._authService,email, password);
     return from(promise);
+  }
+
+  logout(){
+    return from(signOut(this._authService));
   }
 
 }
