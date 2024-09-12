@@ -28,7 +28,8 @@
                     <li class="nav-item me-4">
                         <a class="nav-link"
                             [ngClass]="{'text-black': isSpecialtiesOrDoctors() || router.url === '/historial-medico', 'text-white': !isSpecialtiesOrDoctors() && router.url !== '/historial-medico'}"
-                            routerLink="/historial-medico" [class.active]="router.url === '/historial-medico'">Historiales Médicos</a>
+                            routerLink="/historial-medico"
+                            [class.active]="router.url === '/historial-medico'">Historiales Médicos</a>
                     </li>
                     <li class="nav-item me-4">
                         <a class="nav-link"
@@ -36,12 +37,20 @@
                             routerLink="/turnos" [class.active]="router.url === '/turnos'">Turnos</a>
                     </li>
                 </ul>
-                <div class="d-flex" *ngIf="authenticated">
-                    <button class="btn custom-btn-verde text-white" (click)="logout()" type="submit">Cerrar Sesión</button>
-                </div>
-                <div class="d-flex" *ngIf="!authenticated">
-                    <button class="btn custom-btn-verde text-white me-2" (click)="register()" type="submit">Registro</button>
-                    <button class="btn custom-btn-verde text-white" (click)="login()" type="submit">Inicio sesión</button>
+                <div class="d-flex">
+                    <div class="btn-group custom-btn-verde text-white me-2" role="group">
+                        <button type="button" class="btn custom-btn-verde text-white me-2 dropdown-toggle"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Registro
+                        </button>
+                        <ul class="dropdown-menu custom-btn-verde text-white me-2">
+                            <li><a class="dropdown-item custom-btn-verde text-white me-2"
+                                    routerLink="/auth/register">Registro Paciente</a></li>
+                            <li><a class="dropdown-item custom-btn-verde text-white me-2"
+                                routerLink="/auth/register-doctor">Registro Doctor</a></li>
+                        </ul>
+                    </div>
+                    <button class="btn custom-btn-verde text-white" routerLink="/auth/login">Inicio sesión</button>
                 </div>
             </div>
         </div>

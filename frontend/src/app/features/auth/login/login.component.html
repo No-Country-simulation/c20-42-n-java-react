@@ -1,22 +1,40 @@
-<div class="container d-flex justify-content-center align-items-center mt-3">
-    <div class="w-50">
-        <h2 class="text-center">Iniciar Sesión</h2>
-        <form>
-            <div class="mb-3">
-                <label for="loginEmail" class="form-label">Correo Electrónico </label>
-                <input type="email" class="form-control" id="loginEmail" required>
+<div class="container mt-5">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+            <div>
+                <img routerLink="/" src="/assets/images/icono-flecha-verde.png" class="btn img-fluid"> 
+                <a routerLink="/">&nbsp;Regresa a la página principal</a>
             </div>
-            <div class="mb-3">
-                <label for="loginPassword" class="form-label">Contraseña</label>
-                <input type="password" class="form-control" id="loginPassword" required>
+            <div class="card">
+                <div class="card text-center mt-5">
+                    <h3>Iniciar Sesión</h3>
+                    <p>Ingresa tus credenciales para acceder a tu cuenta</p>
+                </div>
+                <div class="card mt-5">
+                    <form>
+                        <div class="mb-3 ">
+                            <label for="email" class="form-label ">Correo Electrónico</label>
+                            <input type="email" class="form-control mt-2" id="email" placeholder="Ingresa tu correo">
+                        </div>
+                        <div class="mb-3 mt-5">
+                            <label for="password" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control mt-2" id="password"
+                                placeholder="Ingresa tu contraseña">
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col-6 d-grid">
+                                <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+                            </div>
+                            <div class="col-6 d-grid">
+                                <button type="button" class="btn btn-secondary">Registrarme</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="card text-center mt-4">
+                    <a routerLink="/" routerLinkActive="active">¿Olvidaste tu contraseña?</a>
+                </div>
             </div>
-            <button type="submit" class="btn custom-btn-verde">Iniciar Sesión</button>
-            <div class="mt-2 text-center mb-3">
-                <a class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="#">¿Has olvidado la contraseña?</a>
-            </div>
-            <div class="mt-2 text-center mb-3">
-                <a class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="#">Crear cuenta nueva</a>
-            </div>
-        </form>
+        </div>
     </div>
 </div>

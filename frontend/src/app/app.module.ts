@@ -29,13 +29,10 @@ import {
 import {HighlightDirective} from './shared/directives/highlight.directive';
 import {CustomPipe} from './shared/pipes/custom.pipe';
 import {provideHttpClient} from "@angular/common/http";
-import {KeycloakService} from "./core/services/keycloak/keycloak.service";
 import { TurnosComponent } from './features/turnos/turnos.component';
 import { HistorialMedicoComponent } from './features/historial-medico/historial-medico.component';
+import { AuthLayoutComponent } from './shared/components/auth-layout/auth-layout.component';
 
-export function kcFactory(keycloakService: KeycloakService) {
-  return ()=> keycloakService.init();
-}
 
 @NgModule({
   declarations: [
@@ -51,7 +48,8 @@ export function kcFactory(keycloakService: KeycloakService) {
     HighlightDirective,
     CustomPipe,
     TurnosComponent,
-    HistorialMedicoComponent
+    HistorialMedicoComponent,
+    AuthLayoutComponent
   ],
   imports: [
     BrowserModule,
@@ -63,15 +61,7 @@ export function kcFactory(keycloakService: KeycloakService) {
     DoctorModule,
     UserModule
   ],
-  providers: [
-    provideHttpClient(),
-    {
-      provide: APP_INITIALIZER,
-      deps: [KeycloakService],
-      useFactory: kcFactory,
-      multi: true
-    }
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

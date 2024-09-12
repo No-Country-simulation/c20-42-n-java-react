@@ -13,6 +13,8 @@ import {
 } from './shared/components/doctor-user-layout/doctor-user-layout/doctor-user-layout.component';
 import { HistorialMedicoComponent } from './features/historial-medico/historial-medico.component';
 import { TurnosComponent } from './features/turnos/turnos.component';
+import { AuthLayoutComponent } from './shared/components/auth-layout/auth-layout.component';
+import { RegisterDoctorComponent } from './features/auth/register-doctor/register-doctor.component';
 
 const routes: Routes = [
   {
@@ -22,15 +24,22 @@ const routes: Routes = [
       { path: '', component: HomeComponent },
       { path: 'specialties', component: SpecialtiesComponent },
       { path: 'doctors', component: DoctorsComponent },
-      { path: 'login', component: LoginComponent },
-      { path: 'register', component: RegisterComponent },
       { path: 'historial-medico', component: HistorialMedicoComponent },
       { path: 'turnos', component: TurnosComponent },
       { path: 'doctor', component: DoctorDashboardComponent },
       { path: 'user', component: UserDashboardComponent }
-
+    ]
+  },
+  {
+    path: 'auth',
+    component: AuthLayoutComponent,
+    children: [
+      { path: 'login', component: LoginComponent },
+      { path: 'register', component: RegisterComponent },
+      { path: 'register-doctor', component: RegisterDoctorComponent }
     ]
   }
+
 ];
 
 @NgModule({

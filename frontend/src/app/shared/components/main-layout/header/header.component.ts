@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { KeycloakService } from '../../../../core/services/keycloak/keycloak.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,38 +7,15 @@ import { Router } from '@angular/router';
   styleUrl: './header.component.css',
 })
 export class HeaderComponent {
-  authenticated: boolean | undefined;
-
-  constructor(
-    private _keycloakService: KeycloakService,
-    public router: Router
-  ) {
-    this.authenticated = this._keycloakService.keycloak?.authenticated;
-  }
-
-  async register() {
-    await this._keycloakService.keycloak?.register();
-    this.authenticated = true;
-  }
-
-  async login() {
-    await this._keycloakService.keycloak?.login();
-    this.authenticated = true;
-  }
-  async logout() {
-    await this._keycloakService.keycloak?.logout();
-    this.authenticated = false;
-  }
+  constructor(public router: Router) {}
 
   isSpecialtiesOrDoctors(): boolean {
     return (
-      this.router.url === '/historial-medico' ||
-      this.router.url === '/turnos' ||
       this.router.url === '/specialties' ||
+      this.router.url === '/doctor' ||
       this.router.url === '/doctors' ||
-      this.router.url === '/register' ||
-      this.router.url === '/login'||
-      this.router.url === '/doctor'||
+      this.router.url === '/turnos' ||
+      this.router.url === '/historial-medico' ||
       this.router.url === '/user'
     );
   }

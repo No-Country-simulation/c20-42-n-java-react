@@ -51,3 +51,7 @@
       margin-right: 0; /* Elimina el margen derecho en pantallas más pequeñas */
   }
 }
+
+.auth-login-bg {
+  background-color: #106270;
+}

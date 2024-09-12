@@ -18,10 +18,26 @@ export class SpecialtiesComponent {
   }
 
 //   // con filtro de foto
+  // obtenerEspecialidades() {
+  //   this.especialidadService.obtenerEspecialidad().subscribe({
+  //     next: (value) => {
+  //       this.especialidades = value.filter(especialidad => especialidad.fotoUrl);
+  //       console.log(this.especialidades);
+  //     },
+  //     error: (err) => {
+  //       console.error('Error fetching especialidad:', err);
+  //     },
+  //     complete: () => {
+  //       console.log('especialidad fetching completed');
+  //     }
+  //   });
+  // }
+
+//   // sin fin
   obtenerEspecialidades() {
     this.especialidadService.obtenerEspecialidad().subscribe({
       next: (value) => {
-        this.especialidades = value.filter(especialidad => especialidad.fotoUrl);
+        this.especialidades = value; // Eliminar el filtro
         console.log(this.especialidades);
       },
       error: (err) => {
@@ -31,22 +47,6 @@ export class SpecialtiesComponent {
         console.log('especialidad fetching completed');
       }
     });
-  }
-
-//   // sin fin
-//   obtenerEspecialidades() {
-//     this.especialidadService.obtenerEspecialidad().subscribe({
-//       next: (value) => {
-//         this.especialidades = value; // Eliminar el filtro
-//         console.log(this.especialidades);
-//       },
-//       error: (err) => {
-//         console.error('Error fetching especialidad:', err);
-//       },
-//       complete: () => {
-//         console.log('especialidad fetching completed');
-//       }
-//     });
-// }
+}
 
 }
