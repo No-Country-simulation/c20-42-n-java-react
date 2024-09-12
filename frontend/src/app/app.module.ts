@@ -25,7 +25,7 @@ import {
 } from './shared/components/doctor-user-layout/doctor-user-layout/doctor-user-layout.component';
 import {HighlightDirective} from './shared/directives/highlight.directive';
 import {CustomPipe} from './shared/pipes/custom.pipe';
-import {provideHttpClient} from "@angular/common/http";
+import {provideHttpClient, withInterceptors} from "@angular/common/http";
 import {TurnosComponent} from './features/turnos/turnos.component';
 import {HistorialMedicoComponent} from './features/historial-medico/historial-medico.component';
 import {getAuth, provideAuth} from "@angular/fire/auth";
@@ -36,6 +36,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RegisterComponent} from "./features/auth/register/register.component";
 import {LoginComponent} from "./features/auth/login/login.component";
 import {AuthModule} from "./features/auth/auth.module";
+import {authInterceptor} from "./core/interceptors/auth.interceptor";
 
 const firebaseConfig = {
   apiKey: "AIzaSyD9S8qVCdnWpzM0rtJN_EKlkcW3V3FhlPQ",
@@ -78,7 +79,7 @@ const firebaseConfig = {
     AuthModule
   ],
   providers: [
-    provideHttpClient(),
+    provideHttpClient(withInterceptors([authInterceptor])),
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
     provideAuth(() => getAuth())
   ],
