@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {
-  Auth,
+  Auth, authState,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   updateProfile
@@ -12,7 +12,11 @@ import {from, Observable} from "rxjs";
 })
 export class AuthService {
 
-  constructor(private _authService: Auth) {}
+  readonly authState;
+
+  constructor(private _authService: Auth) {
+    this.authState = authState(this._authService);
+  }
 
   register(username:string, email:string, password:string): Observable<void> {
     const promise = createUserWithEmailAndPassword(this._authService,email, password)
