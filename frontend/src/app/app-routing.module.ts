@@ -13,8 +13,11 @@ import {
 } from './shared/components/doctor-user-layout/doctor-user-layout/doctor-user-layout.component';
 import { HistorialMedicoComponent } from './features/historial-medico/historial-medico.component';
 import { TurnosComponent } from './features/turnos/turnos.component';
+import {canActivate} from "@angular/fire/auth-guard";
+import {authGuard, publicGuard} from "./core/guards/auth.guard";
 import { AuthLayoutComponent } from './shared/components/auth-layout/auth-layout.component';
 import { RegisterDoctorComponent } from './features/auth/register-doctor/register-doctor.component';
+import { TurnosDoctorComponent } from './features/turnos-doctor/turnos-doctor.component';
 
 const routes: Routes = [
   {
@@ -24,8 +27,9 @@ const routes: Routes = [
       { path: '', component: HomeComponent },
       { path: 'specialties', component: SpecialtiesComponent },
       { path: 'doctors', component: DoctorsComponent },
-      { path: 'historial-medico', component: HistorialMedicoComponent },
-      { path: 'turnos', component: TurnosComponent },
+      { path: 'historial-medico', canActivate: [authGuard], component: HistorialMedicoComponent },
+      { path: 'turnos', canActivate: [authGuard], component: TurnosComponent },
+      { path: 'turnos-doctor', component: TurnosDoctorComponent },
       { path: 'doctor', component: DoctorDashboardComponent },
       { path: 'user', component: UserDashboardComponent }
     ]
@@ -39,7 +43,6 @@ const routes: Routes = [
       { path: 'register-doctor', component: RegisterDoctorComponent }
     ]
   }
-
 ];
 
 @NgModule({

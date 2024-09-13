@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
-import { Paciente } from '../../../../core/services/api-client/models/paciente';
-import { DoctorControllerService, EspecialidadControllerService, PacienteControllerService } from '../../../../core/services';
-import { Doctor } from '../../../../core/services/api-client/models/doctor';
+import {Component} from '@angular/core';
+import {Doctor} from '../../../../core/services/api-client/models/doctor';
+import {
+  EspecialidadControllerService
+} from "../../../../core/services/api-client/services/especialidad-controller.service";
+import {DoctorControllerService} from "../../../../core/services/api-client/services/doctor-controller.service";
 
 @Component({
   selector: 'app-doctors',
@@ -35,6 +37,6 @@ export class DoctorsComponent {
       }
     });
   }
-  
-    
+
+
 }

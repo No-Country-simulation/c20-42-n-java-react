@@ -1,13 +1,10 @@
-import {APP_INITIALIZER, NgModule} from '@angular/core';
+import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-
-import { ReactiveFormsModule } from '@angular/forms';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HomeModule} from './features/home/home.module';
 import {SpecialtiesModule} from './features/specialties/specialties.module';
 import {DoctorsModule} from './features/doctors/doctors.module';
-import {AuthModule} from './features/auth/auth.module';
 import {DoctorModule} from './features/doctor/doctor.module';
 import {UserModule} from './features/user/user.module';
 import {HeaderComponent} from './shared/components/main-layout/header/header.component';
@@ -28,10 +25,30 @@ import {
 } from './shared/components/doctor-user-layout/doctor-user-layout/doctor-user-layout.component';
 import {HighlightDirective} from './shared/directives/highlight.directive';
 import {CustomPipe} from './shared/pipes/custom.pipe';
-import {provideHttpClient} from "@angular/common/http";
-import { TurnosComponent } from './features/turnos/turnos.component';
-import { HistorialMedicoComponent } from './features/historial-medico/historial-medico.component';
+import {provideHttpClient, withInterceptors} from "@angular/common/http";
+import {TurnosComponent} from './features/turnos/turnos.component';
+import {HistorialMedicoComponent} from './features/historial-medico/historial-medico.component';
+import {getAuth, provideAuth} from "@angular/fire/auth";
+import {initializeApp, provideFirebaseApp} from "@angular/fire/app";
+import {AngularFireModule} from "@angular/fire/compat";
+import {AngularFireAuthModule} from "@angular/fire/compat/auth";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {RegisterComponent} from "./features/auth/register/register.component";
+import {LoginComponent} from "./features/auth/login/login.component";
+import {AuthModule} from "./features/auth/auth.module";
+import {authInterceptor} from "./core/interceptors/auth.interceptor";
 import { AuthLayoutComponent } from './shared/components/auth-layout/auth-layout.component';
+import { TurnosDoctorComponent } from './features/turnos-doctor/turnos-doctor.component';
+
+const firebaseConfig = {
+  apiKey: "AIzaSyD9S8qVCdnWpzM0rtJN_EKlkcW3V3FhlPQ",
+  authDomain: "telemedicina-536ac.firebaseapp.com",
+  projectId: "telemedicina-536ac",
+  storageBucket: "telemedicina-536ac.appspot.com",
+  messagingSenderId: "319445915661",
+  appId: "1:319445915661:web:954263b6a45b7be7ad9d44",
+}
+
 
 
 @NgModule({
@@ -49,7 +66,8 @@ import { AuthLayoutComponent } from './shared/components/auth-layout/auth-layout
     CustomPipe,
     TurnosComponent,
     HistorialMedicoComponent,
-    AuthLayoutComponent
+    AuthLayoutComponent,
+    TurnosDoctorComponent
   ],
   imports: [
     BrowserModule,
@@ -57,11 +75,18 @@ import { AuthLayoutComponent } from './shared/components/auth-layout/auth-layout
     HomeModule,
     SpecialtiesModule,
     DoctorsModule,
-    ReactiveFormsModule,
     DoctorModule,
-    UserModule
+    ReactiveFormsModule,
+    UserModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireAuthModule,
+    AuthModule
   ],
-  providers: [],
+  providers: [
+    provideHttpClient(withInterceptors([authInterceptor])),
+    provideFirebaseApp(() => initializeApp(firebaseConfig)),
+    provideAuth(() => getAuth())
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

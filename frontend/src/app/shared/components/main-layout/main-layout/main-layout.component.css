@@ -1,10 +1,9 @@
-html, body {
+/** html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  width: 100%; /* Asegura que el ancho de la página sea del 100% */
-}
-
+  width: 100%; // Asegura que el ancho de la página sea del 100% 
+} */
 
 .mi-fondo {
   min-height: 100%;
@@ -15,4 +14,27 @@ html, body {
   background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+body {
+  display: flex;
+  flex-direction: column;
+}
+.content {
+  flex: 1;
+}
+.footer {
+  background-color: #f8f9fa;
+  padding: 1rem;
+  text-align: center;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }

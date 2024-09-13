@@ -1,9 +1,10 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { RegisterDoctorComponent } from './register-doctor/register-doctor.component';
 import { AppRoutingModule } from '../../app-routing.module';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
@@ -14,7 +15,9 @@ import { AppRoutingModule } from '../../app-routing.module';
   ],
   imports: [
     CommonModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class AuthModule { }

@@ -26,19 +26,12 @@ label {
     border-color: #106270;
     color: #ffffff;
 }
-.btn-primary:hover {
-    background-color: #0e5258;
-    border-color: #0e5258;
-}
-.btn-secondary {
-    background-color: #ffffff;
-    border-color: #106270;
-    color: #106270;
-}
-.btn-secondary:hover {
-    border-color: #106270;
-    color: #106270;
-}
+
 .card , a {
     color: #106270;
+}
+
+.btn-custom{
+    border-color: #106270;
+
 }

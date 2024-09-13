@@ -2,20 +2,25 @@
     <div class="row justify-content-center">
         <div class="col-12 col-md-8 col-lg-6">
             <div>
-                <img routerLink="/" src="/assets/images/icono-flecha-verde.png" class="btn img-fluid"> 
+                <img routerLink="/" src="/assets/images/icono-flecha-verde.png" class="btn img-fluid">
                 <a routerLink="/">&nbsp;Regresa a la página principal</a>
             </div>
+
             <div class="card mt-5">
                 <div class="card text-center">
                     <h3>Hola Paciente, Registrate!</h3>
                     <p>Crea una cuenta para iniciar</p>
                 </div>
                 <div class="card-body">
-                    <form>
+                    <form [formGroup]="registroForm" (ngSubmit)="onSubmit()">
                         <div class="row">
                             <div class="mb-3 col-12 col-md-6">
                                 <label for="nombres" class="form-label">Nombres</label>
-                                <input type="text" class="form-control" id="nombres">
+                                <input type="text" class="form-control" id="nombres" formControlName="username">
+                                <div *ngIf="registroForm.get('username')?.invalid && registroForm.get('username')?.touched"
+                                    class="text-danger">
+                                    El nombre es requerido.
+                                </div>
                             </div>
                             <div class="mb-3 col-12 col-md-6">
                                 <label for="apellidos" class="form-label">Apellidos</label>
@@ -32,23 +37,27 @@
                                 <input type="tel" class="form-control" id="telefono">
                             </div>
                         </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Correo Electrónico</label>
-                            <input type="email" class="form-control" id="email">
-                        </div>
                         <div class="row">
                             <div class="mb-3 col-12 col-md-6">
-                                <label for="licencia" class="form-label">Licencia</label>
-                                <input type="text" class="form-control" id="licencia">
+                                <label for="dni" class="form-label">Dni</label>
+                                <input type="number" class="form-control" id="dni">
                             </div>
                             <div class="mb-3 col-12 col-md-6">
-                                <label for="especialidad" class="form-label">Especialidad</label>
-                                <input type="text" class="form-control" id="especialidad">
+                                <label for="email" class="form-label">Correo Electrónico</label>
+                                <input type="email" class="form-control" id="email" formControlName="email">
+                                <div *ngIf="registroForm.get('email')?.invalid && registroForm.get('email')?.touched"
+                                    class="text-danger">
+                                    Email no válido.
+                                </div>
                             </div>
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Contraseña</label>
-                            <input type="password" class="form-control" id="password">
+                            <input type="password" class="form-control" id="password" formControlName="password">
+                            <div *ngIf="registroForm.get('password')?.invalid && registroForm.get('password')?.touched"
+                                class="text-danger">
+                                La contraseña es requerida y debe tener al menos 6 caracteres.
+                            </div>
                         </div>
                         <div class="mb-3">
                             <label for="confirm-password" class="form-label">Confirmar tu contraseña</label>

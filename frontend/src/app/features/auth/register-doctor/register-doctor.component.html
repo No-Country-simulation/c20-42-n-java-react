@@ -11,7 +11,7 @@
                     <p>Crea una cuenta para iniciar</p>
                 </div>
                 <div class="card-body">
-                    <form>
+                    <form  [formGroup]="registroForm" (ngSubmit)="onSubmit()">
                         <div class="row">
                             <div class="mb-3 col-12 col-md-6">
                                 <label for="nombres" class="form-label">Nombres</label>
@@ -32,9 +32,19 @@
                                 <input type="tel" class="form-control" id="telefono">
                             </div>
                         </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Correo Electrónico</label>
-                            <input type="email" class="form-control" id="email">
+                        <div class="row">
+                            <div class="mb-3 col-12 col-md-6">
+                                <label for="dni" class="form-label">Dni</label>
+                                <input type="number" class="form-control" id="dni">
+                            </div>
+                            <div class="mb-3 col-12 col-md-6">
+                                <label for="email" class="form-label">Correo Electrónico</label>
+                                <input type="email" class="form-control" id="email" formControlName="email">
+                                <div *ngIf="registroForm.get('email')?.invalid && registroForm.get('email')?.touched"
+                                    class="text-danger">
+                                    Email no válido.
+                                </div>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="mb-3 col-12 col-md-6">

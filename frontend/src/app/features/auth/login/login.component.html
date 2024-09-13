@@ -2,7 +2,7 @@
     <div class="row justify-content-center mt-5">
         <div class="col-md-6">
             <div>
-                <img routerLink="/" src="/assets/images/icono-flecha-verde.png" class="btn img-fluid"> 
+                <img routerLink="/" src="/assets/images/icono-flecha-verde.png" class="btn img-fluid">
                 <a routerLink="/">&nbsp;Regresa a la página principal</a>
             </div>
             <div class="card">
@@ -10,31 +10,44 @@
                     <h3>Iniciar Sesión</h3>
                     <p>Ingresa tus credenciales para acceder a tu cuenta</p>
                 </div>
+
                 <div class="card mt-5">
-                    <form>
+                    <form [formGroup]="registroForm" (ngSubmit)="onSubmit()">
                         <div class="mb-3 ">
-                            <label for="email" class="form-label ">Correo Electrónico</label>
-                            <input type="email" class="form-control mt-2" id="email" placeholder="Ingresa tu correo">
+                            <label for="loginEmail" class="form-label ">Correo Electrónico</label>
+                            <input type="email" class="form-control mt-2" id="loginEmail"
+                                placeholder="Ingresa tu correo" formControlName="email">
                         </div>
                         <div class="mb-3 mt-5">
-                            <label for="password" class="form-label">Contraseña</label>
-                            <input type="password" class="form-control mt-2" id="password"
-                                placeholder="Ingresa tu contraseña">
+                            <label for="loginPassword" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control mt-2" id="loginPassword"
+                                placeholder="Ingresa tu contraseña" formControlName="password">
                         </div>
                         <div class="row mt-5">
-                            <div class="col-6 d-grid">
+                            <div class="col-6 d-grid ">
                                 <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
                             </div>
                             <div class="col-6 d-grid">
-                                <button type="button" class="btn btn-secondary">Registrarme</button>
+                                <div class="btn-group me-2" role="group">
+                                    <button type="button" class="btn btn-custom me-2 dropdown-toggle" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                        Registro
+                                    </button>
+                                    <ul class="dropdown-menu me-2">
+                                        <li><a class="dropdown-item me-2" routerLink="/auth/register">Registro
+                                                Paciente</a></li>
+                                        <li><a class="dropdown-item me-2" routerLink="/auth/register-doctor">Registro
+                                                Doctor</a></li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </form>
                 </div>
+
                 <div class="card text-center mt-4">
                     <a routerLink="/" routerLinkActive="active">¿Olvidaste tu contraseña?</a>
                 </div>
             </div>
         </div>
     </div>
-</div>

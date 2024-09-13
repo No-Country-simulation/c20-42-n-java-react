@@ -1,15 +1,18 @@
 <div *ngIf="router.url === '/'" class="mi-fondo">
-    <app-header></app-header>
-    <main>
-        <router-outlet></router-outlet>
-    </main>
-    <app-footer></app-footer>
+    <div class="wrapper">
+        <app-header></app-header>
+        <div class="content">
+            <router-outlet></router-outlet>
+        </div>
+        <app-footer></app-footer>
+    </div>
 </div>
-
 <div *ngIf="router.url !== '/'">
-    <app-header></app-header>
-    <main>
-        <router-outlet></router-outlet>
-    </main>
-    <app-footer></app-footer>
+    <div class="wrapper">
+        <app-header></app-header>
+        <div class="content">
+            <router-outlet></router-outlet>
+        </div>
+        <app-footer></app-footer>
+    </div>
 </div>

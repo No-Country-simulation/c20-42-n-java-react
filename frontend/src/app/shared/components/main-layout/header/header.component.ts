@@ -1,5 +1,9 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import {Component} from '@angular/core';
+import {Router} from '@angular/router';
+import {AuthService} from "../../../../core/services/auth/auth.service";
+import {map} from "rxjs/operators";
+import {user, User} from "@angular/fire/auth";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-header',
@@ -7,7 +11,14 @@ import { Router } from '@angular/router';
   styleUrl: './header.component.css',
 })
 export class HeaderComponent {
-  constructor(public router: Router) {}
+
+  public router: Router;
+  authStateObs$ : Observable<User | null>;
+
+  constructor(private _router: Router, private _authService: AuthService ) {
+    this.router = _router;
+    this.authStateObs$ = _authService.authState;
+  }
 
   isSpecialtiesOrDoctors(): boolean {
     return (
@@ -15,8 +26,13 @@ export class HeaderComponent {
       this.router.url === '/doctor' ||
       this.router.url === '/doctors' ||
       this.router.url === '/turnos' ||
+      this.router.url === '/turnos-doctor' ||
       this.router.url === '/historial-medico' ||
       this.router.url === '/user'
     );
+  }
+
+  logout(){
+    this._authService.logout();
   }
 }

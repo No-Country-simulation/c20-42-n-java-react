@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AuthService} from "../../../core/services/auth/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-register',
@@ -9,7 +11,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class RegisterComponent implements OnInit {
   registroForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     this.registroForm = this.fb.group({
@@ -24,8 +26,15 @@ export class RegisterComponent implements OnInit {
 
   onSubmit(): void {
     if (this.registroForm.valid) {
-      console.log('Usuario registrado:', this.registroForm.value);
-      // Aquí puedes agregar la lógica para enviar los datos a tu backend
+      const controls = this.registroForm.controls;
+      this.authService.register(controls['username'].value, controls['email'].value, controls['password'].value).subscribe({
+        next: result => {
+          console.log('Usuario registrado:', this.registroForm.value);
+          this.router.navigate(['']);
+        },
+        error: err => console.log(err)
+      })
     }
   }
+
 }
