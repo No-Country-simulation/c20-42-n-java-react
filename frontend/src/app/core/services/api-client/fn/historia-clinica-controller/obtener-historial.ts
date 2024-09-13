@@ -9,13 +9,13 @@ import { RequestBuilder } from '../../request-builder';
 import { HistoriaClinicaRes } from '../../models/historia-clinica-res';
 
 export interface ObtenerHistorial$Params {
-  id: number;
+  paciendId: number;
 }
 
 export function obtenerHistorial(http: HttpClient, rootUrl: string, params: ObtenerHistorial$Params, context?: HttpContext): Observable<StrictHttpResponse<HistoriaClinicaRes>> {
   const rb = new RequestBuilder(rootUrl, obtenerHistorial.PATH, 'get');
   if (params) {
-    rb.path('id', params.id, {});
+    rb.path('paciendId', params.paciendId, {});
   }
 
   return http.request(
@@ -28,4 +28,4 @@ export function obtenerHistorial(http: HttpClient, rootUrl: string, params: Obte
   );
 }
 
-obtenerHistorial.PATH = '/historial/{id}';
+obtenerHistorial.PATH = '/pacientes/{paciendId}/historia-clinica';

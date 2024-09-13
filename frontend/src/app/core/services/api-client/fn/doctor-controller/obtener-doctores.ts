@@ -7,13 +7,16 @@ import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
 import { DoctorRes } from '../../models/doctor-res';
+import { SpecificationDoctor } from '../../models/specification-doctor';
 
 export interface ObtenerDoctores$Params {
+  doctorSpec: SpecificationDoctor;
 }
 
-export function obtenerDoctores(http: HttpClient, rootUrl: string, params?: ObtenerDoctores$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<DoctorRes>>> {
+export function obtenerDoctores(http: HttpClient, rootUrl: string, params: ObtenerDoctores$Params | undefined, context?: HttpContext | undefined): Observable<StrictHttpResponse<Array<DoctorRes>>> {
   const rb = new RequestBuilder(rootUrl, obtenerDoctores.PATH, 'get');
   if (params) {
+    rb.query('doctorSpec', params.doctorSpec, {});
   }
 
   return http.request(

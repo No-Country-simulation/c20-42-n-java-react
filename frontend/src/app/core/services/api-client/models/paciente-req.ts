@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-import { Persona } from '../models/persona';
+import { PersonaReq } from '../models/persona-req';
 export interface PacienteReq {
-  persona?: Persona;
+  persona?: PersonaReq;
 }

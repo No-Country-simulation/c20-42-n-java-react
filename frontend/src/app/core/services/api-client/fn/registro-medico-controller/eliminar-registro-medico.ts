@@ -7,24 +7,24 @@ import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
 
-export interface EliminarDoctor$Params {
+export interface EliminarRegistroMedico$Params {
   id: number;
 }
 
-export function eliminarDoctor(http: HttpClient, rootUrl: string, params: EliminarDoctor$Params, context?: HttpContext): Observable<StrictHttpResponse<string>> {
-  const rb = new RequestBuilder(rootUrl, eliminarDoctor.PATH, 'delete');
+export function eliminarRegistroMedico(http: HttpClient, rootUrl: string, params: EliminarRegistroMedico$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+  const rb = new RequestBuilder(rootUrl, eliminarRegistroMedico.PATH, 'delete');
   if (params) {
     rb.path('id', params.id, {});
   }
 
   return http.request(
-    rb.build({ responseType: 'json', accept: 'application/json', context })
+    rb.build({ responseType: 'text', accept: '*/*', context })
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<string>;
+      return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
     })
   );
 }
 
-eliminarDoctor.PATH = '/doctores/{id}';
+eliminarRegistroMedico.PATH = '/pacientes/{pacienteId}/historia-clinica/registros-medicos/{id}';

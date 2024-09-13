@@ -1,10 +1,8 @@
 /* tslint:disable */
 /* eslint-disable */
-import { Doctor } from '../models/doctor';
-export interface RegistroMedico {
+export interface RegistroMedicoRes {
   diagnostico?: string;
-  doctor?: Doctor;
-  expediente?: string;
+  doctorId?: number;
   fecha?: string;
   id?: number;
   motivoDeLaConsulta?: string;

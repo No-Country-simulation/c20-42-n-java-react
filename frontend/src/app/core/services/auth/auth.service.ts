@@ -7,6 +7,7 @@ import {
   User
 } from "@angular/fire/auth";
 import {from, Observable} from "rxjs";
+import {UsuarioControllerService} from "../api-client/services/usuario-controller.service";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class AuthService {
 
   readonly authState : Observable<User>;
 
-  constructor(private _authService: Auth) {
+  constructor(private _authService: Auth, private _usuarioControllerService: UsuarioControllerService) {
     this.authState = authState(this._authService);
   }
 
@@ -36,5 +37,14 @@ export class AuthService {
   logout(){
     return from(signOut(this._authService));
   }
+
+  getUserDetails(){
+    this._usuarioControllerService.obtenerUsuario();
+  }
+
+  setUserDetails(){
+    this._usuarioControllerService.crearUsuario();
+  }
+
 
 }

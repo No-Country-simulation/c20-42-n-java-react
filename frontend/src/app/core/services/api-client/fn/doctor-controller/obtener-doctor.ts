@@ -11,7 +11,7 @@ export interface ObtenerDoctor$Params {
   id: number;
 }
 
-export function obtenerDoctor(http: HttpClient, rootUrl: string, params: ObtenerDoctor$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+export function obtenerDoctor(http: HttpClient, rootUrl: string, params: ObtenerDoctor$Params | undefined, context?: HttpContext | undefined): Observable<StrictHttpResponse<void>> {
   const rb = new RequestBuilder(rootUrl, obtenerDoctor.PATH, 'get');
   if (params) {
     rb.path('id', params.id, {});

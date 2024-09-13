@@ -15,6 +15,116 @@
     }
   ],
   "paths": {
+    "/pacientes/{pacienteId}/historia-clinica/registros-medicos/{id}": {
+      "get": {
+        "tags": [
+          "registro-medico-controller"
+        ],
+        "operationId": "obtenerRegistroMedico",
+        "parameters": [
+          {
+            "name": "pacienteId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegistroMedicoRes"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "registro-medico-controller"
+        ],
+        "operationId": "modificarRegistroMedico",
+        "parameters": [
+          {
+            "name": "pacienteId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegistroMedicoReq"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "description": "Accepted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegistroMedicoRes"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "registro-medico-controller"
+        ],
+        "operationId": "eliminarRegistroMedico",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted"
+          }
+        }
+      }
+    },
     "/pacientes/{id}": {
       "get": {
         "tags": [
@@ -38,7 +148,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Paciente"
+                  "$ref": "#/components/schemas/PacienteRes"
                 }
               }
             }
@@ -89,105 +199,6 @@
           "paciente-controller"
         ],
         "operationId": "eliminarPaciente",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "202": {
-            "description": "Accepted",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/historial/{id}": {
-      "get": {
-        "tags": [
-          "historia-clinica-controller"
-        ],
-        "operationId": "obtenerHistorial",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HistoriaClinicaRes"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "historia-clinica-controller"
-        ],
-        "operationId": "editarHistorial",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/HistoriaClinica"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "historia-clinica-controller"
-        ],
-        "operationId": "eliminarHistorial",
         "parameters": [
           {
             "name": "id",
@@ -411,6 +422,54 @@
         }
       }
     },
+    "/usuarios": {
+      "get": {
+        "tags": [
+          "usuario-controller"
+        ],
+        "operationId": "obtenerUsuario",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Usuario"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "usuario-controller"
+        ],
+        "operationId": "crearUsuario",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Usuario"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Usuario"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/pacientes": {
       "get": {
         "tags": [
@@ -462,12 +521,23 @@
         }
       }
     },
-    "/historial": {
+    "/pacientes/{pacienteId}/historia-clinica/registros-medicos": {
       "get": {
         "tags": [
-          "historia-clinica-controller"
+          "registro-medico-controller"
         ],
-        "operationId": "obtenerTodoLosHistoriales",
+        "operationId": "obtenerRegistrosMedicos",
+        "parameters": [
+          {
+            "name": "pacienteId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -476,7 +546,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/HistoriaClinicaRes"
+                    "$ref": "#/components/schemas/RegistroMedico"
                   }
                 }
               }
@@ -486,14 +556,25 @@
       },
       "post": {
         "tags": [
-          "historia-clinica-controller"
+          "registro-medico-controller"
         ],
-        "operationId": "crearHistorial",
+        "operationId": "crearRegistroMedico",
+        "parameters": [
+          {
+            "name": "pacienteId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/HistoriaClinicaReq"
+                "$ref": "#/components/schemas/RegistroMedicoReq"
               }
             }
           },
@@ -501,7 +582,14 @@
         },
         "responses": {
           "201": {
-            "description": "Created"
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegistroMedicoRes"
+                }
+              }
+            }
           }
         }
       }
@@ -563,6 +651,16 @@
           "doctor-controller"
         ],
         "operationId": "obtenerDoctores",
+        "parameters": [
+          {
+            "name": "doctorSpec",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/SpecificationDoctor"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -607,302 +705,41 @@
           }
         }
       }
+    },
+    "/pacientes/{paciendId}/historia-clinica": {
+      "get": {
+        "tags": [
+          "historia-clinica-controller"
+        ],
+        "operationId": "obtenerHistorial",
+        "parameters": [
+          {
+            "name": "paciendId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HistoriaClinicaRes"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
     "schemas": {
-      "PacienteReq": {
-        "type": "object",
-        "properties": {
-          "persona": {
-            "$ref": "#/components/schemas/Persona"
-          }
-        }
-      },
-      "Persona": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "nombre": {
-            "type": "string"
-          },
-          "edad": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "dni": {
-            "type": "string"
-          },
-          "telefono": {
-            "type": "string"
-          },
-          "email": {
-            "type": "string"
-          }
-        }
-      },
-      "Doctor": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "persona": {
-            "$ref": "#/components/schemas/Persona"
-          },
-          "licencia": {
-            "type": "string"
-          },
-          "honorarios": {
-            "type": "number",
-            "format": "double"
-          },
-          "especialidad": {
-            "$ref": "#/components/schemas/Especialidad"
-          },
-          "pacientes": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Paciente"
-            }
-          }
-        }
-      },
-      "Especialidad": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "nombre": {
-            "type": "string"
-          },
-          "descripcion": {
-            "type": "string"
-          }
-        }
-      },
-      "HistoriaClinica": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "registroMedicos": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/RegistroMedico"
-            }
-          },
-          "paciente": {
-            "$ref": "#/components/schemas/Paciente"
-          }
-        }
-      },
-      "HistoriaClinicaRes": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "registroMedicos": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/RegistroMedico"
-            }
-          },
-          "pacienteId": {
-            "type": "integer",
-            "format": "int64"
-          }
-        }
-      },
-      "Paciente": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "persona": {
-            "$ref": "#/components/schemas/Persona"
-          },
-          "historiaClinica": {
-            "$ref": "#/components/schemas/HistoriaClinica"
-          }
-        }
-      },
-      "PacienteRes": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "persona": {
-            "$ref": "#/components/schemas/Persona"
-          },
-          "historiaClinica": {
-            "$ref": "#/components/schemas/HistoriaClinicaRes"
-          }
-        }
-      },
-      "RegistroMedico": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "expediente": {
-            "type": "string"
-          },
-          "fecha": {
-            "type": "string",
-            "format": "date"
-          },
-          "doctor": {
-            "$ref": "#/components/schemas/Doctor"
-          },
-          "motivoDeLaConsulta": {
-            "type": "string"
-          },
-          "sintomas": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "diagnostico": {
-            "type": "string"
-          },
-          "tratamiento": {
-            "type": "string"
-          },
-          "seguimiento": {
-            "type": "string"
-          },
-          "observaciones": {
-            "type": "string"
-          }
-        }
-      },
-      "EspecialidadReq": {
-        "required": [
-          "nombre"
-        ],
-        "type": "object",
-        "properties": {
-          "nombre": {
-            "pattern": "^[a-zA-Z]+$",
-            "type": "string"
-          },
-          "descripcion": {
-            "type": "string"
-          }
-        }
-      },
-      "DoctorReq": {
-        "required": [
-          "especialidadId",
-          "honorarios",
-          "licencia"
-        ],
-        "type": "object",
-        "properties": {
-          "persona": {
-            "$ref": "#/components/schemas/PersonaReq"
-          },
-          "licencia": {
-            "type": "string"
-          },
-          "honorarios": {
-            "type": "number",
-            "format": "double"
-          },
-          "especialidadId": {
-            "type": "integer",
-            "format": "int64"
-          }
-        }
-      },
-      "PersonaReq": {
-        "required": [
-          "dni",
-          "edad",
-          "email",
-          "nombre",
-          "telefono"
-        ],
-        "type": "object",
-        "properties": {
-          "nombre": {
-            "pattern": "^[a-zA-Z]+$",
-            "type": "string"
-          },
-          "edad": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "dni": {
-            "type": "string"
-          },
-          "telefono": {
-            "type": "string"
-          },
-          "email": {
-            "type": "string"
-          }
-        }
-      },
-      "DoctorRes": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "persona": {
-            "$ref": "#/components/schemas/Persona"
-          },
-          "licencia": {
-            "type": "string"
-          },
-          "honorarios": {
-            "type": "number",
-            "format": "double"
-          },
-          "especialidadId": {
-            "type": "integer",
-            "format": "int64"
-          }
-        }
-      },
-      "HistoriaClinicaReq": {
-        "required": [
-          "pacienteId"
-        ],
-        "type": "object",
-        "properties": {
-          "registroMedicos": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/RegistroMedicoReq"
-            }
-          },
-          "pacienteId": {
-            "type": "integer",
-            "format": "int64"
-          }
-        }
-      },
       "RegistroMedicoReq": {
         "required": [
           "diagnostico",
@@ -946,6 +783,336 @@
             "type": "string"
           }
         }
+      },
+      "RegistroMedicoRes": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "fecha": {
+            "type": "string",
+            "format": "date"
+          },
+          "doctorId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "motivoDeLaConsulta": {
+            "type": "string"
+          },
+          "sintomas": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "diagnostico": {
+            "type": "string"
+          },
+          "tratamiento": {
+            "type": "string"
+          },
+          "seguimiento": {
+            "type": "string"
+          },
+          "observaciones": {
+            "type": "string"
+          }
+        }
+      },
+      "PacienteReq": {
+        "type": "object",
+        "properties": {
+          "persona": {
+            "$ref": "#/components/schemas/PersonaReq"
+          }
+        }
+      },
+      "PersonaReq": {
+        "required": [
+          "dni",
+          "edad",
+          "email",
+          "nombre",
+          "telefono"
+        ],
+        "type": "object",
+        "properties": {
+          "nombre": {
+            "pattern": "^[a-zA-Z]+$",
+            "type": "string"
+          },
+          "edad": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dni": {
+            "type": "string"
+          },
+          "telefono": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        }
+      },
+      "PacienteRes": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "persona": {
+            "$ref": "#/components/schemas/Persona"
+          }
+        }
+      },
+      "Persona": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "nombre": {
+            "type": "string"
+          },
+          "edad": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dni": {
+            "type": "string"
+          },
+          "telefono": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        }
+      },
+      "EspecialidadReq": {
+        "required": [
+          "nombre"
+        ],
+        "type": "object",
+        "properties": {
+          "nombre": {
+            "pattern": "^[a-zA-Z]+$",
+            "type": "string"
+          },
+          "descripcion": {
+            "type": "string"
+          },
+          "fotoUrl": {
+            "type": "string"
+          }
+        }
+      },
+      "Especialidad": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "nombre": {
+            "type": "string"
+          },
+          "descripcion": {
+            "type": "string"
+          },
+          "fotoUrl": {
+            "type": "string"
+          }
+        }
+      },
+      "DoctorReq": {
+        "required": [
+          "especialidadId",
+          "honorarios",
+          "licencia"
+        ],
+        "type": "object",
+        "properties": {
+          "persona": {
+            "$ref": "#/components/schemas/PersonaReq"
+          },
+          "licencia": {
+            "type": "string"
+          },
+          "honorarios": {
+            "type": "number",
+            "format": "double"
+          },
+          "especialidadId": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "DoctorRes": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "persona": {
+            "$ref": "#/components/schemas/Persona"
+          },
+          "licencia": {
+            "type": "string"
+          },
+          "honorarios": {
+            "type": "number",
+            "format": "double"
+          },
+          "especialidadId": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "Usuario": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "rol": {
+            "type": "string",
+            "enum": [
+              "DOCTOR",
+              "PACIENTE"
+            ]
+          },
+          "email": {
+            "type": "string"
+          }
+        }
+      },
+      "Doctor": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "persona": {
+            "$ref": "#/components/schemas/Persona"
+          },
+          "licencia": {
+            "type": "string"
+          },
+          "honorarios": {
+            "type": "number",
+            "format": "double"
+          },
+          "especialidad": {
+            "$ref": "#/components/schemas/Especialidad"
+          },
+          "pacientes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Paciente"
+            }
+          }
+        }
+      },
+      "HistoriaClinica": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "registroMedicos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RegistroMedico"
+            }
+          }
+        }
+      },
+      "Paciente": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "persona": {
+            "$ref": "#/components/schemas/Persona"
+          },
+          "historiaClinica": {
+            "$ref": "#/components/schemas/HistoriaClinica"
+          }
+        }
+      },
+      "RegistroMedico": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "expediente": {
+            "type": "string"
+          },
+          "fecha": {
+            "type": "string",
+            "format": "date"
+          },
+          "doctor": {
+            "$ref": "#/components/schemas/Doctor"
+          },
+          "motivoDeLaConsulta": {
+            "type": "string"
+          },
+          "sintomas": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "diagnostico": {
+            "type": "string"
+          },
+          "tratamiento": {
+            "type": "string"
+          },
+          "seguimiento": {
+            "type": "string"
+          },
+          "observaciones": {
+            "type": "string"
+          }
+        }
+      },
+      "HistoriaClinicaRes": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "registroMedicos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RegistroMedico"
+            }
+          }
+        }
+      },
+      "SpecificationDoctor": {
+        "type": "object"
       }
     }
   }

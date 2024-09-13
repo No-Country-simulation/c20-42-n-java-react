@@ -2,7 +2,7 @@
 /* eslint-disable */
 export interface Especialidad {
   descripcion?: string;
+  fotoUrl?: string;
   id?: number;
   nombre?: string;
-  fotoUrl?: string;
 }
