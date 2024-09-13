@@ -15,7 +15,7 @@ export class HeaderComponent {
   public router: Router;
   authStateObs$ : Observable<User | null>;
 
-  constructor(private _router: Router, private _authService: AuthService ) {
+  constructor(private _router: Router, public _authService: AuthService ) {
     this.router = _router;
     this.authStateObs$ = _authService.authState;
   }
@@ -35,4 +35,6 @@ export class HeaderComponent {
   logout(){
     this._authService.logout();
   }
+
+  
 }

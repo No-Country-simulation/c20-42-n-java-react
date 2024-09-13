@@ -1,19 +1,19 @@
 /* tslint:disable */
 /* eslint-disable */
-export { Doctor } from './models/doctor';
-export { DoctorReq } from './models/doctor-req';
-export { DoctorRes } from './models/doctor-res';
-export { Especialidad } from './models/especialidad';
-export { EspecialidadReq } from './models/especialidad-req';
-export { HistoriaClinica } from './models/historia-clinica';
-export { HistoriaClinicaRes } from './models/historia-clinica-res';
-export { Paciente } from './models/paciente';
-export { PacienteReq } from './models/paciente-req';
-export { PacienteRes } from './models/paciente-res';
-export { Persona } from './models/persona';
-export { PersonaReq } from './models/persona-req';
-export { RegistroMedico } from './models/registro-medico';
-export { RegistroMedicoReq } from './models/registro-medico-req';
-export { RegistroMedicoRes } from './models/registro-medico-res';
-export { SpecificationDoctor } from './models/specification-doctor';
-export { Usuario } from './models/usuario';
+export type { Doctor } from './models/doctor';
+export type { DoctorReq } from './models/doctor-req';
+export type { DoctorRes } from './models/doctor-res';
+export type { Especialidad } from './models/especialidad';
+export type { EspecialidadReq } from './models/especialidad-req';
+export type { HistoriaClinica } from './models/historia-clinica';
+export type { HistoriaClinicaRes } from './models/historia-clinica-res';
+export type { Paciente } from './models/paciente';
+export type { PacienteReq } from './models/paciente-req';
+export type { PacienteRes } from './models/paciente-res';
+export type { Persona } from './models/persona';
+export type { PersonaReq } from './models/persona-req';
+export type { RegistroMedico } from './models/registro-medico';
+export type { RegistroMedicoReq } from './models/registro-medico-req';
+export type { RegistroMedicoRes } from './models/registro-medico-res';
+export type { SpecificationDoctor } from './models/specification-doctor';
+export type { Usuario } from './models/usuario';
