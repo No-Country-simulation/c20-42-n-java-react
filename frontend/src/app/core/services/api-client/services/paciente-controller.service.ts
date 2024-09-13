@@ -19,7 +19,6 @@ import { obtenerPaciente } from '../fn/paciente-controller/obtener-paciente';
 import { ObtenerPaciente$Params } from '../fn/paciente-controller/obtener-paciente';
 import { obtenerPacientes } from '../fn/paciente-controller/obtener-pacientes';
 import { ObtenerPacientes$Params } from '../fn/paciente-controller/obtener-pacientes';
-import { Paciente } from '../models/paciente';
 import { PacienteRes } from '../models/paciente-res';
 
 @Injectable({ providedIn: 'root' })
@@ -37,7 +36,7 @@ export class PacienteControllerService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  obtenerPaciente$Response(params: ObtenerPaciente$Params, context?: HttpContext): Observable<StrictHttpResponse<Paciente>> {
+  obtenerPaciente$Response(params: ObtenerPaciente$Params, context?: HttpContext): Observable<StrictHttpResponse<PacienteRes>> {
     return obtenerPaciente(this.http, this.rootUrl, params, context);
   }
 
@@ -47,9 +46,9 @@ export class PacienteControllerService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  obtenerPaciente(params: ObtenerPaciente$Params, context?: HttpContext): Observable<Paciente> {
+  obtenerPaciente(params: ObtenerPaciente$Params, context?: HttpContext): Observable<PacienteRes> {
     return this.obtenerPaciente$Response(params, context).pipe(
-      map((r: StrictHttpResponse<Paciente>): Paciente => r.body)
+      map((r: StrictHttpResponse<PacienteRes>): PacienteRes => r.body)
     );
   }
 

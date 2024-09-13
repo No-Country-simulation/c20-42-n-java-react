@@ -1,16 +1,17 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Doctor} from '../../../../core/services/api-client/models/doctor';
 import {
   EspecialidadControllerService
 } from "../../../../core/services/api-client/services/especialidad-controller.service";
 import {DoctorControllerService} from "../../../../core/services/api-client/services/doctor-controller.service";
+//import * as console from "node:console";
 
 @Component({
   selector: 'app-doctors',
   templateUrl: './doctors.component.html',
   styleUrl: './doctors.component.css'
 })
-export class DoctorsComponent {
+export class DoctorsComponent implements OnInit{
 
   doctores:Doctor[]=[];
 
@@ -18,12 +19,12 @@ export class DoctorsComponent {
               private especialidadService: EspecialidadControllerService
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.obtenerDoctoresPorEspecialidad();
   }
 
-  obtenerDoctoresPorEspecialidad() {
 
+  obtenerDoctoresPorEspecialidad() {
     //obtiene
     this.doctoresService.obtenerDoctores().subscribe({
       next: (value) => {
@@ -37,6 +38,7 @@ export class DoctorsComponent {
       }
     });
   }
+
 
 
 }

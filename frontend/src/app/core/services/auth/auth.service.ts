@@ -6,7 +6,11 @@ import {
   updateProfile,
   User
 } from "@angular/fire/auth";
-import {from, Observable} from "rxjs";
+import {catchError, from, lastValueFrom, Observable, of, switchMap, tap, throwError} from "rxjs";
+import {UsuarioControllerService} from "../api-client/services/usuario-controller.service";
+import {Usuario} from "../api-client/models/usuario";
+import {CrearUsuario$Params} from "../api-client/fn/usuario-controller/crear-usuario";
+import {map} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -15,26 +19,59 @@ export class AuthService {
 
   readonly authState : Observable<User>;
 
-  constructor(private _authService: Auth) {
+  constructor(private _authService: Auth, private _usuarioControllerService: UsuarioControllerService) {
     this.authState = authState(this._authService);
   }
 
-  register(username:string, email:string, password:string): Observable<void> {
-    const promise = createUserWithEmailAndPassword(this._authService,email, password)
-      .then(
-        result => updateProfile(result.user, {displayName: username})
-      )
-      .catch(err => console.log(err));
-    return from(promise);
+  register(username: string, email: string, password: string): Observable<Usuario> {
+    return from(createUserWithEmailAndPassword(this._authService, email, password)).pipe(
+      switchMap(result =>
+        from(updateProfile(result.user, {displayName: username})).pipe(
+          switchMap(() => {
+            const user: CrearUsuario$Params = {
+              body: {
+                rol: 'DOCTOR',
+                email: email,
+              }
+            };
+            return this._usuarioControllerService.crearUsuario(user);
+          })
+        )
+      ),
+      tap(backendUser => {
+        localStorage.setItem('user', JSON.stringify(backendUser));
+        console.log(backendUser)
+      }),
+      catchError(err => {
+        console.log(err);
+        return of();
+      })
+    );
   }
 
-  login(email:string, password:string): Observable<any> {
-    const promise = signInWithEmailAndPassword(this._authService,email, password);
-    return from(promise);
+
+  login(email: string, password: string): Observable<any> {
+    return from(signInWithEmailAndPassword(this._authService, email, password)).pipe(
+      switchMap(result => {
+        return this._usuarioControllerService.obtenerUsuario().pipe(
+          // Guardar el usuario en el localStorage
+          tap(backendUser => {
+            localStorage.setItem('user', JSON.stringify(backendUser));
+          })
+        );
+      }),
+      catchError(err => {
+        console.error('Error during login: ', err);
+        return throwError(err);
+      })
+    );
   }
+
 
   logout(){
+    localStorage.removeItem('user');
     return from(signOut(this._authService));
   }
+
 
 }

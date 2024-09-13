@@ -6,19 +6,14 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { DoctorReq } from '../../models/doctor-req';
-import { DoctorRes } from '../../models/doctor-res';
+import { Usuario } from '../../models/usuario';
 
-export interface EditarDoctor$Params {
-  id: number;
-      body: DoctorReq
+export interface ObtenerUsuario$Params {
 }
 
-export function editarDoctor(http: HttpClient, rootUrl: string, params: EditarDoctor$Params, context?: HttpContext): Observable<StrictHttpResponse<DoctorRes>> {
-  const rb = new RequestBuilder(rootUrl, editarDoctor.PATH, 'put');
+export function obtenerUsuario(http: HttpClient, rootUrl: string, params?: ObtenerUsuario$Params, context?: HttpContext): Observable<StrictHttpResponse<Usuario>> {
+  const rb = new RequestBuilder(rootUrl, obtenerUsuario.PATH, 'get');
   if (params) {
-    rb.path('id', params.id, {});
-    rb.body(params.body, 'application/json');
   }
 
   return http.request(
@@ -26,9 +21,9 @@ export function editarDoctor(http: HttpClient, rootUrl: string, params: EditarDo
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<DoctorRes>;
+      return r as StrictHttpResponse<Usuario>;
     })
   );
 }
 
-editarDoctor.PATH = '/doctores/{id}';
+obtenerUsuario.PATH = '/usuarios';

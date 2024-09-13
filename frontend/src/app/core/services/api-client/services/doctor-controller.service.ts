@@ -36,7 +36,7 @@ export class DoctorControllerService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  obtenerDoctor$Response(params: ObtenerDoctor$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+  obtenerDoctor$Response(params?: ObtenerDoctor$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
     return obtenerDoctor(this.http, this.rootUrl, params, context);
   }
 
@@ -111,7 +111,7 @@ export class DoctorControllerService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  obtenerDoctores$Response(params?: ObtenerDoctores$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<DoctorRes>>> {
+  obtenerDoctores$Response(params?: ObtenerDoctores$Params | undefined, context?: HttpContext | undefined): Observable<StrictHttpResponse<Array<DoctorRes>>> {
     return obtenerDoctores(this.http, this.rootUrl, params, context);
   }
 
