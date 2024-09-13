@@ -8,6 +8,7 @@ import com.telemedicina.app.repository.TurnoRepository;
 import jakarta.persistence.EntityNotFoundException;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -73,9 +74,32 @@ public class TurnoService {
 
         //Actualizamos el evento
         turnoRepository.save(turno);
-        
+
         //Actualizamos el evento en la cloud de google
         googleCalendarService.modificarEvento(turno.getEventId(), turno);
+    }
+
+    public List<Turno> obtenerTurnos() {
+        List<Turno> listaTurnos = turnoRepository.findAll();
+
+        return listaTurnos;
+    }
+
+    public List<Turno> obtenerTurnoPorDoctor(Long idDoctor) {
+        List<Turno> listaTurnos = null;
+        if (doctorService.encontrarDoctor(idDoctor) != null) {
+            listaTurnos = turnoRepository.findByDoctor(idDoctor);
+        }
+        return listaTurnos;
+    }
+
+    public List<Turno> obtenerTurnoPorPaciente(Long idPaciente) {
+        List<Turno> listaTurnos = null;
+        if (pacienteService.encontrarPaciente(idPaciente) != null) {
+            listaTurnos = turnoRepository.findByPaciente(idPaciente);
+        }
+
+        return listaTurnos;
     }
 
 }
