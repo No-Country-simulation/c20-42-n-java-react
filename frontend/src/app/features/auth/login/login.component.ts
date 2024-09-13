@@ -24,17 +24,17 @@ export class LoginComponent implements OnInit{
   onSubmit(): void {
     if (this.registroForm.valid) {
       const controls = this.registroForm.controls;
-
-      this.authService.login(controls['email'].value, controls['password'].value).subscribe(
-        response => {
-          console.log('Login exitoso:', response);
-          this.router.navigate(['/']); // Redirigir al home o a la página deseada
+      this.authService.login(controls['email'].value, controls['password'].value).subscribe({
+        next: result => {
+          console.log("Usuario logueado con éxito");
+          this.router.navigateByUrl('/');
         },
-        error => {
-          console.error('Error en el login:', error);
-          alert('Error de autenticación: ' + error.message);
-        }
-      );
+        error: err => {
+          console.log(err);
+        },
+        complete: () => {}
+      });
+
     }
   }
 

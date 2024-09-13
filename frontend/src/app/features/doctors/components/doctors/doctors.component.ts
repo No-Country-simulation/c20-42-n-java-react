@@ -4,7 +4,7 @@ import {
   EspecialidadControllerService
 } from "../../../../core/services/api-client/services/especialidad-controller.service";
 import {DoctorControllerService} from "../../../../core/services/api-client/services/doctor-controller.service";
-import * as console from "node:console";
+//import * as console from "node:console";
 
 @Component({
   selector: 'app-doctors',
