@@ -17,7 +17,6 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class DoctorService {
     private final DoctorRepo doctorRepository;
-    private final EspecialidadRepo especialidadRepository;
     private final DoctorMapper doctorMapper;
 
     public List<DoctorRes> obtenerDoctores(Specification<Doctor> doctorSpec) {
@@ -42,5 +41,9 @@ public class DoctorService {
     public DoctorRes encontrarDoctor(Long id) {
         return doctorMapper.toDoctorRes(doctorRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Doctor no encontrado")));
+    }
+
+    public Doctor findDoctor(Long id) {
+        return doctorRepository.findById(id).orElseThrow(()->new EntityNotFoundException("Doctor no encontrado"));
     }
 }
