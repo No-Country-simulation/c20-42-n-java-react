@@ -5,10 +5,7 @@ import com.telemedicina.app.model.HistoriaClinica;
 import com.telemedicina.app.model.Paciente;
 import com.telemedicina.app.model.RegistroMedico;
 import com.telemedicina.app.repository.HistoriaClinicaRepo;
-import com.telemedicina.app.repository.PacienteRepo;
 import com.telemedicina.app.service.mapper.HistoriaClinicaMapper;
-import jakarta.persistence.EntityNotFoundException;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -22,12 +19,12 @@ public class HistoriaClinicaService {
     private final PacienteService pacienteService;
 
     public HistoriaClinicaRes obtenerHistorial(Long pacienteId) {
-        Paciente paciente = pacienteService.encontrarPacientePorId(pacienteId);
+        Paciente paciente = pacienteService.findPaciente(pacienteId);
         return historiaClinicaMapper.toHistoriaClinicaRes(paciente.getHistoriaClinica());
     }
 
     public HistoriaClinica obtenerHistoriaClinica(Long pacienteId) {
-        Paciente paciente = pacienteService.encontrarPacientePorId(pacienteId);
+        Paciente paciente = pacienteService.findPaciente(pacienteId);
         return paciente.getHistoriaClinica();
     }
 

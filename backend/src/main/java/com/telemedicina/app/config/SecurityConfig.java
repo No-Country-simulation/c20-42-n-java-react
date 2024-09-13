@@ -34,7 +34,11 @@ public class SecurityConfig{
           "/webjars/**",
           "/swagger-ui.html",
           "/doctores",
-          "/doctores/*"
+          "/doctores/**",
+      "/pacientes",
+      "/pacientes/**",
+      "/turnos",
+      "/turnos/**"
   };
 
   @Bean
