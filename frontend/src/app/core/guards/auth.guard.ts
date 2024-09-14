@@ -2,7 +2,6 @@ import {CanActivateFn, Router} from '@angular/router';
 import {inject} from "@angular/core";
 import {AuthService} from "../services/auth/auth.service";
 import {map} from "rxjs/operators";
-import { Usuario } from '../services/api-client/models';
 
 
 export const authStateObs$ = () => inject(AuthService).authState;

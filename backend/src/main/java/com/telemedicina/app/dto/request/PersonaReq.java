@@ -11,7 +11,7 @@ import lombok.Data;
 @Data
 public class PersonaReq {
     @NotBlank(message = "El campo nombre no puede estar vacío")
-    @Pattern(regexp = "^[a-zA-Z]+$", message = "El nombre debe contener letras solamente")
+    //@Pattern(regexp = "^[a-zA-Z]+$", message = "El nombre debe contener letras solamente")
     private String nombre;
 
     @NotNull(message = "El campo edad no puede estar vacío")

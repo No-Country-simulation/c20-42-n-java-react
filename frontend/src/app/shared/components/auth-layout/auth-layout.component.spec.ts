@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { AuthLayoutComponent } from './auth-layout.component';
+import {AuthLayoutComponent} from './auth-layout.component';
 
 describe('AuthLayoutComponent', () => {
   let component: AuthLayoutComponent;

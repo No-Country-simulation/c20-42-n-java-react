@@ -1,8 +1,7 @@
 import {Component} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from "../../../../core/services/auth/auth.service";
-import {map} from "rxjs/operators";
-import {user, User} from "@angular/fire/auth";
+import {User} from "@angular/fire/auth";
 import {Observable} from "rxjs";
 
 @Component({
@@ -36,5 +35,5 @@ export class HeaderComponent {
     this._authService.logout();
   }
 
-  
+
 }

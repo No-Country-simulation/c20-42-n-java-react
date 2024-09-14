@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {
   Auth,
   authState,
@@ -8,20 +8,7 @@ import {
   updateProfile,
   User,
 } from '@angular/fire/auth';
-import {
-  catchError,
-  from,
-  lastValueFrom,
-  Observable,
-  of,
-  switchMap,
-  tap,
-  throwError,
-} from 'rxjs';
-import { UsuarioControllerService } from '../api-client/services/usuario-controller.service';
-import { Usuario } from '../api-client/models/usuario';
-import { CrearUsuario$Params } from '../api-client/fn/usuario-controller/crear-usuario';
-import { map } from 'rxjs/operators';
+import {from, Observable,} from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -30,8 +17,7 @@ export class AuthService {
   readonly authState: Observable<User>;
 
   constructor(
-    private _authService: Auth,
-    private _usuarioControllerService: UsuarioControllerService
+    private _authService: Auth
   ) {
     this.authState = authState(this._authService);
   }

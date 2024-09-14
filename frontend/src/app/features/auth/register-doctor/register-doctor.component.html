@@ -25,17 +25,17 @@
                         <div class="row">
                             <div class="mb-2 col-12 col-md-6">
                                 <label for="edad" class="form-label">Edad</label>
-                                <input type="number" class="form-control" id="edad">
+                                <input type="number" class="form-control" id="edad" formControlName="edad">
                             </div>
                             <div class="mb-2 col-12 col-md-6">
                                 <label for="telefono" class="form-label">Teléfono</label>
-                                <input type="tel" class="form-control" id="telefono">
+                                <input type="tel" class="form-control" id="telefono" formControlName="telefono">
                             </div>
                         </div>
                         <div class="row">
                             <div class="mb-2 col-12 col-md-6">
                                 <label for="dni" class="form-label">Dni</label>
-                                <input type="number" class="form-control" id="dni">
+                                <input type="number" class="form-control" id="dni" formControlName="dni">
                             </div>
                             <div class="mb-2 col-12 col-md-6">
                                 <label for="email" class="form-label">Correo Electrónico *</label>
@@ -49,11 +49,16 @@
                         <div class="row">
                             <div class="mb-2 col-12 col-md-6">
                                 <label for="licencia" class="form-label">Licencia</label>
-                                <input type="text" class="form-control" id="licencia">
+                                <input type="text" class="form-control" id="licencia" formControlName="licencia">
                             </div>
                             <div class="mb-2 col-12 col-md-6">
                                 <label for="especialidad" class="form-label">Especialidad</label>
-                                <input type="text" class="form-control" id="especialidad">
+                                <select class="form-select" id="especialidad" formControlName="especialidad" >
+                                  <option [value]="''">Seleccione una especialidad</option>
+                                  @for (especialidad of especialidades; track especialidad){
+                                    <option [value]="especialidad.id">{{especialidad.nombre}}</option>
+                                  }
+                                </select>
                             </div>
                         </div>
                         <div class="mb-2">

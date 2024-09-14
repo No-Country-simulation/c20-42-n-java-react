@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { TurnosComponent } from './turnos.component';
+import {TurnosComponent} from './turnos.component';
 
 describe('TurnosComponent', () => {
   let component: TurnosComponent;

@@ -28,7 +28,8 @@ export class LoginComponent implements OnInit{
       this.authService.login(controls['email'].value, controls['password'].value).subscribe({
         next: result => {
           this.usuarioService.obtenerUsuario().subscribe({
-            next: backendUser => localStorage.setItem('usuario', JSON.stringify(backendUser))
+            next: backendUser => localStorage.setItem('usuario', JSON.stringify(backendUser)),
+            error: err => console.log(err)
           });
           this.router.navigateByUrl('/');
         },

@@ -32,13 +32,11 @@ import {getAuth, provideAuth} from "@angular/fire/auth";
 import {initializeApp, provideFirebaseApp} from "@angular/fire/app";
 import {AngularFireModule} from "@angular/fire/compat";
 import {AngularFireAuthModule} from "@angular/fire/compat/auth";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {RegisterComponent} from "./features/auth/register/register.component";
-import {LoginComponent} from "./features/auth/login/login.component";
+import {ReactiveFormsModule} from "@angular/forms";
 import {AuthModule} from "./features/auth/auth.module";
 import {authInterceptor} from "./core/interceptors/auth.interceptor";
-import { AuthLayoutComponent } from './shared/components/auth-layout/auth-layout.component';
-import { TurnosDoctorComponent } from './features/turnos-doctor/turnos-doctor.component';
+import {AuthLayoutComponent} from './shared/components/auth-layout/auth-layout.component';
+import {TurnosDoctorComponent} from './features/turnos-doctor/turnos-doctor.component';
 
 const firebaseConfig = {
   apiKey: "AIzaSyD9S8qVCdnWpzM0rtJN_EKlkcW3V3FhlPQ",

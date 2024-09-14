@@ -38,7 +38,9 @@ public class SecurityConfig{
       "/pacientes",
       "/pacientes/**",
       "/turnos",
-      "/turnos/**"
+      "/turnos/**",
+          "/especialidades",
+          "/especialidades/**"
   };
 
   @Bean

@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import {Component} from '@angular/core';
+import {NavigationEnd, Router} from '@angular/router';
 
 @Component({
   selector: 'app-auth-layout',
@@ -17,5 +17,5 @@ export class AuthLayoutComponent {
       }
     });
   }
-  
+
 }

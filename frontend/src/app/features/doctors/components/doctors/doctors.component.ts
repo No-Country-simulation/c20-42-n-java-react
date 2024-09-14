@@ -4,6 +4,7 @@ import {
   EspecialidadControllerService
 } from "../../../../core/services/api-client/services/especialidad-controller.service";
 import {DoctorControllerService} from "../../../../core/services/api-client/services/doctor-controller.service";
+
 //import * as console from "node:console";
 
 @Component({
@@ -26,7 +27,7 @@ export class DoctorsComponent implements OnInit{
 
   obtenerDoctoresPorEspecialidad() {
     //obtiene
-    this.doctoresService.obtenerDoctores().subscribe({
+    this.doctoresService.obtenerDoctores({doctorSpec:{}}).subscribe({
       next: (value) => {
         this.doctores = value;
       },
