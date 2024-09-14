@@ -34,16 +34,16 @@ export const publicGuard: CanActivateFn = (route , state ) =>{
 };
 
 const getUserFromLocalStorage = () => {
-  const user = localStorage.getItem('user');
-  return user ? JSON.parse(user) : null;
+  const usuario = localStorage.getItem('usuario');
+  return usuario ? JSON.parse(usuario) : null;
 };
 
 export const patientGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
   return authStateObs$().pipe(
     map(() => {
-      const user = getUserFromLocalStorage();
-      if (!user || user.role !== 'PACIENTE') {
+      const usuario = getUserFromLocalStorage();
+      if (!usuario || usuario.rol !== 'PACIENTE') {
         router.navigateByUrl('/login');
         return false;
       }
@@ -56,8 +56,8 @@ export const doctorGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
   return authStateObs$().pipe(
     map(() => {
-      const user = getUserFromLocalStorage();
-      if (!user || user.role !== 'DOCTOR') {
+      const usuario = getUserFromLocalStorage();
+      if (!usuario || usuario.rol !== 'DOCTOR') {
         router.navigateByUrl('/login');
         return false;
       }

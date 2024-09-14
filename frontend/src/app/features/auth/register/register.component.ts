@@ -18,18 +18,19 @@ export class RegisterComponent implements OnInit {
       username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
-      dni: ['', Validators.required],
-      telefono: ['', Validators.required],
-      fechaNacimiento: ['', Validators.required]
+      //TODO: VER COMO HACER PARA QUE TODOS LOS DATOS SEAN REQUERIDOS ASI SE PERSISTE EL USUARIO Y LA PERSONA/DOCTOR/PACIENTE
+      //dni: ['', Validators.required],
+      //telefono: ['', Validators.required],
+      //fechaNacimiento: ['', Validators.required]
     });
   }
 
   onSubmit(): void {
     if (this.registroForm.valid) {
       const controls = this.registroForm.controls;
-      this.authService.register(controls['username'].value, controls['email'].value, controls['password'].value).subscribe({
+      this.authService.register(controls['username'].value, controls['email'].value, controls['password'].value, 'PACIENTE').subscribe({
         next: result => {
-          console.log('Usuario registrado:', this.registroForm.value);
+          console.log('Paciente registrado:', this.registroForm.value);
           this.router.navigate(['']);
         },
         error: err => console.log(err)

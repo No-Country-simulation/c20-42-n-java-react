@@ -15,7 +15,7 @@
                     <form [formGroup]="registroForm" (ngSubmit)="onSubmit()">
                         <div class="row">
                             <div class="mb-3 col-12 col-md-6">
-                                <label for="nombres" class="form-label">Nombres</label>
+                                <label for="nombres" class="form-label">Nombres *</label>
                                 <input type="text" class="form-control" id="nombres" formControlName="username">
                                 <div *ngIf="registroForm.get('username')?.invalid && registroForm.get('username')?.touched"
                                     class="text-danger">
@@ -43,7 +43,7 @@
                                 <input type="number" class="form-control" id="dni">
                             </div>
                             <div class="mb-3 col-12 col-md-6">
-                                <label for="email" class="form-label">Correo Electrónico</label>
+                                <label for="email" class="form-label">Correo Electrónico *</label>
                                 <input type="email" class="form-control" id="email" formControlName="email">
                                 <div *ngIf="registroForm.get('email')?.invalid && registroForm.get('email')?.touched"
                                     class="text-danger">
@@ -52,7 +52,7 @@
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label for="password" class="form-label">Contraseña</label>
+                            <label for="password" class="form-label">Contraseña *</label>
                             <input type="password" class="form-control" id="password" formControlName="password">
                             <div *ngIf="registroForm.get('password')?.invalid && registroForm.get('password')?.touched"
                                 class="text-danger">

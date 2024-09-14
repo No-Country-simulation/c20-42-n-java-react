@@ -21,24 +21,18 @@ export class RegisterDoctorComponent {
       username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
-      dni: ['', Validators.required],
-      telefono: ['', Validators.required],
-      fechaNacimiento: ['', Validators.required],
+      // dni: ['', Validators.required],
+      // telefono: ['', Validators.required],
+      // fechaNacimiento: ['', Validators.required],
     });
   }
 
   onSubmit(): void {
     if (this.registroForm.valid) {
       const controls = this.registroForm.controls;
-      this.authService
-        .register(
-          controls['username'].value,
-          controls['email'].value,
-          controls['password'].value
-        )
-        .subscribe({
+      this.authService.register(controls['username'].value, controls['email'].value, controls['password'].value, 'DOCTOR').subscribe({
           next: (result) => {
-            console.log('Usuario registrado:', this.registroForm.value);
+            console.log('Doctor registrado:', this.registroForm.value);
             this.router.navigate(['']);
           },
           error: (err) => console.log(err),

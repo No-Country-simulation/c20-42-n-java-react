@@ -2,7 +2,7 @@
     <div class="row justify-content-center">
         <div class="col-12 col-md-8 col-lg-6">
             <div>
-                <img routerLink="/" src="/assets/images/icono-flecha-verde.png" class="btn img-fluid"> 
+                <img routerLink="/" src="/assets/images/icono-flecha-verde.png" class="btn img-fluid">
                 <a routerLink="/">&nbsp;Regresa a la página principal</a>
             </div>
             <div class="card mt-1">
@@ -14,8 +14,8 @@
                     <form  [formGroup]="registroForm" (ngSubmit)="onSubmit()">
                         <div class="row">
                             <div class="mb-1 col-12 col-md-6">
-                                <label for="nombres" class="form-label">Nombres</label>
-                                <input type="text" class="form-control" id="nombres">
+                                <label for="nombres" class="form-label">Nombres *</label>
+                                <input type="text" class="form-control" id="nombres" formControlName="username">
                             </div>
                             <div class="mb-2 col-12 col-md-6">
                                 <label for="apellidos" class="form-label">Apellidos</label>
@@ -38,7 +38,7 @@
                                 <input type="number" class="form-control" id="dni">
                             </div>
                             <div class="mb-2 col-12 col-md-6">
-                                <label for="email" class="form-label">Correo Electrónico</label>
+                                <label for="email" class="form-label">Correo Electrónico *</label>
                                 <input type="email" class="form-control" id="email" formControlName="email">
                                 <div *ngIf="registroForm.get('email')?.invalid && registroForm.get('email')?.touched"
                                     class="text-danger">
@@ -57,11 +57,11 @@
                             </div>
                         </div>
                         <div class="mb-2">
-                            <label for="password" class="form-label">Contraseña</label>
-                            <input type="password" class="form-control" id="password">
+                            <label for="password" class="form-label">Contraseña *</label>
+                            <input type="password" class="form-control" id="password" formControlName="password">
                         </div>
                         <div class="mb-2">
-                            <label for="confirm-password" class="form-label">Confirmar tu contraseña</label>
+                            <label for="confirm-password" class="form-label">Confirmar tu contraseña *</label>
                             <input type="password" class="form-control" id="confirm-password">
                         </div>
                         <div class="row">

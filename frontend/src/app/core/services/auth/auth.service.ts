@@ -36,29 +36,24 @@ export class AuthService {
     this.authState = authState(this._authService);
   }
 
-  register(
-    username: string,
-    email: string,
-    password: string
-  ): Observable<Usuario> {
-    return from(
-      createUserWithEmailAndPassword(this._authService, email, password)
-    ).pipe(
+  //TODO: ABSTRAER CAMPOS EN UNA ENTIDAD USUARIO.
+  register(username: string, email: string, password: string, rol : string): Observable<Usuario> {
+    return from(createUserWithEmailAndPassword(this._authService, email, password)).pipe(
       switchMap((result) =>
         from(updateProfile(result.user, { displayName: username })).pipe(
           switchMap(() => {
-            const user: CrearUsuario$Params = {
+            const usuario: CrearUsuario$Params = {
               body: {
-                rol: 'DOCTOR',
+                rol: rol == 'DOCTOR' ? 'DOCTOR' : 'PACIENTE',
                 email: email,
               },
             };
-            return this._usuarioControllerService.crearUsuario(user);
+            return this._usuarioControllerService.crearUsuario(usuario);
           })
         )
       ),
       tap((backendUser) => {
-        localStorage.setItem('user', JSON.stringify(backendUser));
+        localStorage.setItem('usuario', JSON.stringify(backendUser));
         console.log(backendUser);
       }),
       catchError((err) => {
@@ -76,7 +71,7 @@ export class AuthService {
         return this._usuarioControllerService.obtenerUsuario().pipe(
           // Guardar el usuario en el localStorage
           tap((backendUser) => {
-            localStorage.setItem('user', JSON.stringify(backendUser));
+            localStorage.setItem('usuario', JSON.stringify(backendUser));
           })
         );
       }),
@@ -88,12 +83,12 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.removeItem('user');
+    localStorage.removeItem('usuario');
     return from(signOut(this._authService));
   }
 
   getCurrentUser() {
-    const userJson = localStorage.getItem('user');
+    const userJson = localStorage.getItem('usuario');
     if (userJson) {
       return JSON.parse(userJson);
     }
@@ -101,13 +96,13 @@ export class AuthService {
   }
 
   isDoctor() {
-    const user = this.getCurrentUser();
-    return user && user.role === 'DOCTOR';
+    const usuario = this.getCurrentUser();
+    return usuario && usuario.rol === 'DOCTOR';
   }
 
   isPatient() {
-    const user = this.getCurrentUser();
-    return user && user.role === 'PACIENTE';
+    const usuario = this.getCurrentUser();
+    return usuario && usuario.rol === 'PACIENTE';
   }
-  
+
 }
