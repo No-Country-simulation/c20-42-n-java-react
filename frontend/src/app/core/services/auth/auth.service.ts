@@ -37,49 +37,14 @@ export class AuthService {
   }
 
   //TODO: ABSTRAER CAMPOS EN UNA ENTIDAD USUARIO.
-  register(username: string, email: string, password: string, rol : string): Observable<Usuario> {
-    return from(createUserWithEmailAndPassword(this._authService, email, password)).pipe(
-      switchMap((result) =>
-        from(updateProfile(result.user, { displayName: username })).pipe(
-          switchMap(() => {
-            const usuario: CrearUsuario$Params = {
-              body: {
-                rol: rol == 'DOCTOR' ? 'DOCTOR' : 'PACIENTE',
-                email: email,
-              },
-            };
-            return this._usuarioControllerService.crearUsuario(usuario);
-          })
-        )
-      ),
-      tap((backendUser) => {
-        localStorage.setItem('usuario', JSON.stringify(backendUser));
-        console.log(backendUser);
-      }),
-      catchError((err) => {
-        console.log(err);
-        return of();
-      })
+  register(username: string, email: string, password: string) {
+    return from(createUserWithEmailAndPassword(this._authService, email, password)
+      .then(result =>  updateProfile(result.user, { displayName: username }))
     );
   }
 
-  login(email: string, password: string): Observable<any> {
-    return from(
-      signInWithEmailAndPassword(this._authService, email, password)
-    ).pipe(
-      switchMap((result) => {
-        return this._usuarioControllerService.obtenerUsuario().pipe(
-          // Guardar el usuario en el localStorage
-          tap((backendUser) => {
-            localStorage.setItem('usuario', JSON.stringify(backendUser));
-          })
-        );
-      }),
-      catchError((err) => {
-        console.error('Error during login: ', err);
-        return throwError(err);
-      })
-    );
+  login(email: string, password: string){
+    return from(signInWithEmailAndPassword(this._authService, email, password));
   }
 
   logout() {
