@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: TelemedicinaApp
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/telemedicina?useSSL=false&serverTimeZone=UTC&createDatabaseIfNotExist=true
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database: mysql
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: "https://www.googleapis.com/service_accounts/v1/jwk/securetoken%40system.gserviceaccount.com"
+          issuer-uri: "https://securetoken.google.com/telemedicina-536ac"
+
+    #Esto lo hacemos porque tenemos las dependencias de GCP, y por defecto GCP SQL esta activado aunque tengamos el perfil dev activo. Por lo cual va a esperar
+    # conexiones apropiadas. Lo desactivamos en el perfil dev
+  cloud:
+    gcp:
+      core:
+        enabled: false
+      sql:
+        enabled: false
+
+server:
+  port: 8080
+
+
+
+springdoc:
+  default-produces-media-type: application/json

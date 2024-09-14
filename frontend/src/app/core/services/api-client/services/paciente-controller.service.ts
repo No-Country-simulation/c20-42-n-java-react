@@ -19,7 +19,7 @@ import { obtenerPaciente } from '../fn/paciente-controller/obtener-paciente';
 import { ObtenerPaciente$Params } from '../fn/paciente-controller/obtener-paciente';
 import { obtenerPacientes } from '../fn/paciente-controller/obtener-pacientes';
 import { ObtenerPacientes$Params } from '../fn/paciente-controller/obtener-pacientes';
-import { Paciente } from '../models/paciente';
+import { PacienteRes } from '../models/paciente-res';
 
 @Injectable({ providedIn: 'root' })
 export class PacienteControllerService extends BaseService {
@@ -36,7 +36,7 @@ export class PacienteControllerService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  obtenerPaciente$Response(params: ObtenerPaciente$Params, context?: HttpContext): Observable<StrictHttpResponse<Paciente>> {
+  obtenerPaciente$Response(params: ObtenerPaciente$Params, context?: HttpContext): Observable<StrictHttpResponse<PacienteRes>> {
     return obtenerPaciente(this.http, this.rootUrl, params, context);
   }
 
@@ -46,9 +46,9 @@ export class PacienteControllerService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  obtenerPaciente(params: ObtenerPaciente$Params, context?: HttpContext): Observable<Paciente> {
+  obtenerPaciente(params: ObtenerPaciente$Params, context?: HttpContext): Observable<PacienteRes> {
     return this.obtenerPaciente$Response(params, context).pipe(
-      map((r: StrictHttpResponse<Paciente>): Paciente => r.body)
+      map((r: StrictHttpResponse<PacienteRes>): PacienteRes => r.body)
     );
   }
 
@@ -61,7 +61,7 @@ export class PacienteControllerService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  editarPaciente$Response(params: EditarPaciente$Params, context?: HttpContext): Observable<StrictHttpResponse<string>> {
+  editarPaciente$Response(params: EditarPaciente$Params, context?: HttpContext): Observable<StrictHttpResponse<PacienteRes>> {
     return editarPaciente(this.http, this.rootUrl, params, context);
   }
 
@@ -71,9 +71,9 @@ export class PacienteControllerService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  editarPaciente(params: EditarPaciente$Params, context?: HttpContext): Observable<string> {
+  editarPaciente(params: EditarPaciente$Params, context?: HttpContext): Observable<PacienteRes> {
     return this.editarPaciente$Response(params, context).pipe(
-      map((r: StrictHttpResponse<string>): string => r.body)
+      map((r: StrictHttpResponse<PacienteRes>): PacienteRes => r.body)
     );
   }
 
@@ -111,7 +111,7 @@ export class PacienteControllerService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  obtenerPacientes$Response(params?: ObtenerPacientes$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<Paciente>>> {
+  obtenerPacientes$Response(params?: ObtenerPacientes$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<PacienteRes>>> {
     return obtenerPacientes(this.http, this.rootUrl, params, context);
   }
 
@@ -121,9 +121,9 @@ export class PacienteControllerService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  obtenerPacientes(params?: ObtenerPacientes$Params, context?: HttpContext): Observable<Array<Paciente>> {
+  obtenerPacientes(params?: ObtenerPacientes$Params, context?: HttpContext): Observable<Array<PacienteRes>> {
     return this.obtenerPacientes$Response(params, context).pipe(
-      map((r: StrictHttpResponse<Array<Paciente>>): Array<Paciente> => r.body)
+      map((r: StrictHttpResponse<Array<PacienteRes>>): Array<PacienteRes> => r.body)
     );
   }
 
@@ -136,7 +136,7 @@ export class PacienteControllerService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  crearPaciente$Response(params: CrearPaciente$Params, context?: HttpContext): Observable<StrictHttpResponse<string>> {
+  crearPaciente$Response(params: CrearPaciente$Params, context?: HttpContext): Observable<StrictHttpResponse<PacienteRes>> {
     return crearPaciente(this.http, this.rootUrl, params, context);
   }
 
@@ -146,9 +146,9 @@ export class PacienteControllerService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  crearPaciente(params: CrearPaciente$Params, context?: HttpContext): Observable<string> {
+  crearPaciente(params: CrearPaciente$Params, context?: HttpContext): Observable<PacienteRes> {
     return this.crearPaciente$Response(params, context).pipe(
-      map((r: StrictHttpResponse<string>): string => r.body)
+      map((r: StrictHttpResponse<PacienteRes>): PacienteRes => r.body)
     );
   }
 

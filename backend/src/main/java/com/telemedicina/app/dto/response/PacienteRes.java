@@ -10,5 +10,4 @@ import lombok.Data;
 public class PacienteRes {
   private Long id;
   private Persona persona;
-  private HistoriaClinicaRes historiaClinica;
 }

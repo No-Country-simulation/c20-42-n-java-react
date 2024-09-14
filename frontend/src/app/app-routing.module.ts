@@ -9,6 +9,18 @@ import { HomeComponent } from './features/home/components/home/home.component';
 import { SpecialtiesComponent } from './features/specialties/components/specialties/specialties.component';
 import { DoctorsComponent } from './features/doctors/components/doctors/doctors.component';
 import { DoctorUserLayoutComponent } from './shared/components/doctor-user-layout/doctor-user-layout/doctor-user-layout.component';
+import { HistorialMedicoComponent } from './features/historial-medico/historial-medico.component';
+import { TurnosComponent } from './features/turnos/turnos.component';
+import { canActivate } from '@angular/fire/auth-guard';
+import {
+  authGuard,
+  doctorGuard,
+  patientGuard,
+  publicGuard,
+} from './core/guards/auth.guard';
+import { AuthLayoutComponent } from './shared/components/auth-layout/auth-layout.component';
+import { RegisterDoctorComponent } from './features/auth/register-doctor/register-doctor.component';
+import { TurnosDoctorComponent } from './features/turnos-doctor/turnos-doctor.component';
 
 const routes: Routes = [
   {
@@ -18,31 +30,47 @@ const routes: Routes = [
       { path: '', component: HomeComponent },
       { path: 'specialties', component: SpecialtiesComponent },
       { path: 'doctors', component: DoctorsComponent },
+      {
+        path: 'historial-medico',
+        canActivate: [doctorGuard],
+        component: HistorialMedicoComponent,
+      },
+      {
+        path: 'turnos',
+        canActivate: [patientGuard],
+        component: TurnosComponent,
+      },
+      {
+        path: 'turnos-doctor',
+        component: TurnosDoctorComponent,
+        canActivate: [doctorGuard],
+      },
+      {
+        path: 'doctor',
+        canActivate: [doctorGuard],
+        component: DoctorDashboardComponent,
+      },
+      {
+        path: 'user',
+        canActivate: [patientGuard],
+        component: UserDashboardComponent,
+      },
+    ],
+  },
+  {
+    path: 'auth',
+    component: AuthLayoutComponent,
+    children: [
       { path: 'login', component: LoginComponent },
-      { path: 'register', component: RegisterComponent }
-    ]
+      { path: 'register', component: RegisterComponent },
+      { path: 'register-doctor', component: RegisterDoctorComponent },
+    ],
   },
-  {
-    path: 'doctor',
-    component: DoctorUserLayoutComponent,
-    children: [
-      { path: '', component: DoctorDashboardComponent }
-      // Otras rutas específicas del doctor
-    ]
-  },
-  {
-    path: 'user',
-    component: DoctorUserLayoutComponent,
-    children: [
-      { path: '', component: UserDashboardComponent }
-      // Otras rutas específicas del usuario
-    ]
-  }
+  { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-
-export class AppRoutingModule { }
+export class AppRoutingModule {}

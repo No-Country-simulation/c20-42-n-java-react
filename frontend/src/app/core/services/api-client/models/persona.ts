@@ -3,8 +3,8 @@
 export interface Persona {
   dni?: string;
   edad?: number;
+  email?: string;
   id?: number;
-  mail?: string;
   nombre?: string;
   telefono?: string;
 }

@@ -1,64 +1,16 @@
-<div class="container">
-    <div class="jumbotron row text-white my-5">
-        <div class="col-4 text-center my-2 ">
-            <img src="/assets/images/medicina-general.png" class="card-img" alt="medicina-general" width="200"
-                height="100" class="img-fluid">
-            <div class="card-body">
-                <h5 class="card-title">Medicina General</h5>
-                <!--<p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
-                <a href="#" class="btn custom-btn-verde">Go somewhere</a>-->
+<div class="container-fluid">
+
+    <div class="container-fluid">
+
+        <div class="row my-5">
+            <div class="col-4 text-center my-2" *ngFor="let especialidad of especialidades">
+                <img class="card-img-top img-fluid custom-img"
+                    [src]="'/assets/images/especialidades/' + especialidad.fotoUrl" [alt]="especialidad.nombre">
+                <div class="card-body my-3">
+                    <h5 class="card-title">{{ especialidad.nombre }}</h5>
+                </div>
             </div>
         </div>
-        <div class="col-4 text-center my-2">
-            <img src="/assets/images/logo-salud-mental.png" class="card-img-top" alt="logo-salud-mental" width="200"
-                height="100" class="img-fluid">
-            <div class="card-body">
-                <h5 class="card-title">Salud Mental</h5>
-                <!--<p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
-                <a href="#" class="btn custom-btn-verde">Go somewhere</a>-->
-            </div>
-        </div>
-        <div class="col-4 text-center my-2">
-            <img src="/assets/images/pediatria.png" class="card-img-top" alt="pediatria.png" width="200" height="100"
-                class="img-fluid">
-            <div class="card-body">
-                <h5 class="card-title">Pediatria</h5>
-                <!--    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
-                <a href="#" class="btn custom-btn-verde">Go somewhere</a>-->
-            </div>
-        </div>
-        <div class="col-4 text-center my-2">
-            <img src="/assets/images/logo-nutricion.png" class="card-img-top" alt="logo-nutricion" width="200"
-                height="100" class="img-fluid">
-            <div class="card-body">
-                <h5 class="card-title">Nutricion</h5>
-                <!--    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
-                <a href="#" class="btn custom-btn-verde">Go somewhere</a>-->
-            </div>
-        </div>
-        <div class="col-4 text-center my-2">
-            <img src="/assets/images/dermatologia.png" class="card-img-top" alt="dermatologia" width="200" height="100"
-                class="img-fluid">
-            <div class="card-body">
-                <h5 class="card-title">Dermatologia</h5>
-                <!--    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
-                <a href="#" class="btn custom-btn-verde">Go somewhere</a>-->
-            </div>
-        </div>
-        <div class="col-4 text-center my-2">
-            <img src="/assets/images/genecologia.png" class="card-img-top" alt="genecologia" width="200" height="100"
-                class="img-fluid">
-            <div class="card-body">
-                <h5 class="card-title">Ginecologia</h5>
-                <!--    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
-                <a href="#" class="btn custom-btn-verde">Go somewhere</a>-->
-            </div>
-        </div>
+
     </div>
-<div>
+</div>

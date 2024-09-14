@@ -11,14 +11,13 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class PacienteMapper {
-  private final HistoriaClinicaMapper historiaClinicaMapper;
+  private final PersonaMapper personaMapper;
 
 
   public Paciente toPaciente(PacienteReq p){
     Paciente paciente =  new Paciente();
-    paciente.setPersona(p.getPersona());
+    paciente.setPersona(personaMapper.toPersona(p.getPersona()));
     paciente.setHistoriaClinica(HistoriaClinica.builder()
-            .paciente(paciente)
             .registroMedicos(new ArrayList<>())
         .build());
     return paciente;
@@ -28,7 +27,6 @@ public class PacienteMapper {
     return PacienteRes.builder()
         .id(p.getId())
         .persona(p.getPersona())
-        .historiaClinica(historiaClinicaMapper.toHistoriaClinicaRes(p.getHistoriaClinica()))
         .build();
   }
 

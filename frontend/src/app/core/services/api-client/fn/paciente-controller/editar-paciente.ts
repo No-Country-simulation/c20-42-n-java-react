@@ -6,14 +6,15 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { Paciente } from '../../models/paciente';
+import { PacienteReq } from '../../models/paciente-req';
+import { PacienteRes } from '../../models/paciente-res';
 
 export interface EditarPaciente$Params {
   id: number;
-      body: Paciente
+      body: PacienteReq
 }
 
-export function editarPaciente(http: HttpClient, rootUrl: string, params: EditarPaciente$Params, context?: HttpContext): Observable<StrictHttpResponse<string>> {
+export function editarPaciente(http: HttpClient, rootUrl: string, params: EditarPaciente$Params, context?: HttpContext): Observable<StrictHttpResponse<PacienteRes>> {
   const rb = new RequestBuilder(rootUrl, editarPaciente.PATH, 'put');
   if (params) {
     rb.path('id', params.id, {});
@@ -25,7 +26,7 @@ export function editarPaciente(http: HttpClient, rootUrl: string, params: Editar
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<string>;
+      return r as StrictHttpResponse<PacienteRes>;
     })
   );
 }

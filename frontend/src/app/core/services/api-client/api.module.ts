@@ -4,7 +4,11 @@ import { NgModule, ModuleWithProviders, SkipSelf, Optional } from '@angular/core
 import { HttpClient } from '@angular/common/http';
 import { ApiConfiguration, ApiConfigurationParams } from './api-configuration';
 
+import { RegistroMedicoControllerService } from './services/registro-medico-controller.service';
 import { PacienteControllerService } from './services/paciente-controller.service';
+import { EspecialidadControllerService } from './services/especialidad-controller.service';
+import { DoctorControllerService } from './services/doctor-controller.service';
+import { UsuarioControllerService } from './services/usuario-controller.service';
 import { HistoriaClinicaControllerService } from './services/historia-clinica-controller.service';
 
 /**
@@ -15,7 +19,11 @@ import { HistoriaClinicaControllerService } from './services/historia-clinica-co
   exports: [],
   declarations: [],
   providers: [
+    RegistroMedicoControllerService,
     PacienteControllerService,
+    EspecialidadControllerService,
+    DoctorControllerService,
+    UsuarioControllerService,
     HistoriaClinicaControllerService,
     ApiConfiguration
   ],

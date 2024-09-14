@@ -6,10 +6,9 @@ import com.telemedicina.app.model.Doctor;
 import com.telemedicina.app.model.Especialidad;
 import com.telemedicina.app.repository.EspecialidadRepo;
 import jakarta.persistence.EntityNotFoundException;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor

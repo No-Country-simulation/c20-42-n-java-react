@@ -10,3 +10,38 @@
     background-color: #073f48; /* Un color ligeramente más oscuro para el efecto hover */
 }
 
+.custom-verde {
+    background-color: #09525e;
+    color: white; /* Asegura que el texto sea blanco para un buen contraste */
+}
+
+.custom-verde:hover {
+    color: white; /* Color del texto al pasar el cursor */
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+  
+  main {
+    flex: 1;
+  }
+  
+  app-root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  app-header {
+    /* Estilos del header */
+  }
+  
+  app-footer {
+    background: #eee;
+    text-align: center;
+    /* Otros estilos del footer */
+  }
+
+

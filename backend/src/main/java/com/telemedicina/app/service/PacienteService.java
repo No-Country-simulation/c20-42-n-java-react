@@ -24,19 +24,23 @@ public class PacienteService{
         return pacienteMapper.toPacienteRes(pacienteRepository.save(pacienteMapper.toPaciente(paciente)));
     }
 
-    public PacienteRes editarPaciente(Long id, PacienteReq paciente) {
-        pacienteRepository.findById(id).orElseThrow(()-> new EntityNotFoundException("Paciente con id " + id + " no encontrado"));
-        Paciente pacienteActual = pacienteMapper.toPaciente(paciente);
-        pacienteActual.setId(id);
-        return pacienteMapper.toPacienteRes(pacienteRepository.save(pacienteActual));
+    public PacienteRes editarPaciente(Long id, PacienteReq pacienteReq) {
+       Paciente paciente = pacienteMapper.toPaciente(pacienteReq);
+       paciente.setId(id);
+        return pacienteMapper.toPacienteRes(pacienteRepository.save(paciente));
     }
 
     public void eliminarPaciente(Long id) {
+        findPaciente(id);
         pacienteRepository.deleteById(id);
     }
 
-    public Paciente encontrarPaciente(Long id) {
-      return pacienteRepository.findById(id).orElse(null);
+    public PacienteRes encontrarPaciente(Long id) {
+      return pacienteMapper.toPacienteRes(pacienteRepository.findById(id).orElseThrow(()-> new EntityNotFoundException("Paciente con id " + id + " no encontrado")));
+    }
+
+    public Paciente findPaciente(Long id) {
+        return pacienteRepository.findById(id).orElseThrow(()-> new EntityNotFoundException("Paciente no encontrado"));
     }
     
     

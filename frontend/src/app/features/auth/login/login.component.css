@@ -1,0 +1,37 @@
+body {
+    background-color: #106270;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+label {
+    color: #106270;
+}
+.card {
+    background-color: #ffffff;
+    border: none;
+}
+.form-control {
+    border-color: #106270;
+    color: #106270;
+}
+.form-control::placeholder {
+    color: #106270;
+}
+
+.btn-primary {
+    background-color: #106270;
+    border-color: #106270;
+    color: #ffffff;
+}
+
+.card , a {
+    color: #106270;
+}
+
+.btn-custom{
+    border-color: #106270;
+
+}

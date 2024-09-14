@@ -1,4 +1,4 @@
-import { CustomPipe } from './custom.pipe';
+import {CustomPipe} from './custom.pipe';
 
 describe('CustomPipe', () => {
   it('create an instance', () => {

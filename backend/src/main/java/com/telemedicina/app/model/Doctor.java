@@ -1,13 +1,13 @@
 package com.telemedicina.app.model;
 
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 @Data
@@ -25,8 +25,7 @@ public class Doctor{
     private double honorarios;
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Especialidad especialidad;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Paciente> pacientes = new ArrayList<>();
 
 }
