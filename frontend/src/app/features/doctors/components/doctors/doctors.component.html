@@ -1,7 +1,6 @@
-<div class="container-fluid mt-0">
-  <button type="button" class="btn custom-btn-verde mb-3 text-white">Medicina General</button>
-  <div class="row justify-content-center">
-    <!-- Tarjeta de Pacientes -->
+<!-- <div class="container-fluid mt-0">
+  <h3 class="mt-2 m-2">Medicina General</h3>
+  <div class="row justify-content-center"> Tarjeta de Pacientes 
     <div class="col-md-4 mb-4" *ngFor="let doctor of doctores">
       <div class="card h-100">
         <div class="row g-0">
@@ -21,5 +20,18 @@
         </div>
       </div>
     </div>
+  </div>
+</div> -->
+
+
+
+<div *ngFor="let especialidad of especialidades">
+  <div *ngIf="especialidad.id !== undefined && doctoresPorEspecialidad[especialidad.id]">
+    <h2>{{ especialidad.nombre }}</h2>
+    <ul>
+      <li *ngFor="let doctor of doctoresPorEspecialidad[especialidad.id]">
+        {{ doctor.persona?.nombre }}
+      </li>
+    </ul>
   </div>
 </div>

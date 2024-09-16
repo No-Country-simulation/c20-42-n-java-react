@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<!-- <div class="container-fluid">
 
     <div class="container-fluid">
 
@@ -13,4 +13,17 @@
         </div>
 
     </div>
-</div>
+</div> -->
+
+
+<div *ngIf="especialidades.length > 0">
+    <h2>Especialidades</h2>
+    <ul>
+      <li *ngFor="let especialidad of especialidades">
+        {{ especialidad.nombre }}
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="especialidades.length === 0">
+    <p>No hay especialidades disponibles.</p>
+  </div>

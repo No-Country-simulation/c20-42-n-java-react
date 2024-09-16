@@ -1,7 +1,6 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {DoctorsComponent} from './components/doctors/doctors.component';
-
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { DoctorsComponent } from './components/doctors/doctors.component';
 
 @NgModule({
   declarations: [
@@ -11,5 +10,4 @@ import {DoctorsComponent} from './components/doctors/doctors.component';
     CommonModule
   ]
 })
-export class DoctorsModule {
-}
+export class DoctorsModule {}

@@ -35,7 +35,9 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('usuario');
-    return from(signOut(this._authService));
+    from(signOut(this._authService)).subscribe(() => {
+      window.location.href = '/'; // Redirige a la página de inicio
+    });
   }
 
   getCurrentUser() {

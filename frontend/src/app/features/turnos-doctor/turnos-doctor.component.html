@@ -1,74 +1,21 @@
-<div class="container mt-3">
-    <div class="table-responsive">
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>Semana</th>
-            <th>Fecha</th>
-            <th>Hora</th>
-            <th>Paciente</th>
-            <th>Detalles del paciente</th>
-            <th>Historial Médico</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Semana 1</td>
-            <td>02/09/2024</td>
-            <td>14:00 - 14:30</td>
-            <td>Emily Watson</td>
-            <td><a href="#">Ver Detalles</a></td>
-            <td><a href="#">Ver Historial</a></td>
-          </tr>
-          <tr>
-            <td>Semana 1</td>
-            <td>03/09/2024</td>
-            <td>15:00 - 15:30</td>
-            <td>James Bennett</td>
-            <td><a href="#">Ver Detalles</a></td>
-            <td><a href="#">Ver Historial</a></td>
-          </tr>
-          <tr>
-            <td>Semana 2</td>
-            <td>09/09/2024</td>
-            <td>15:00 - 15:30</td>
-            <td>Daniel Evans</td>
-            <td><a href="#">Ver Detalles</a></td>
-            <td><a href="#">Ver Historial</a></td>
-          </tr>
-          <tr>
-            <td>Semana 2</td>
-            <td>12/09/2024</td>
-            <td>16:00 - 16:30</td>
-            <td>Grace Thompson</td>
-            <td><a href="#">Ver Detalles</a></td>
-            <td><a href="#">Ver Historial</a></td>
-          </tr>
-          <tr>
-            <td>Semana 3</td>
-            <td>16/09/2024</td>
-            <td>14:00 - 14:30</td>
-            <td>Charlotte White</td>
-            <td><a href="#">Ver Detalles</a></td>
-            <td><a href="#">Ver Historial</a></td>
-          </tr>
-          <tr>
-            <td>Semana 3</td>
-            <td>20/09/2024</td>
-            <td>17:00 - 17:30</td>
-            <td>George Walker</td>
-            <td><a href="#">Ver Detalles</a></td>
-            <td><a href="#">Ver Historial</a></td>
-          </tr>
-          <tr>
-            <td>Semana 4</td>
-            <td>26/09/2024</td>
-            <td>16:00 - 16:30</td>
-            <td>Ava Green</td>
-            <td><a href="#">Ver Detalles</a></td>
-            <td><a href="#">Ver Historial</a></td>
-          </tr>
-        </tbody>
-      </table>
+<div class="container">
+  <full-calendar #calendar [options]="calendarOptions"></full-calendar>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="eventDetailsModal" tabindex="-1" aria-labelledby="eventDetailsModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="eventDetailsModalLabel">Detalles del Evento</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Los detalles del evento se llenarán dinámicamente -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
     </div>
   </div>
+</div>
