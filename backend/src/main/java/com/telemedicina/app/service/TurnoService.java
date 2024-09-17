@@ -1,10 +1,13 @@
 package com.telemedicina.app.service;
 
-import com.telemedicina.app.dto.TurnoDTO;
+import com.telemedicina.app.dto.request.TurnoReq;
+import com.telemedicina.app.dto.response.TurnoRes;
 import com.telemedicina.app.model.Doctor;
 import com.telemedicina.app.model.Paciente;
 import com.telemedicina.app.model.Turno;
 import com.telemedicina.app.repository.TurnoRepository;
+import com.telemedicina.app.service.mapper.DoctorMapper;
+import com.telemedicina.app.service.mapper.PacienteMapper;
 import jakarta.persistence.EntityNotFoundException;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
@@ -24,22 +27,20 @@ public class TurnoService {
     private final TurnoRepository turnoRepository;
     private final DoctorService doctorService;
     private final PacienteService pacienteService;
+    private final DoctorMapper doctorMapper;
+    private final PacienteMapper pacienteMapper;
 
-    public TurnoDTO agendarTurno(TurnoDTO turnoDTO) throws GeneralSecurityException, IOException {
-        Turno turno = toTurno(turnoDTO);
+    public TurnoRes agendarTurno(TurnoReq turnoReq) throws GeneralSecurityException, IOException {
+        Turno turno = toTurno(turnoReq);
 
         //Asignamos el paciente a la lista del doctor
         if (!turno.getDoctor().getPacientes().contains(turno.getPaciente())) {
             turno.getDoctor().getPacientes().add(turno.getPaciente());
         }
-
         //Agregamos el evento pasandole el objeto turno
         googleCalendarService.agregarEvento(turno);
 
-        turno = turnoRepository.save(turno);
-
-        turnoDTO.setId(turno.getId());
-        return turnoDTO;
+        return toTurnoRes(turnoRepository.save(turno));
     }
 
     //Aca eliminamos el turno
@@ -55,53 +56,47 @@ public class TurnoService {
     }
 
     //Aca editamos el turno
-    public TurnoDTO editarTurno(Long id, TurnoDTO turnoDTO) throws GeneralSecurityException, IOException {
-        Turno turno = turnoRepository.findById(id)
+    public TurnoRes editarTurno(Long id, TurnoReq turnoReq) throws GeneralSecurityException, IOException {
+        turnoRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("No se encontro el turno que quieres editar"));
-        Doctor doctor = doctorService.findDoctor(turnoDTO.getDoctorId());
-        Paciente paciente = pacienteService.findPaciente(turnoDTO.getPacienteId());
-
-        turno.setDoctor(doctor);
-        turno.setPaciente(paciente);
-        turno.setFechaHora(turnoDTO.getFechaHora());
 
         //Actualizamos el evento
-        turnoRepository.save(turno);
-        turnoDTO.setId(turno.getId());
+       Turno turno = turnoRepository.save(toTurno(turnoReq));
 
         //Actualizamos el evento en la cloud de google
         googleCalendarService.modificarEvento(turno.getEventId(), turno);
-        return turnoDTO;
+        return toTurnoRes(turno);
     }
 
-    public List<TurnoDTO> obtenerTurnos() {
-      return turnoRepository.findAll().stream().map(this::toTurnoDTO).toList();
+    public List<TurnoRes> obtenerTurnos() {
+      return turnoRepository.findAll().stream().map(this::toTurnoRes).toList();
     }
 
-    public List<TurnoDTO> obtenerTurnoPorDoctor(Long idDoctor) {
+    public List<TurnoRes> obtenerTurnoPorDoctor(Long idDoctor) {
         doctorService.findDoctor(idDoctor);
-        return turnoRepository.findAllByDoctor_Id(idDoctor).stream().map(this::toTurnoDTO).toList();
+        return turnoRepository.findAllByDoctor_Id(idDoctor).stream().map(this::toTurnoRes).toList();
     }
 
-    public List<TurnoDTO> obtenerTurnoPorPaciente(Long id) {
+    public List<TurnoRes> obtenerTurnoPorPaciente(Long id) {
         pacienteService.findPaciente(id);
-        return  turnoRepository.findAllByPaciente_Id(id).stream().map(this::toTurnoDTO).toList();
+        return  turnoRepository.findAllByPaciente_Id(id).stream().map(this::toTurnoRes).toList();
     }
 
-    public Turno toTurno(TurnoDTO turnoDTO) {
-        Doctor doctor = doctorService.findDoctor(turnoDTO.getDoctorId());
-        Paciente paciente = pacienteService.findPaciente(turnoDTO.getPacienteId());
+    public Turno toTurno(TurnoReq turnoReq) {
+        Doctor doctor = doctorService.findDoctor(turnoReq.getDoctorId());
+        Paciente paciente = pacienteService.findPaciente(turnoReq.getPacienteId());
         return Turno.builder()
             .doctor(doctor)
             .paciente(paciente)
-            .fechaHora(turnoDTO.getFechaHora())
+            .fechaHora(turnoReq.getFechaHora())
             .build();
     }
 
-    public TurnoDTO toTurnoDTO(Turno turno){
-        return TurnoDTO.builder()
-            .doctorId(turno.getDoctor().getId())
-            .pacienteId(turno.getPaciente().getId())
+    public TurnoRes toTurnoRes(Turno turno){
+        return TurnoRes.builder()
+            .id(turno.getId())
+            .doctor(doctorMapper.toDoctorRes(turno.getDoctor()))
+            .paciente(pacienteMapper.toPacienteRes(turno.getPaciente()))
             .fechaHora(turno.getFechaHora())
             .build();
     }

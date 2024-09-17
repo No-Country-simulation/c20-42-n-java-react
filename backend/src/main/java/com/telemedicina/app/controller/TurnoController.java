@@ -1,7 +1,7 @@
 package com.telemedicina.app.controller;
 
-import com.telemedicina.app.dto.TurnoDTO;
-import com.telemedicina.app.model.Turno;
+import com.telemedicina.app.dto.request.TurnoReq;
+import com.telemedicina.app.dto.response.TurnoRes;
 import com.telemedicina.app.service.TurnoService;
 import jakarta.validation.Valid;
 import java.io.IOException;
@@ -9,7 +9,6 @@ import java.security.GeneralSecurityException;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,9 +30,9 @@ public class TurnoController {
     private final TurnoService turnoService;
 
     @PostMapping
-    public TurnoDTO agendarTurno(@RequestBody @Valid TurnoDTO turnoDTO)
+    public TurnoRes agendarTurno(@RequestBody @Valid TurnoReq turnoReq)
             throws GeneralSecurityException, IOException {
-        return turnoService.agendarTurno(turnoDTO);
+        return turnoService.agendarTurno(turnoReq);
     }
 
     @DeleteMapping("/{idTurno}")
@@ -45,26 +44,26 @@ public class TurnoController {
     }
 
     @PutMapping("/{idTurno}")
-    public TurnoDTO editarTurno(@PathVariable Long idTurno, @RequestBody @Valid TurnoDTO turnoDTO)
+    public TurnoRes editarTurno(@PathVariable Long idTurno, @RequestBody @Valid TurnoReq turnoReq)
             throws GeneralSecurityException, IOException {
-        return turnoService.editarTurno(idTurno, turnoDTO);
+        return turnoService.editarTurno(idTurno, turnoReq);
     }
     
     @GetMapping("/doctores/{idDoctor}")
     @ResponseStatus(HttpStatus.OK)
-    public List<TurnoDTO> obtenerTurnoPorDoctor(@PathVariable Long idDoctor){
+    public List<TurnoRes> obtenerTurnoPorDoctor(@PathVariable Long idDoctor){
         return turnoService.obtenerTurnoPorDoctor(idDoctor);
     }
     
     @GetMapping("/pacientes/{idPaciente}")
     @ResponseStatus(HttpStatus.OK)
-    public List<TurnoDTO> obtenerTurnoPorPaciente(@PathVariable Long idPaciente){
+    public List<TurnoRes> obtenerTurnoPorPaciente(@PathVariable Long idPaciente){
         return turnoService.obtenerTurnoPorPaciente(idPaciente);
     }
     
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<TurnoDTO> obtenerTurnos(){
+    public List<TurnoRes> obtenerTurnos(){
         return turnoService.obtenerTurnos();
     }
     

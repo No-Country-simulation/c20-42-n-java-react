@@ -1,4 +1,4 @@
-package com.telemedicina.app.dto;
+package com.telemedicina.app.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.validation.constraints.Future;
@@ -18,9 +18,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class TurnoDTO {
-    @JsonIgnore
-    private Long id;
+public class TurnoReq {
     @NotNull(message = "El campo doctorId no debe estar vacío")
     private Long doctorId;
     @NotNull(message = "El campo pacienteId no debe estar vacío")
