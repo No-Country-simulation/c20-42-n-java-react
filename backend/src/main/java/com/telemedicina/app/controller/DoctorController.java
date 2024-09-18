@@ -2,12 +2,14 @@ package com.telemedicina.app.controller;
 
 import com.telemedicina.app.dto.request.DoctorReq;
 import com.telemedicina.app.dto.response.DoctorRes;
+import com.telemedicina.app.dto.response.PacienteRes;
 import com.telemedicina.app.model.Doctor;
 import com.telemedicina.app.service.DoctorService;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import net.kaczmarzyk.spring.data.jpa.domain.Equal;
-import net.kaczmarzyk.spring.data.jpa.domain.In;
 import net.kaczmarzyk.spring.data.jpa.domain.Like;
 import net.kaczmarzyk.spring.data.jpa.web.annotation.And;
 import net.kaczmarzyk.spring.data.jpa.web.annotation.Spec;
@@ -32,7 +34,12 @@ public class DoctorController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
+    @Parameters({
+        @Parameter(name = "especialidad", description = "ID de la especialidad", required = false),
+        @Parameter(name = "nombre", description = "Nombre del doctor", required = false)
+    })
     public List<DoctorRes> obtenerDoctores(
+        @Parameter(hidden = true)
             @And({
                 @Spec(path = "especialidad.id", params = "especialidad", spec = Equal.class),
                 @Spec(path = "persona.nombre", params = "nombre", spec = Like.class),
@@ -65,6 +72,12 @@ public class DoctorController {
     @ResponseStatus(HttpStatus.FOUND)
     public DoctorRes obtenerDoctor(@PathVariable("id") Long id){
         return doctorService.encontrarDoctor(id);
+    }
+
+    @GetMapping("/{id}/pacientes")
+    @ResponseStatus(HttpStatus.OK)
+    public List<PacienteRes> obtenerPacientes(@PathVariable("id") Long id){
+        return doctorService.obtenerPacientes(id);
     }
     
     

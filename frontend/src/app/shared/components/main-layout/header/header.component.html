@@ -25,16 +25,21 @@
                          [ngClass]="{'text-black': isSpecialtiesOrDoctors() || router.url === '/doctors', 'text-white': !isSpecialtiesOrDoctors() && router.url !== '/doctors'}"
                          routerLink="/doctors" [class.active]="router.url === '/doctors'">Médicos</a>
                     </li>
-                    <li class="nav-item me-4" *ngIf="_authService.isDoctor()">
-                      <a class="nav-link"
-                         [ngClass]="{'text-black': isSpecialtiesOrDoctors() || router.url === '/historial-medico', 'text-white': !isSpecialtiesOrDoctors() && router.url !== '/historial-medico'}"
-                         routerLink="/historial-medico" [class.active]="router.url === '/historial-medico'">Historiales Médicos</a>
-                    </li>
+<!--                    <li class="nav-item me-4" *ngIf="_authService.isDoctor()">-->
+<!--                      <a class="nav-link"-->
+<!--                         [ngClass]="{'text-black': isSpecialtiesOrDoctors() || router.url === '/historial-medico', 'text-white': !isSpecialtiesOrDoctors() && router.url !== '/historial-medico'}"-->
+<!--                         routerLink="/historial-medico" [class.active]="router.url === '/historial-medico'">Historiales Médicos</a>-->
+<!--                    </li>-->
                     <li class="nav-item me-4" *ngIf="_authService.isPatient()">
                         <a class="nav-link"
                             [ngClass]="{'text-black': isSpecialtiesOrDoctors() || router.url === '/turnos', 'text-white': !isSpecialtiesOrDoctors() && router.url !== '/turnos'}"
                             routerLink="/turnos" [class.active]="router.url === '/turnos'">Turnos</a>
                     </li>
+                  <li class="nav-item me-4" *ngIf="_authService.isDoctor()">
+                    <a class="nav-link"
+                       [ngClass]="{'text-black': isSpecialtiesOrDoctors() || router.url === '/pacientes', 'text-white': !isSpecialtiesOrDoctors() && router.url !== '/pacientes'}"
+                       routerLink="/pacientes" [class.active]="router.url === '/pacientes'">Pacientes</a>
+                  </li>
                     <li class="nav-item me-4" *ngIf="_authService.isDoctor()">
                       <a class="nav-link"
                          [ngClass]="{'text-black': isSpecialtiesOrDoctors() || router.url === '/turnos-doctor', 'text-white': !isSpecialtiesOrDoctors() && router.url !== '/turnos-doctor'}"
@@ -61,7 +66,7 @@
                             </ul>
                         </div>
                         <button class="btn custom-btn-verde text-white" routerLink="/auth/login">Inicio sesión</button>
-                    </div>        
+                    </div>
                 }
                 </div>
             </div>

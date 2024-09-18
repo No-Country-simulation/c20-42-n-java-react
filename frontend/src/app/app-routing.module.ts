@@ -14,6 +14,7 @@ import {doctorGuard, patientGuard,} from './core/guards/auth.guard';
 import {AuthLayoutComponent} from './shared/components/auth-layout/auth-layout.component';
 import {RegisterDoctorComponent} from './features/auth/register-doctor/register-doctor.component';
 import {TurnosDoctorComponent} from './features/turnos-doctor/turnos-doctor.component';
+import {PacientesComponent} from "./features/pacientes-doctor/pacientes/pacientes.component";
 
 const routes: Routes = [
   {
@@ -24,7 +25,7 @@ const routes: Routes = [
       { path: 'specialties', component: SpecialtiesComponent },
       { path: 'doctors', component: DoctorsComponent },
       {
-        path: 'historial-medico',
+        path: 'historial-medico/:id',
         canActivate: [doctorGuard],
         component: HistorialMedicoComponent,
       },
@@ -42,6 +43,11 @@ const routes: Routes = [
         path: 'doctor',
         canActivate: [doctorGuard],
         component: DoctorDashboardComponent,
+      },
+      {
+        path: 'pacientes',
+        canActivate: [doctorGuard],
+        component: PacientesComponent,
       },
       {
         path: 'user',

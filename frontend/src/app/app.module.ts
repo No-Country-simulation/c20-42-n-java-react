@@ -27,6 +27,8 @@ import { AuthModule } from './features/auth/auth.module';
 import { authInterceptor } from './core/interceptors/auth.interceptor';
 import { AuthLayoutComponent } from './shared/components/auth-layout/auth-layout.component';
 import { TurnosDoctorComponent } from './features/turnos-doctor/turnos-doctor.component';
+import { PacientesComponent } from './features/pacientes-doctor/pacientes/pacientes.component';
+import {PacientesModule} from "./features/pacientes-doctor/pacientes.module";
 
 const firebaseConfig = {
   apiKey: 'AIzaSyD9S8qVCdnWpzM0rtJN_EKlkcW3V3FhlPQ',
@@ -49,7 +51,7 @@ const firebaseConfig = {
     TurnosComponent,
     HistorialMedicoComponent,
     AuthLayoutComponent,
-    TurnosDoctorComponent
+    TurnosDoctorComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,7 +65,8 @@ const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
     AuthModule,
-    FullCalendarModule
+    FullCalendarModule,
+    PacientesModule
   ],
   providers: [
     provideHttpClient(withInterceptors([authInterceptor])),
