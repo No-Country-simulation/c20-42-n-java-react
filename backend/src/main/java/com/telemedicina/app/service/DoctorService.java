@@ -26,6 +26,10 @@ public class DoctorService {
         return doctorRepository.findAll(doctorSpec).stream().map(doctorMapper::toDoctorRes).toList();
     }
 
+    public DoctorRes obtenerDoctor(Long id) {
+        return doctorMapper.toDoctorRes(findDoctor(id));
+    }
+
     public DoctorRes agregarDoctor(DoctorReq doctor) {
         return doctorMapper.toDoctorRes(doctorRepository.save(doctorMapper.toDoctor(doctor)));
     }

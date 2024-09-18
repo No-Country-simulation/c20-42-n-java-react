@@ -1,7 +1,7 @@
 .text-black {
     color: black !important;
   }
-  
+
   .text-white {
     color: white !important;
   }
@@ -54,4 +54,12 @@
 
 .auth-login-bg {
   background-color: #106270;
+}
+.dropdown-item {
+  cursor: pointer;
+}
+.dropdown button{
+  background-color: transparent;
+  border:none;
+  color:black;
 }

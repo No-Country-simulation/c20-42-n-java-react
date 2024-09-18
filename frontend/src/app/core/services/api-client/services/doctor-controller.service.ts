@@ -35,7 +35,8 @@ export class DoctorControllerService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  obtenerDoctor$Response(params: ObtenerDoctor$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+  obtenerDoctor$Response(params: ObtenerDoctor$Params, context?: HttpContext): Observable<StrictHttpResponse<DoctorRes>> {
+    // @ts-ignore
     return obtenerDoctor(this.http, this.rootUrl, params, context);
   }
 
@@ -45,9 +46,9 @@ export class DoctorControllerService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  obtenerDoctor(params: ObtenerDoctor$Params, context?: HttpContext): Observable<void> {
+  obtenerDoctor(params: ObtenerDoctor$Params, context?: HttpContext): Observable<DoctorRes> {
     return this.obtenerDoctor$Response(params, context).pipe(
-      map((r: StrictHttpResponse<void>): void => r.body)
+      map((r: StrictHttpResponse<DoctorRes>): DoctorRes => r.body)
     );
   }
 

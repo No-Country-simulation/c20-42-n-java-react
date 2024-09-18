@@ -48,7 +48,8 @@ public class DoctorController {
     ){
         return doctorService.obtenerDoctores(doctorSpec);
     }
-    
+
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public DoctorRes crearDoctor(@RequestBody @Validated DoctorReq doctor){
@@ -69,7 +70,7 @@ public class DoctorController {
     }
     
     @GetMapping("/{id}")
-    @ResponseStatus(HttpStatus.FOUND)
+    @ResponseStatus(HttpStatus.OK)
     public DoctorRes obtenerDoctor(@PathVariable("id") Long id){
         return doctorService.encontrarDoctor(id);
     }
