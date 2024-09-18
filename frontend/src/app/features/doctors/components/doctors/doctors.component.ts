@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Doctor } from '../../../../core/services/api-client/models/doctor';
-import { DoctorControllerService } from '../../../../core/services/api-client/services/doctor-controller.service';
-import { Especialidad } from '../../../../core/services/api-client/models';
-import { EspecialidadControllerService } from '../../../../core/services/api-client/services';
+import {Component, OnInit} from '@angular/core';
+import {Doctor} from '../../../../core/services/api-client/models/doctor';
+import {DoctorControllerService} from '../../../../core/services/api-client/services/doctor-controller.service';
+import {Especialidad} from '../../../../core/services/api-client/models';
+import {EspecialidadControllerService} from '../../../../core/services/api-client/services';
 
 //import * as console from "node:console";
 
@@ -29,7 +29,7 @@ export class DoctorsComponent implements OnInit {
       next: (value) => {
         this.especialidades = value;
         console.log(this.especialidades);
-        
+
         // Iterar sobre cada especialidad y filtrar doctores por su ID
         this.especialidades.forEach((especialidad: Especialidad) => {
           if (especialidad.id !== undefined) {
@@ -48,7 +48,7 @@ export class DoctorsComponent implements OnInit {
 
   filtrarDoctoresPorEspecialidad(especialidadId: number) {
     this.doctorService
-      .obtenerDoctores({ doctorSpec: { especialidad: especialidadId } })
+      .obtenerDoctores({especialidad: especialidadId})
       .subscribe({
         next: (doctores: Doctor[]) => {
           if (doctores.length > 0) {

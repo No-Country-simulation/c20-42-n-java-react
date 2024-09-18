@@ -1,27 +1,17 @@
 package com.telemedicina.app.utils;
 
 import com.github.javafaker.Faker;
-import com.telemedicina.app.model.Doctor;
-import com.telemedicina.app.model.Especialidad;
-import com.telemedicina.app.model.HistoriaClinica;
-import com.telemedicina.app.model.Paciente;
-import com.telemedicina.app.model.Persona;
+import com.telemedicina.app.model.*;
 import com.telemedicina.app.repository.DoctorRepo;
 import com.telemedicina.app.repository.EspecialidadRepo;
 import com.telemedicina.app.repository.PacienteRepo;
+import com.telemedicina.app.repository.UsuarioRepo;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Random;
-import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -31,14 +21,17 @@ public class Bootstrap {
   private final DoctorRepo doctorRepo;
   private final EspecialidadRepo especialidadRepo;
   private final PacienteRepo pacienteRepo;
+  private final UsuarioRepo usuarioRepo;
 
   @Transactional
   public void cargarTablas(){
-    cargarEspecialidades();
-    cargarDoctores(10);
-    cargarPacientes(30);
-    agregarPacientesADoctores();
-
+    if(tablaVacia("Doctor")&& tablaVacia("Paciente")&& tablaVacia("Usuario")){
+      cargarEspecialidades();
+      cargarDoctores(10);
+      cargarPacientes(30);
+      agregarPacientesADoctores();
+      agregarUsuariosDePrueba();
+    }
   }
 
 
@@ -124,12 +117,28 @@ public class Bootstrap {
     List<Doctor> doctores = doctorRepo.findAll();
     List<Paciente> pacientes = pacienteRepo.findAll();
     Random random = new Random();
-    doctores.forEach(doctor -> {
+    pacientes.forEach(paciente -> {
       var flag = true;
       while(flag){
-        flag = ! doctor.getPacientes().add(pacientes.get(random.nextInt(pacientes.size()-1)));
+        flag = !doctores.get(random.nextInt(doctores.size()-1))
+                .getPacientes().add(paciente);
       }
     });
+  }
+
+  private void agregarUsuariosDePrueba(){
+    Usuario usuarioDoctor = Usuario.builder()
+            .rol(Rol.DOCTOR)
+            .email("doctor@gmail.com")
+            .entidadId(1L)
+            .build();
+    Usuario usuarioPaciente = Usuario.builder()
+            .rol(Rol.PACIENTE)
+            .email("paciente@gmail.com")
+            .entidadId(1L)
+            .build();
+    usuarioRepo.save(usuarioPaciente);
+    usuarioRepo.save(usuarioDoctor);
   }
 
   private boolean tablaVacia(String tabla){

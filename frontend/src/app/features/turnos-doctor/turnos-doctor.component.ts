@@ -1,11 +1,13 @@
-import { ChangeDetectorRef, Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-import { CalendarOptions, EventHoveringArg, EventClickArg } from '@fullcalendar/core';
+import {ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {CalendarOptions} from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
-import { TurnoControllerService } from '../../core/services/api-client/services';
-import { ObtenerTurnoPorDoctor$Params } from '../../core/services/api-client/fn/turno-controller/obtener-turno-por-doctor';
-import { Subject } from 'rxjs';
-import { createPopper } from '@popperjs/core';
+import {TurnoControllerService} from '../../core/services/api-client/services';
+import {
+  ObtenerTurnoPorDoctor$Params
+} from '../../core/services/api-client/fn/turno-controller/obtener-turno-por-doctor';
+import {Subject} from 'rxjs';
+import {createPopper} from '@popperjs/core';
 import esLocale from '@fullcalendar/core/locales/es';
 
 declare var bootstrap: any;
@@ -50,8 +52,8 @@ export class TurnosDoctorComponent implements OnInit {
         .subscribe((response) => {
           const turnos = response.body;
           this.events = turnos.map((turno) => ({
-            start: new Date(turno.fechaHora),
-            title: `Turno con ${turno.pacienteId}`,
+            start: new Date(turno.fechaHora!),
+            title: `Turno con ${turno.paciente?.persona?.nombre}`,
             allDay: false,
           }));
           this.calendarOptions = {

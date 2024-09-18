@@ -8,13 +8,14 @@ import {filter, map} from 'rxjs/operators';
 import {StrictHttpResponse} from '../../strict-http-response';
 import {RequestBuilder} from '../../request-builder';
 
-import {TurnoDto} from '../../models/turno-dto';
+import {TurnoReq} from '../../models/turno-req';
+import {TurnoRes} from '../../models/turno-res';
 
 export interface AgendarTurno$Params {
-      body: TurnoDto
+      body: TurnoReq
 }
 
-export function agendarTurno(http: HttpClient, rootUrl: string, params: AgendarTurno$Params, context?: HttpContext): Observable<StrictHttpResponse<TurnoDto>> {
+export function agendarTurno(http: HttpClient, rootUrl: string, params: AgendarTurno$Params, context?: HttpContext): Observable<StrictHttpResponse<TurnoRes>> {
   const rb = new RequestBuilder(rootUrl, agendarTurno.PATH, 'post');
   if (params) {
     rb.body(params.body, 'application/json');
@@ -25,7 +26,7 @@ export function agendarTurno(http: HttpClient, rootUrl: string, params: AgendarT
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<TurnoDto>;
+      return r as StrictHttpResponse<TurnoRes>;
     })
   );
 }

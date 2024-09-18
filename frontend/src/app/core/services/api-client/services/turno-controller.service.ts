@@ -20,7 +20,7 @@ import {
   ObtenerTurnoPorPaciente$Params
 } from '../fn/turno-controller/obtener-turno-por-paciente';
 import {obtenerTurnos, ObtenerTurnos$Params} from '../fn/turno-controller/obtener-turnos';
-import {TurnoDto} from '../models/turno-dto';
+import {TurnoRes} from '../models/turno-res';
 
 @Injectable({ providedIn: 'root' })
 export class TurnoControllerService extends BaseService {
@@ -37,7 +37,7 @@ export class TurnoControllerService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  editarTurno$Response(params: EditarTurno$Params, context?: HttpContext): Observable<StrictHttpResponse<TurnoDto>> {
+  editarTurno$Response(params: EditarTurno$Params, context?: HttpContext): Observable<StrictHttpResponse<TurnoRes>> {
     return editarTurno(this.http, this.rootUrl, params, context);
   }
 
@@ -47,9 +47,9 @@ export class TurnoControllerService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  editarTurno(params: EditarTurno$Params, context?: HttpContext): Observable<TurnoDto> {
+  editarTurno(params: EditarTurno$Params, context?: HttpContext): Observable<TurnoRes> {
     return this.editarTurno$Response(params, context).pipe(
-      map((r: StrictHttpResponse<TurnoDto>): TurnoDto => r.body)
+      map((r: StrictHttpResponse<TurnoRes>): TurnoRes => r.body)
     );
   }
 
@@ -87,7 +87,7 @@ export class TurnoControllerService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  obtenerTurnos$Response(params?: ObtenerTurnos$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<TurnoDto>>> {
+  obtenerTurnos$Response(params?: ObtenerTurnos$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<TurnoRes>>> {
     return obtenerTurnos(this.http, this.rootUrl, params, context);
   }
 
@@ -97,9 +97,9 @@ export class TurnoControllerService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  obtenerTurnos(params?: ObtenerTurnos$Params, context?: HttpContext): Observable<Array<TurnoDto>> {
+  obtenerTurnos(params?: ObtenerTurnos$Params, context?: HttpContext): Observable<Array<TurnoRes>> {
     return this.obtenerTurnos$Response(params, context).pipe(
-      map((r: StrictHttpResponse<Array<TurnoDto>>): Array<TurnoDto> => r.body)
+      map((r: StrictHttpResponse<Array<TurnoRes>>): Array<TurnoRes> => r.body)
     );
   }
 
@@ -112,7 +112,7 @@ export class TurnoControllerService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  agendarTurno$Response(params: AgendarTurno$Params, context?: HttpContext): Observable<StrictHttpResponse<TurnoDto>> {
+  agendarTurno$Response(params: AgendarTurno$Params, context?: HttpContext): Observable<StrictHttpResponse<TurnoRes>> {
     return agendarTurno(this.http, this.rootUrl, params, context);
   }
 
@@ -122,9 +122,9 @@ export class TurnoControllerService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  agendarTurno(params: AgendarTurno$Params, context?: HttpContext): Observable<TurnoDto> {
+  agendarTurno(params: AgendarTurno$Params, context?: HttpContext): Observable<TurnoRes> {
     return this.agendarTurno$Response(params, context).pipe(
-      map((r: StrictHttpResponse<TurnoDto>): TurnoDto => r.body)
+      map((r: StrictHttpResponse<TurnoRes>): TurnoRes => r.body)
     );
   }
 
@@ -137,7 +137,7 @@ export class TurnoControllerService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  obtenerTurnoPorPaciente$Response(params: ObtenerTurnoPorPaciente$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<TurnoDto>>> {
+  obtenerTurnoPorPaciente$Response(params: ObtenerTurnoPorPaciente$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<TurnoRes>>> {
     return obtenerTurnoPorPaciente(this.http, this.rootUrl, params, context);
   }
 
@@ -147,9 +147,9 @@ export class TurnoControllerService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  obtenerTurnoPorPaciente(params: ObtenerTurnoPorPaciente$Params, context?: HttpContext): Observable<Array<TurnoDto>> {
+  obtenerTurnoPorPaciente(params: ObtenerTurnoPorPaciente$Params, context?: HttpContext): Observable<Array<TurnoRes>> {
     return this.obtenerTurnoPorPaciente$Response(params, context).pipe(
-      map((r: StrictHttpResponse<Array<TurnoDto>>): Array<TurnoDto> => r.body)
+      map((r: StrictHttpResponse<Array<TurnoRes>>): Array<TurnoRes> => r.body)
     );
   }
 
@@ -162,7 +162,7 @@ export class TurnoControllerService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  obtenerTurnoPorDoctor$Response(params: ObtenerTurnoPorDoctor$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<TurnoDto>>> {
+  obtenerTurnoPorDoctor$Response(params: ObtenerTurnoPorDoctor$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<TurnoRes>>> {
     return obtenerTurnoPorDoctor(this.http, this.rootUrl, params, context);
   }
 
@@ -172,9 +172,9 @@ export class TurnoControllerService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  obtenerTurnoPorDoctor(params: ObtenerTurnoPorDoctor$Params, context?: HttpContext): Observable<Array<TurnoDto>> {
+  obtenerTurnoPorDoctor(params: ObtenerTurnoPorDoctor$Params, context?: HttpContext): Observable<Array<TurnoRes>> {
     return this.obtenerTurnoPorDoctor$Response(params, context).pipe(
-      map((r: StrictHttpResponse<Array<TurnoDto>>): Array<TurnoDto> => r.body)
+      map((r: StrictHttpResponse<Array<TurnoRes>>): Array<TurnoRes> => r.body)
     );
   }
 

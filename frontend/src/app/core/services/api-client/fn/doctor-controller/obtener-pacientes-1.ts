@@ -8,16 +8,16 @@ import {filter, map} from 'rxjs/operators';
 import {StrictHttpResponse} from '../../strict-http-response';
 import {RequestBuilder} from '../../request-builder';
 
-import {TurnoRes} from '../../models/turno-res';
+import {PacienteRes} from '../../models/paciente-res';
 
-export interface ObtenerTurnoPorPaciente$Params {
-  idPaciente: number;
+export interface ObtenerPacientes1$Params {
+  id: number;
 }
 
-export function obtenerTurnoPorPaciente(http: HttpClient, rootUrl: string, params: ObtenerTurnoPorPaciente$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<TurnoRes>>> {
-  const rb = new RequestBuilder(rootUrl, obtenerTurnoPorPaciente.PATH, 'get');
+export function obtenerPacientes1(http: HttpClient, rootUrl: string, params: ObtenerPacientes1$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<PacienteRes>>> {
+  const rb = new RequestBuilder(rootUrl, obtenerPacientes1.PATH, 'get');
   if (params) {
-    rb.path('idPaciente', params.idPaciente, {});
+    rb.path('id', params.id, {});
   }
 
   return http.request(
@@ -25,9 +25,9 @@ export function obtenerTurnoPorPaciente(http: HttpClient, rootUrl: string, param
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<Array<TurnoRes>>;
+      return r as StrictHttpResponse<Array<PacienteRes>>;
     })
   );
 }
 
-obtenerTurnoPorPaciente.PATH = '/turnos/pacientes/{idPaciente}';
+obtenerPacientes1.PATH = '/doctores/{id}/pacientes';

@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { DoctorsComponent } from './components/doctors/doctors.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {DoctorsComponent} from './components/doctors/doctors.component';
 
 @NgModule({
   declarations: [

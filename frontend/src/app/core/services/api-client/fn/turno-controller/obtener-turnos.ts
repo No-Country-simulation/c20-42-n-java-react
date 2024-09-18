@@ -8,12 +8,12 @@ import {filter, map} from 'rxjs/operators';
 import {StrictHttpResponse} from '../../strict-http-response';
 import {RequestBuilder} from '../../request-builder';
 
-import {TurnoDto} from '../../models/turno-dto';
+import {TurnoRes} from '../../models/turno-res';
 
 export interface ObtenerTurnos$Params {
 }
 
-export function obtenerTurnos(http: HttpClient, rootUrl: string, params?: ObtenerTurnos$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<TurnoDto>>> {
+export function obtenerTurnos(http: HttpClient, rootUrl: string, params?: ObtenerTurnos$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<TurnoRes>>> {
   const rb = new RequestBuilder(rootUrl, obtenerTurnos.PATH, 'get');
   if (params) {
   }
@@ -23,7 +23,7 @@ export function obtenerTurnos(http: HttpClient, rootUrl: string, params?: Obtene
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<Array<TurnoDto>>;
+      return r as StrictHttpResponse<Array<TurnoRes>>;
     })
   );
 }

@@ -32,7 +32,7 @@ export const publicGuard: CanActivateFn = (route , state ) =>{
   )
 };
 
-const getUserFromLocalStorage = () => {
+export const getUserFromLocalStorage = () => {
   const usuario = localStorage.getItem('usuario');
   return usuario ? JSON.parse(usuario) : null;
 };

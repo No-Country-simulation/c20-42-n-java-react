@@ -9,16 +9,25 @@ import {StrictHttpResponse} from '../../strict-http-response';
 import {RequestBuilder} from '../../request-builder';
 
 import {DoctorRes} from '../../models/doctor-res';
-import {SpecificationDoctor} from '../../models/specification-doctor';
 
 export interface ObtenerDoctores$Params {
-  doctorSpec: SpecificationDoctor;
+
+/**
+ * ID de la especialidad
+ */
+  especialidad?: any;
+
+/**
+ * Nombre del doctor
+ */
+  nombre?: any;
 }
 
-export function obtenerDoctores(http: HttpClient, rootUrl: string, params: ObtenerDoctores$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<DoctorRes>>> {
+export function obtenerDoctores(http: HttpClient, rootUrl: string, params?: ObtenerDoctores$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<DoctorRes>>> {
   const rb = new RequestBuilder(rootUrl, obtenerDoctores.PATH, 'get');
   if (params) {
-    rb.query('doctorSpec', params.doctorSpec, {});
+    rb.query('especialidad', params.especialidad, {});
+    rb.query('nombre', params.nombre, {});
   }
 
   return http.request(
