@@ -19,6 +19,7 @@ import {obtenerDoctor, ObtenerDoctor$Params} from '../fn/doctor-controller/obten
 import {obtenerDoctores, ObtenerDoctores$Params} from '../fn/doctor-controller/obtener-doctores';
 import {obtenerPacientes1, ObtenerPacientes1$Params} from '../fn/doctor-controller/obtener-pacientes-1';
 import {PacienteRes} from '../models/paciente-res';
+import {ObtenerPaciente$Params} from "../fn/paciente-controller/obtener-paciente";
 
 @Injectable({ providedIn: 'root' })
 export class DoctorControllerService extends BaseService {
@@ -36,13 +37,12 @@ export class DoctorControllerService extends BaseService {
    * This method doesn't expect any request body.
    */
   obtenerDoctor$Response(params: ObtenerDoctor$Params, context?: HttpContext): Observable<StrictHttpResponse<DoctorRes>> {
-    // @ts-ignore
     return obtenerDoctor(this.http, this.rootUrl, params, context);
   }
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `obtenerDoctor$Response()` instead.
+   * To access the full response (for headers, for example), `obtenerPaciente$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
