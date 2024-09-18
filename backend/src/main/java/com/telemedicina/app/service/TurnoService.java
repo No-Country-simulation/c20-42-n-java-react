@@ -3,6 +3,7 @@ package com.telemedicina.app.service;
 import com.telemedicina.app.dto.request.TurnoReq;
 import com.telemedicina.app.dto.response.TurnoRes;
 import com.telemedicina.app.model.Doctor;
+import com.telemedicina.app.model.EstadoTurno;
 import com.telemedicina.app.model.Paciente;
 import com.telemedicina.app.model.Turno;
 import com.telemedicina.app.repository.TurnoRepository;
@@ -89,6 +90,7 @@ public class TurnoService {
             .doctor(doctor)
             .paciente(paciente)
             .fechaHora(turnoReq.getFechaHora())
+            .estadoTurno(EstadoTurno.PENDIENTE)
             .build();
     }
 
@@ -98,6 +100,7 @@ public class TurnoService {
             .doctor(doctorMapper.toDoctorRes(turno.getDoctor()))
             .paciente(pacienteMapper.toPacienteRes(turno.getPaciente()))
             .fechaHora(turno.getFechaHora())
+            .estadoTurno(turno.getEstadoTurno())
             .build();
     }
 
