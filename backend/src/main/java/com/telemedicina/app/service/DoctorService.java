@@ -6,13 +6,12 @@ import com.telemedicina.app.dto.response.PacienteRes;
 import com.telemedicina.app.model.Doctor;
 import com.telemedicina.app.model.Paciente;
 import com.telemedicina.app.repository.DoctorRepo;
-import com.telemedicina.app.repository.EspecialidadRepo;
 import com.telemedicina.app.service.mapper.DoctorMapper;
 import com.telemedicina.app.service.mapper.PacienteMapper;
 import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.Set;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
@@ -52,7 +51,7 @@ public class DoctorService {
     }
 
     public List<PacienteRes> obtenerPacientes(Long id){
-        List<Paciente> pacientes = doctorRepository.findById(id).orElseThrow(()-> new EntityNotFoundException("Doctor no encontrado")).getPacientes();
+        Set<Paciente> pacientes = doctorRepository.findById(id).orElseThrow(()-> new EntityNotFoundException("Doctor no encontrado")).getPacientes();
         return pacientes.stream().map(pacienteMapper::toPacienteRes).toList();
     }
 
