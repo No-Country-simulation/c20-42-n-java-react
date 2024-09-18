@@ -29,7 +29,7 @@ export class HeaderComponent {
       this.router.url === '/historial-medico' ||
       this.router.url === '/user' ||
       this.router.url === '/pacientes' ||
-        this.router.url === '/perfil' ||
+      this.router.url === '/perfil' ||
       this.router.url.includes('/historial-medico')
     );
   }

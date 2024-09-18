@@ -45,6 +45,11 @@
                          [ngClass]="{'text-black': isSpecialtiesOrDoctors() || router.url === '/turnos-doctor', 'text-white': !isSpecialtiesOrDoctors() && router.url !== '/turnos-doctor'}"
                          routerLink="/turnos-doctor" [class.active]="router.url === '/turnos-doctor'">Turnos Doctor</a>
                     </li>
+                  <li class="nav-item me-4" *ngIf="_authService.isPatient()">
+                    <a class="nav-link"
+                       [ngClass]="{'text-black': isSpecialtiesOrDoctors() || router.url === '/turnos-doctor', 'text-white': !isSpecialtiesOrDoctors() && router.url !== '/historial-medico'}"
+                       routerLink="/historial-medico" [class.active]="router.url === '/historial-medico'">Historial Médico</a>
+                  </li>
                   </ul>
                 @if(authStateObs$ | async; as user){
                   <div class="dropdown ms-auto">

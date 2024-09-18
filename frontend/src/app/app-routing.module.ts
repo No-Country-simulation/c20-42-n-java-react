@@ -30,6 +30,11 @@ const routes: Routes = [
         component: HistorialMedicoComponent,
       },
       {
+        path: 'historial-medico',
+        canActivate: [patientGuard],
+        component: HistorialMedicoComponent,
+      },
+      {
         path: 'turnos',
         canActivate: [patientGuard],
         component: TurnosComponent,

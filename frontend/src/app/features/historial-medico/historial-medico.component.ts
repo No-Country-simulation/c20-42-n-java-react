@@ -4,6 +4,7 @@ import {HistoriaClinica} from "../../core/services/api-client/models/historia-cl
 import {
   HistoriaClinicaControllerService
 } from "../../core/services/api-client/services/historia-clinica-controller.service";
+import {getUserFromLocalStorage} from "../../core/guards/auth.guard";
 
 @Component({
   selector: 'app-historial-medico',
@@ -13,6 +14,7 @@ import {
 export class HistorialMedicoComponent implements OnInit{
 
   historialMedico?: HistoriaClinica;
+  user: any;
 
   constructor(
     private _route: ActivatedRoute,
@@ -21,7 +23,8 @@ export class HistorialMedicoComponent implements OnInit{
   ) {}
 
   ngOnInit(): void {
-    const pacienteId= this._route.snapshot.params['id'];
+    this.user = getUserFromLocalStorage();
+    const pacienteId = this.user.rol === 'PACIENTE' ? this.user.entidadId  : this._route.snapshot.params['id'];
     this._historiaClinicaService.obtenerHistorial({paciendId: pacienteId}).subscribe({
       next: (value) => {
         this.historialMedico = value;

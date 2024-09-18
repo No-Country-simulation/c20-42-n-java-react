@@ -13,6 +13,7 @@ import {DoctorRes} from "../../../../core/services/api-client/models/doctor-res"
 export class UserDashboardComponent implements OnInit{
   persona!:Persona | undefined;
 
+
   constructor(
     private _pacienteService:PacienteControllerService,
     private _doctorService:DoctorControllerService

@@ -50,7 +50,7 @@ const firebaseConfig = {
     TurnosComponent,
     HistorialMedicoComponent,
     AuthLayoutComponent,
-    TurnosDoctorComponent,
+    TurnosDoctorComponent
   ],
   imports: [
     BrowserModule,

@@ -1,11 +1,11 @@
-<button class="btn btn-outline-primary ms-2 mb-3 d-block" (click)="irAPacientes()">Volver a pacientes</button>
-<div class="container float-start justify-content-start ms-4">
-  <h4 class=" fw-bold">Historial Médico</h4>
+<button *ngIf="user.rol === 'DOCTOR'" class="btn btn-outline-primary ms-2 mb-3 d-block" (click)="irAPacientes()">Volver a pacientes</button>
+<div class="container align-items-center">
+  <h4 class="my-3 text-center fw-bold">Historial Médico</h4>
   @for (registrosMedico of historialMedico?.registroMedicos; track registrosMedico){
-    <div class="col-lg-4 bg-secondary-subtle p-4 rounded-4 shadow-sm  mb-3">
+    <div class="col-lg-6 bg-secondary-subtle p-4 rounded-4 shadow-sm  mb-3 mx-auto">
     <h5 class="text-secondary">Consulta del {{ registrosMedico.fecha }}</h5>
 
-    <div class="mt-3">
+    <div class="mt-4">
       <strong>Profesional:</strong> Dr. {{ registrosMedico.doctor?.persona?.nombre }}
     </div>
     <div class="mt-3">
