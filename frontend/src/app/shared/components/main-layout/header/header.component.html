@@ -49,7 +49,7 @@
                 @if(authStateObs$ | async; as user){
                   <div class="dropdown ms-auto">
                     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" [ngClass]="{'text-white': !isSpecialtiesOrDoctors()}">
-                      {{user.displayName }}
+                      <img src="https://iconape.com/wp-content/png_logo_vector/user-circle.png" alt="Ícono">{{user.displayName }}
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
                       <li><a class="dropdown-item" routerLink="/perfil">Perfil</a></li>

@@ -63,3 +63,10 @@
   border:none;
   color:black;
 }
+
+.dropdown img {
+  width: 20px; /* Ajusta el tamaño del icono */
+  height: 20px;
+  margin-right: 10px;
+  margin-top: -3px;
+}
