@@ -2,14 +2,16 @@ package com.telemedicina.app.service;
 
 import com.telemedicina.app.dto.request.DoctorReq;
 import com.telemedicina.app.dto.response.DoctorRes;
+import com.telemedicina.app.dto.response.PacienteRes;
 import com.telemedicina.app.model.Doctor;
+import com.telemedicina.app.model.Paciente;
 import com.telemedicina.app.repository.DoctorRepo;
-import com.telemedicina.app.repository.EspecialidadRepo;
 import com.telemedicina.app.service.mapper.DoctorMapper;
+import com.telemedicina.app.service.mapper.PacienteMapper;
 import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.Set;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
@@ -18,9 +20,14 @@ import org.springframework.stereotype.Service;
 public class DoctorService {
     private final DoctorRepo doctorRepository;
     private final DoctorMapper doctorMapper;
+    private final PacienteMapper pacienteMapper;
 
     public List<DoctorRes> obtenerDoctores(Specification<Doctor> doctorSpec) {
         return doctorRepository.findAll(doctorSpec).stream().map(doctorMapper::toDoctorRes).toList();
+    }
+
+    public DoctorRes obtenerDoctor(Long id) {
+        return doctorMapper.toDoctorRes(findDoctor(id));
     }
 
     public DoctorRes agregarDoctor(DoctorReq doctor) {
@@ -46,4 +53,10 @@ public class DoctorService {
     public Doctor findDoctor(Long id) {
         return doctorRepository.findById(id).orElseThrow(()->new EntityNotFoundException("Doctor no encontrado"));
     }
+
+    public List<PacienteRes> obtenerPacientes(Long id){
+        Set<Paciente> pacientes = doctorRepository.findById(id).orElseThrow(()-> new EntityNotFoundException("Doctor no encontrado")).getPacientes();
+        return pacientes.stream().map(pacienteMapper::toPacienteRes).toList();
+    }
+
 }

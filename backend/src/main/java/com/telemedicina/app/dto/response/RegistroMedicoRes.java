@@ -10,7 +10,7 @@ import lombok.Data;
 public class RegistroMedicoRes {
   private Long id;
   private LocalDate fecha;
-  private Long doctorId;
+  private DoctorRes doctor;
   private String motivoDeLaConsulta;
   private List<String> sintomas;
   private String diagnostico;

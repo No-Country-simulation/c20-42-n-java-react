@@ -6,14 +6,15 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { TurnoDto } from '../../models/turno-dto';
+import {TurnoReq} from '../../models/turno-req';
+import {TurnoRes} from '../../models/turno-res';
 
 export interface EditarTurno$Params {
   idTurno: number;
-      body: TurnoDto
+      body: TurnoReq
 }
 
-export function editarTurno(http: HttpClient, rootUrl: string, params: EditarTurno$Params, context?: HttpContext): Observable<StrictHttpResponse<TurnoDto>> {
+export function editarTurno(http: HttpClient, rootUrl: string, params: EditarTurno$Params, context?: HttpContext): Observable<StrictHttpResponse<TurnoRes>> {
   const rb = new RequestBuilder(rootUrl, editarTurno.PATH, 'put');
   if (params) {
     rb.path('idTurno', params.idTurno, {});
@@ -25,7 +26,7 @@ export function editarTurno(http: HttpClient, rootUrl: string, params: EditarTur
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<TurnoDto>;
+      return r as StrictHttpResponse<TurnoRes>;
     })
   );
 }

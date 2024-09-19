@@ -1,0 +1,50 @@
+.table {
+  table-layout: fixed; /* Para que las columnas respeten los anchos */
+  width: 100%; /* Asegura que la tabla ocupe todo el ancho del contenedor */
+}
+
+/* Establecemos anchos fijos a las columnas */
+.table th:nth-child(1),
+.table td:nth-child(1) {
+  width: 20%; /* Paciente */
+}
+.table th:nth-child(2),
+.table td:nth-child(2) {
+  width: 10%; /* Edad */
+}
+.table th:nth-child(3),
+.table td:nth-child(3) {
+  width: 15%; /* Teléfono */
+}
+.table th:nth-child(4),
+.table td:nth-child(4) {
+  width: 35%; /* Email */
+}
+.table th:nth-child(5),
+.table td:nth-child(5) {
+  width: 20%; /* Historial Médico */
+}
+
+.table th, .table td {
+  text-align: center;
+  vertical-align: middle;
+  padding: 10px;
+
+}
+.table thead th {
+  background-color: #2C1154; /* Color de fondo del encabezado */
+  color: white; /* Color del texto del encabezado */
+  border: none; /* Eliminamos el borde */
+}
+.table tbody td {
+  background-color: #E3E8FC; /* Color de fondo de las celdas */
+  border: none; /* Eliminamos el borde */
+}
+.view-history a {
+  color: #2C1154;
+  font-weight: bold;
+  text-decoration: none;
+}
+.view-history a:hover {
+  text-decoration: underline;
+}

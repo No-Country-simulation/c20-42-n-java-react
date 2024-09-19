@@ -13,10 +13,12 @@ import {
 } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
-import { TurnoControllerService } from '../../core/services/api-client/services';
-import { ObtenerTurnoPorDoctor$Params } from '../../core/services/api-client/fn/turno-controller/obtener-turno-por-doctor';
-import { Subject } from 'rxjs';
-import { createPopper } from '@popperjs/core';
+import {TurnoControllerService} from '../../core/services/api-client/services';
+import {
+  ObtenerTurnoPorDoctor$Params
+} from '../../core/services/api-client/fn/turno-controller/obtener-turno-por-doctor';
+import {Subject} from 'rxjs';
+import {createPopper} from '@popperjs/core';
 import esLocale from '@fullcalendar/core/locales/es';
 
 declare var bootstrap: any;
@@ -63,8 +65,8 @@ export class TurnosDoctorComponent implements OnInit {
             localStorage.setItem('usuario', JSON.stringify(element.pacienteId));
           });
           this.events = turnos.map((turno) => ({
-            start: new Date(turno.fechaHora),
-            title: `Turno con ${turno.paciente.persona?.nombre}`, // Usa el nombre del paciente con un botón de enlace
+            start: new Date(turno.fechaHora!),
+            title: `Turno con ${turno.paciente?.persona?.nombre}`,
             allDay: false,
           }));
           this.calendarOptions = {

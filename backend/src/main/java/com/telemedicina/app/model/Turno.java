@@ -2,6 +2,7 @@ package com.telemedicina.app.model;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -32,5 +33,6 @@ public class Turno {
     private Paciente paciente;
     private LocalDateTime fechaHora;
     private String eventId;
-
+    @Enumerated
+    private EstadoTurno estadoTurno;
 }

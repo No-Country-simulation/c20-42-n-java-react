@@ -1,0 +1,28 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-12">
+      <table class="table">
+        <thead>
+        <tr class="row"> <!-- Gutters en el encabezado -->
+          <th >Paciente</th>
+          <th >Edad</th>
+          <th >Teléfono</th>
+          <th >Email</th>
+          <th >Historial Médico</th>
+        </tr>
+        </thead>
+        <tbody>
+          @for (paciente of pacientes; track paciente){
+            <tr class="row">
+              <td>{{ paciente.persona?.nombre }}</td>
+              <td >{{ paciente.persona?.edad }}</td>
+              <td >{{ paciente.persona?.telefono }}</td>
+              <td >{{ paciente.persona?.email }}</td>
+              <td class="view-history"><a [routerLink]="['/historial-medico', paciente.id]">Ver Historial</a></td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

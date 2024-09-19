@@ -19,9 +19,9 @@ public class RegistroMedicoService {
   private final HistoriaClinicaService historiaClinicaService;
   private final PacienteService pacienteService;
 
-  public List<RegistroMedico> obtenerRegistrosMedicos(Long pacienteId) {
+  public List<RegistroMedicoRes> obtenerRegistrosMedicos(Long pacienteId) {
     pacienteService.findPaciente(pacienteId);
-    return registroMedicoRepo.findRegistroMedicoByPaciente(pacienteId);
+    return registroMedicoRepo.findRegistroMedicoByPaciente(pacienteId).stream().map(registroMedicoMapper::toRegistroMedicoRes).toList();
   }
 
   public RegistroMedicoRes obtenerRegistroMedico(Long pacienteId, Long id) {

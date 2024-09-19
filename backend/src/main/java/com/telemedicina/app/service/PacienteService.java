@@ -5,6 +5,8 @@ import com.telemedicina.app.dto.response.PacienteRes;
 import com.telemedicina.app.model.Paciente;
 import com.telemedicina.app.repository.PacienteRepo;
 import com.telemedicina.app.service.mapper.PacienteMapper;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
 import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +18,10 @@ public class PacienteService{
     private final PacienteMapper pacienteMapper;
     private final PacienteRepo pacienteRepository;
 
+  @Parameters({
+      @Parameter(name = "especialidad", description = "ID de la especialidad", required = false),
+      @Parameter(name = "nombre", description = "Nombre del doctor", required = false)
+  })
     public List<PacienteRes> obtenerPacientes() {
       return pacienteRepository.findAll().stream().map(pacienteMapper::toPacienteRes).toList();
     }

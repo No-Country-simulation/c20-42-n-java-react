@@ -1,5 +1,6 @@
 package com.telemedicina.app.dto.response;
 
+import com.telemedicina.app.dto.request.EspecialidadReq;
 import com.telemedicina.app.model.Persona;
 import lombok.Builder;
 import lombok.Data;
@@ -11,5 +12,5 @@ public class DoctorRes {
     private Persona persona;
     private String licencia;
     private double honorarios;
-    private Long especialidadId;
+    private EspecialidadReq especialidad;
 }

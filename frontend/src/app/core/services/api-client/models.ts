@@ -15,6 +15,6 @@ export type { PersonaReq } from './models/persona-req';
 export type { RegistroMedico } from './models/registro-medico';
 export type { RegistroMedicoReq } from './models/registro-medico-req';
 export type { RegistroMedicoRes } from './models/registro-medico-res';
-export type { SpecificationDoctor } from './models/specification-doctor';
-export type { TurnoDto } from './models/turno-dto';
+export type { TurnoReq } from './models/turno-req';
+export type { TurnoRes } from './models/turno-res';
 export type { Usuario } from './models/usuario';

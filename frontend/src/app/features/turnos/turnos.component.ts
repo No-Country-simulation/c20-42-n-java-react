@@ -6,5 +6,4 @@ import {Component} from '@angular/core';
   styleUrl: './turnos.component.css'
 })
 export class TurnosComponent {
-
 }

@@ -1,7 +1,7 @@
 .text-black {
     color: black !important;
   }
-  
+
   .text-white {
     color: white !important;
   }
@@ -54,4 +54,19 @@
 
 .auth-login-bg {
   background-color: #106270;
+}
+.dropdown-item {
+  cursor: pointer;
+}
+.dropdown button{
+  background-color: transparent;
+  border:none;
+  color:black;
+}
+
+.dropdown img {
+  width: 20px; /* Ajusta el tamaño del icono */
+  height: 20px;
+  margin-right: 10px;
+  margin-top: -3px;
 }

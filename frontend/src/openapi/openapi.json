@@ -36,7 +36,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/TurnoDTO"
+                "$ref": "#/components/schemas/TurnoReq"
               }
             }
           },
@@ -48,7 +48,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/TurnoDTO"
+                  "$ref": "#/components/schemas/TurnoRes"
                 }
               }
             }
@@ -554,7 +554,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/TurnoDTO"
+                    "$ref": "#/components/schemas/TurnoRes"
                   }
                 }
               }
@@ -571,7 +571,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/TurnoDTO"
+                "$ref": "#/components/schemas/TurnoReq"
               }
             }
           },
@@ -583,7 +583,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/TurnoDTO"
+                  "$ref": "#/components/schemas/TurnoRes"
                 }
               }
             }
@@ -774,12 +774,14 @@
         "operationId": "obtenerDoctores",
         "parameters": [
           {
-            "name": "doctorSpec",
+            "name": "especialidad",
             "in": "query",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/SpecificationDoctor"
-            }
+            "description": "ID de la especialidad"
+          },
+          {
+            "name": "nombre",
+            "in": "query",
+            "description": "Nombre del doctor"
           }
         ],
         "responses": {
@@ -852,7 +854,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/TurnoDTO"
+                    "$ref": "#/components/schemas/TurnoRes"
                   }
                 }
               }
@@ -886,7 +888,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/TurnoDTO"
+                    "$ref": "#/components/schemas/TurnoRes"
                   }
                 }
               }
@@ -925,11 +927,45 @@
           }
         }
       }
+    },
+    "/doctores/{id}/pacientes": {
+      "get": {
+        "tags": [
+          "doctor-controller"
+        ],
+        "operationId": "obtenerPacientes_1",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PacienteRes"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
     "schemas": {
-      "TurnoDTO": {
+      "TurnoReq": {
         "required": [
           "doctorId",
           "fechaHora",
@@ -948,6 +984,93 @@
           "fechaHora": {
             "type": "string",
             "format": "date-time"
+          }
+        }
+      },
+      "DoctorRes": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "persona": {
+            "$ref": "#/components/schemas/Persona"
+          },
+          "licencia": {
+            "type": "string"
+          },
+          "honorarios": {
+            "type": "number",
+            "format": "double"
+          },
+          "especialidadId": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "PacienteRes": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "persona": {
+            "$ref": "#/components/schemas/Persona"
+          }
+        }
+      },
+      "Persona": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "nombre": {
+            "type": "string"
+          },
+          "edad": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dni": {
+            "type": "string"
+          },
+          "telefono": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        }
+      },
+      "TurnoRes": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "doctor": {
+            "$ref": "#/components/schemas/DoctorRes"
+          },
+          "paciente": {
+            "$ref": "#/components/schemas/PacienteRes"
+          },
+          "fechaHora": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "estadoTurno": {
+            "type": "string",
+            "enum": [
+              "PENDIENTE",
+              "CANCELADO",
+              "COMPLETADO"
+            ]
           }
         }
       },
@@ -1052,44 +1175,6 @@
         "type": "object",
         "properties": {
           "nombre": {
-            "pattern": "^[a-zA-Z]+$",
-            "type": "string"
-          },
-          "edad": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "dni": {
-            "type": "string"
-          },
-          "telefono": {
-            "type": "string"
-          },
-          "email": {
-            "type": "string"
-          }
-        }
-      },
-      "PacienteRes": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "persona": {
-            "$ref": "#/components/schemas/Persona"
-          }
-        }
-      },
-      "Persona": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "nombre": {
             "type": "string"
           },
           "edad": {
@@ -1167,29 +1252,6 @@
           }
         }
       },
-      "DoctorRes": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "persona": {
-            "$ref": "#/components/schemas/Persona"
-          },
-          "licencia": {
-            "type": "string"
-          },
-          "honorarios": {
-            "type": "number",
-            "format": "double"
-          },
-          "especialidadId": {
-            "type": "integer",
-            "format": "int64"
-          }
-        }
-      },
       "Usuario": {
         "type": "object",
         "properties": {
@@ -1234,6 +1296,7 @@
             "$ref": "#/components/schemas/Especialidad"
           },
           "pacientes": {
+            "uniqueItems": true,
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Paciente"
@@ -1325,9 +1388,6 @@
             }
           }
         }
-      },
-      "SpecificationDoctor": {
-        "type": "object"
       }
     }
   }

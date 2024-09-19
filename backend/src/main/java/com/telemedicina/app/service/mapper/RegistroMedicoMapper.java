@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class RegistroMedicoMapper {
   private final DoctorRepo doctorRepo;
+  private final DoctorMapper doctorMapper;
 
   public RegistroMedico toRegistroMedico(RegistroMedicoReq registroMedico) {
     Doctor doctor = doctorRepo.findById(registroMedico.getDoctorId()).orElseThrow(()->new EntityNotFoundException("Doctor no encontrado"));
@@ -34,7 +35,7 @@ public class RegistroMedicoMapper {
     return RegistroMedicoRes.builder()
         .id(r.getId())
         .fecha(r.getFecha())
-        .doctorId(r.getDoctor().getId())
+        .doctor(doctorMapper.toDoctorRes(r.getDoctor()))
         .motivoDeLaConsulta(r.getMotivoDeLaConsulta())
         .sintomas(r.getSintomas())
         .diagnostico(r.getDiagnostico())

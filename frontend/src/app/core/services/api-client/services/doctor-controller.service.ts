@@ -9,17 +9,15 @@ import { BaseService } from '../base-service';
 import { ApiConfiguration } from '../api-configuration';
 import { StrictHttpResponse } from '../strict-http-response';
 
-import { crearDoctor } from '../fn/doctor-controller/crear-doctor';
-import { CrearDoctor$Params } from '../fn/doctor-controller/crear-doctor';
-import { DoctorRes } from '../models/doctor-res';
-import { editarDoctor } from '../fn/doctor-controller/editar-doctor';
-import { EditarDoctor$Params } from '../fn/doctor-controller/editar-doctor';
-import { eliminarDoctor } from '../fn/doctor-controller/eliminar-doctor';
-import { EliminarDoctor$Params } from '../fn/doctor-controller/eliminar-doctor';
-import { obtenerDoctor } from '../fn/doctor-controller/obtener-doctor';
-import { ObtenerDoctor$Params } from '../fn/doctor-controller/obtener-doctor';
-import { obtenerDoctores } from '../fn/doctor-controller/obtener-doctores';
-import { ObtenerDoctores$Params } from '../fn/doctor-controller/obtener-doctores';
+import {crearDoctor, CrearDoctor$Params} from '../fn/doctor-controller/crear-doctor';
+import {DoctorRes} from '../models/doctor-res';
+import {editarDoctor, EditarDoctor$Params} from '../fn/doctor-controller/editar-doctor';
+import {eliminarDoctor, EliminarDoctor$Params} from '../fn/doctor-controller/eliminar-doctor';
+import {obtenerDoctor, ObtenerDoctor$Params} from '../fn/doctor-controller/obtener-doctor';
+import {obtenerDoctores, ObtenerDoctores$Params} from '../fn/doctor-controller/obtener-doctores';
+import {obtenerPacientes1, ObtenerPacientes1$Params} from '../fn/doctor-controller/obtener-pacientes-1';
+import {PacienteRes} from '../models/paciente-res';
+import {ObtenerPaciente$Params} from "../fn/paciente-controller/obtener-paciente";
 
 @Injectable({ providedIn: 'root' })
 export class DoctorControllerService extends BaseService {
@@ -36,19 +34,19 @@ export class DoctorControllerService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  obtenerDoctor$Response(params: ObtenerDoctor$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+  obtenerDoctor$Response(params: ObtenerDoctor$Params, context?: HttpContext): Observable<StrictHttpResponse<DoctorRes>> {
     return obtenerDoctor(this.http, this.rootUrl, params, context);
   }
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `obtenerDoctor$Response()` instead.
+   * To access the full response (for headers, for example), `obtenerPaciente$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  obtenerDoctor(params: ObtenerDoctor$Params, context?: HttpContext): Observable<void> {
+  obtenerDoctor(params: ObtenerDoctor$Params, context?: HttpContext): Observable<DoctorRes> {
     return this.obtenerDoctor$Response(params, context).pipe(
-      map((r: StrictHttpResponse<void>): void => r.body)
+      map((r: StrictHttpResponse<DoctorRes>): DoctorRes => r.body)
     );
   }
 
@@ -111,7 +109,7 @@ export class DoctorControllerService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  obtenerDoctores$Response(params: ObtenerDoctores$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<DoctorRes>>> {
+  obtenerDoctores$Response(params?: ObtenerDoctores$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<DoctorRes>>> {
     return obtenerDoctores(this.http, this.rootUrl, params, context);
   }
 
@@ -121,7 +119,7 @@ export class DoctorControllerService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  obtenerDoctores(params: ObtenerDoctores$Params, context?: HttpContext): Observable<Array<DoctorRes>> {
+  obtenerDoctores(params?: ObtenerDoctores$Params, context?: HttpContext): Observable<Array<DoctorRes>> {
     return this.obtenerDoctores$Response(params, context).pipe(
       map((r: StrictHttpResponse<Array<DoctorRes>>): Array<DoctorRes> => r.body)
     );
@@ -149,6 +147,31 @@ export class DoctorControllerService extends BaseService {
   crearDoctor(params: CrearDoctor$Params, context?: HttpContext): Observable<DoctorRes> {
     return this.crearDoctor$Response(params, context).pipe(
       map((r: StrictHttpResponse<DoctorRes>): DoctorRes => r.body)
+    );
+  }
+
+  /** Path part for operation `obtenerPacientes1()` */
+  static readonly ObtenerPacientes1Path = '/doctores/{id}/pacientes';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `obtenerPacientes1()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  obtenerPacientes1$Response(params: ObtenerPacientes1$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<PacienteRes>>> {
+    return obtenerPacientes1(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `obtenerPacientes1$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  obtenerPacientes1(params: ObtenerPacientes1$Params, context?: HttpContext): Observable<Array<PacienteRes>> {
+    return this.obtenerPacientes1$Response(params, context).pipe(
+      map((r: StrictHttpResponse<Array<PacienteRes>>): Array<PacienteRes> => r.body)
     );
   }
 

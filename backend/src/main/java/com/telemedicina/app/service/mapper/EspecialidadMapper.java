@@ -13,4 +13,12 @@ public class EspecialidadMapper {
                 .fotoUrl(e.getFotoUrl())
                 .build();
     }
+
+    public EspecialidadReq toEspecialidadReq(Especialidad e){
+        return EspecialidadReq.builder()
+            .nombre(e.getNombre())
+            .descripcion(e.getDescripcion())
+            .fotoUrl(e.getFotoUrl())
+            .build();
+    }
 }

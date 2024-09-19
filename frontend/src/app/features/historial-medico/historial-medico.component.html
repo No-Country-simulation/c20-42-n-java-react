@@ -1,1 +1,52 @@
-<p>historial-medico works!</p>
+<button *ngIf="user.rol === 'DOCTOR'" class="btn btn-outline-primary ms-2 mb-3 d-block" (click)="irAPacientes()">Volver a pacientes</button>
+<div class="container align-items-center">
+  <h4 class="my-3 text-center fw-bold">Historial Médico</h4>
+  @for (registrosMedico of historialMedico?.registroMedicos; track registrosMedico){
+    <div class="col-lg-6 bg-secondary-subtle p-4 rounded-4 shadow-sm  mb-3 mx-auto">
+    <h5 class="text-secondary">Consulta del {{ registrosMedico.fecha }}</h5>
+
+    <div class="mt-4">
+      <strong>Profesional:</strong> Dr. {{ registrosMedico.doctor?.persona?.nombre }}
+    </div>
+    <div class="mt-3">
+      <strong>Especialidad:</strong> {{ registrosMedico.doctor?.especialidad?.nombre }}
+    </div>
+
+    <div class="mt-3">
+      <strong>Motivo de la consulta:</strong> {{ registrosMedico.motivoDeLaConsulta }}
+    </div>
+
+    <div class="mt-3">
+      <strong>Sintomas:</strong>
+      <ul>
+        @for (sintoma of registrosMedico.sintomas;track sintoma){
+          <li>{{sintoma}}</li>
+        }
+      </ul>
+    </div>
+
+    <div class="mt-3">
+      <strong>Diagnóstico:</strong> {{ registrosMedico.diagnostico }}
+    </div>
+
+    <div class="mt-3">
+      <strong>Tratamiento:</strong>
+      {{registrosMedico.tratamiento}}
+    </div>
+
+    <div class="mt-3">
+      <strong>Seguimiento:</strong>
+      {{registrosMedico.seguimiento}}
+    </div>
+
+    <div class="mt-3">
+      <strong>Observaciones:</strong>
+      {{registrosMedico.observaciones}}
+    </div>
+    </div>
+  }
+</div>
+
+
+
+

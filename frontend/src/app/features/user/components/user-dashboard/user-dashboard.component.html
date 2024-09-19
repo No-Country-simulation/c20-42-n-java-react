@@ -1,1 +1,29 @@
-<p>user-dashboard works!</p>
+<div class="container">
+  <h5 class="mt-3"><strong>Mi Perfil</strong></h5>
+  <div class="profile-card mt-4 ms-1">
+    <img src="https://c.superprof.com/i/m/15616003/160/20220419122700/15616003.webp" alt="Foto de perfil">
+    <div class="profile-info">
+      <p class="mb-2"><strong>Nombre y Apellido: </strong>{{persona?.nombre}}</p>
+      <p class="mb-2"><strong>Edad: </strong> {{persona?.edad}}</p>
+      <p class="mb-2"><strong>Dirección de correo:</strong> {{ persona?.email }}</p>
+      <p class="mb-2"><strong>Teléfono:</strong> {{ persona?.telefono }}</p>
+      <p class="mb-2"><strong>Dni:</strong> {{ persona?.dni }}</p>
+    </div>
+  </div>
+  @if(usuario.rol === 'PACIENTE'){
+
+    <h5 class="mt-5 mb-3"><strong>Turnos</strong></h5>
+    @for(turno of turnos; track turno){
+      <div class="profile-card mt-4 ms-1">
+        <div class="profile-info">
+          <p class="mb-2"><strong>Fecha: </strong>{{ turno.fechaHora | date:'dd/MM/yyyy' }}</p>
+          <p class="mb-2"><strong>Hora: </strong> {{ turno.fechaHora | date:'HH:mm:ss' }} hs.</p>
+          <p class="mb-2"><strong>Doctor:</strong> {{turno.doctor?.persona?.nombre }}</p>
+          <p class="mb-2"><strong>Especialidad:</strong> {{turno.doctor?.especialidad?.nombre }}</p>
+        </div>
+      </div>
+    }
+
+  }
+
+</div>
