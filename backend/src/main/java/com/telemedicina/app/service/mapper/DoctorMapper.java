@@ -15,12 +15,13 @@ import org.springframework.stereotype.Service;
 public class DoctorMapper {
     private final PersonaMapper personaMapper;
     private final EspecialidadRepo especialidadRepo;
+    private final EspecialidadMapper especialidadMapper;
 
     public DoctorRes toDoctorRes(Doctor doctor){
         return DoctorRes.builder()
                 .id(doctor.getId())
                 .persona(doctor.getPersona())
-                .especialidadId(Optional.ofNullable(doctor.getEspecialidad()).map(Especialidad::getId).orElse(null))
+                .especialidad(especialidadMapper.toEspecialidadReq(doctor.getEspecialidad()))
                 .licencia(doctor.getLicencia())
                 .honorarios(doctor.getHonorarios())
                 .build();

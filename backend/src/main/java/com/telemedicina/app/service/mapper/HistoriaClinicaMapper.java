@@ -22,7 +22,7 @@ public class HistoriaClinicaMapper {
   public HistoriaClinicaRes toHistoriaClinicaRes(HistoriaClinica historiaClinica) {
     return HistoriaClinicaRes.builder()
         .id(historiaClinica.getId())
-        .registroMedicos(historiaClinica.getRegistroMedicos())
+        .registroMedicos(historiaClinica.getRegistroMedicos().stream().map(registroMedicoMapper::toRegistroMedicoRes).toList())
         .build();
   }
 

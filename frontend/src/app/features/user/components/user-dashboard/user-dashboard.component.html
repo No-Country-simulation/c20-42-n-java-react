@@ -10,4 +10,20 @@
       <p class="mb-2"><strong>Dni:</strong> {{ persona?.dni }}</p>
     </div>
   </div>
+  @if(usuario.rol === 'PACIENTE'){
+
+    <h5 class="mt-5 mb-3"><strong>Turnos</strong></h5>
+    @for(turno of turnos; track turno){
+      <div class="profile-card mt-4 ms-1">
+        <div class="profile-info">
+          <p class="mb-2"><strong>Fecha: </strong>{{ turno.fechaHora | date:'dd/MM/yyyy' }}</p>
+          <p class="mb-2"><strong>Hora: </strong> {{ turno.fechaHora | date:'HH:mm:ss' }} hs.</p>
+          <p class="mb-2"><strong>Doctor:</strong> {{turno.doctor?.persona?.nombre }}</p>
+          <p class="mb-2"><strong>Especialidad:</strong> {{turno.doctor?.especialidad?.nombre }}</p>
+        </div>
+      </div>
+    }
+
+  }
+
 </div>

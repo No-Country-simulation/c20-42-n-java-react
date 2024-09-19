@@ -25,7 +25,7 @@ public class RegistroMedicoController {
 
   @GetMapping
   @ResponseStatus(HttpStatus.OK)
-  public List<RegistroMedico> obtenerRegistrosMedicos(@PathVariable long pacienteId) {
+  public List<RegistroMedicoRes> obtenerRegistrosMedicos(@PathVariable long pacienteId) {
       return registroMedicoService.obtenerRegistrosMedicos(pacienteId);
   }
 

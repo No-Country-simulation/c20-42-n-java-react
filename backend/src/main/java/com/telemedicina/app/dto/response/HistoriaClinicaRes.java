@@ -13,5 +13,5 @@ import lombok.NoArgsConstructor;
 @Builder
 public class HistoriaClinicaRes {
   private Long id;
-  private List<RegistroMedico> registroMedicos;
+  private List<RegistroMedicoRes> registroMedicos;
 }

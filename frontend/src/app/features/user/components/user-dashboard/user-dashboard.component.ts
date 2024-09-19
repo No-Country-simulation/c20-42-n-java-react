@@ -4,6 +4,8 @@ import {DoctorControllerService} from "../../../../core/services/api-client/serv
 import {Persona} from "../../../../core/services/api-client/models/persona";
 import {getUserFromLocalStorage} from "../../../../core/guards/auth.guard";
 import {DoctorRes} from "../../../../core/services/api-client/models/doctor-res";
+import {TurnoRes} from "../../../../core/services/api-client/models/turno-res";
+import {TurnoControllerService} from "../../../../core/services/api-client/services/turno-controller.service";
 
 @Component({
   selector: 'app-user-dashboard',
@@ -12,27 +14,34 @@ import {DoctorRes} from "../../../../core/services/api-client/models/doctor-res"
 })
 export class UserDashboardComponent implements OnInit{
   persona!:Persona | undefined;
-
+  usuario: any;
+  turnos!: TurnoRes[];
 
   constructor(
     private _pacienteService:PacienteControllerService,
-    private _doctorService:DoctorControllerService
+    private _doctorService:DoctorControllerService,
+    private _turnoService: TurnoControllerService
     ) {}
 
   ngOnInit(): void {
-    const usuario = getUserFromLocalStorage();
-    if(usuario.rol ==='PACIENTE'){
-      this._pacienteService.obtenerPaciente({id:usuario.entidadId}).subscribe({
+    this.usuario = getUserFromLocalStorage();
+    if(this.usuario.rol ==='PACIENTE'){
+      this._pacienteService.obtenerPaciente({id:this.usuario.entidadId}).subscribe({
         next: paciente => this.persona = paciente.persona
+      });
+      this._turnoService.obtenerTurnoPorPaciente({idPaciente:this.usuario.entidadId}).subscribe({
+        next: turnos => this.turnos = turnos
       })
     }
     else{
-      this._doctorService.obtenerDoctor({id:usuario.entidadId}).subscribe({
+      this._doctorService.obtenerDoctor({id:this.usuario.entidadId}).subscribe({
         next: doctor => this.persona = <DoctorRes> (doctor.persona)
       })
+
     }
 
   }
 
 
+  protected readonly Date = Date;
 }
