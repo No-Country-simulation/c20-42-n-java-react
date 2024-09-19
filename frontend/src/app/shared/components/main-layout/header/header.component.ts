@@ -27,7 +27,8 @@ export class HeaderComponent {
       this.router.url === '/turnos' ||
       this.router.url === '/turnos-doctor' ||
       this.router.url === '/historial-medico' ||
-      this.router.url === '/user'
+      this.router.url === '/user' ||
+      this.router.url === '/consulta-medica'
     );
   }
 

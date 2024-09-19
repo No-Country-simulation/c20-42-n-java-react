@@ -14,6 +14,7 @@ import {doctorGuard, patientGuard,} from './core/guards/auth.guard';
 import {AuthLayoutComponent} from './shared/components/auth-layout/auth-layout.component';
 import {RegisterDoctorComponent} from './features/auth/register-doctor/register-doctor.component';
 import {TurnosDoctorComponent} from './features/turnos-doctor/turnos-doctor.component';
+import { ConsultaMedicaComponent } from './features/consulta-medica/consulta-medica.component';
 
 const routes: Routes = [
   {
@@ -47,6 +48,11 @@ const routes: Routes = [
         path: 'user',
         canActivate: [patientGuard],
         component: UserDashboardComponent,
+      },
+      {
+        path: 'consulta-medica',
+        canActivate: [doctorGuard],
+        component: ConsultaMedicaComponent,
       },
     ],
   },

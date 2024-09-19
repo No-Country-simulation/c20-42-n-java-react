@@ -28,8 +28,16 @@ export class RegisterDoctorComponent implements OnInit {
   ) {
   }
 
-
   ngOnInit(): void {
+    this.initializeForm();
+
+    this.especialidadesService.obtenerEspecialidad().subscribe({
+      next: especialidades => this.especialidades = especialidades
+    });
+    
+  }
+
+  private initializeForm(): void {
     this.registroForm = this.fb.group({
       username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -40,10 +48,8 @@ export class RegisterDoctorComponent implements OnInit {
       licencia: ['', Validators.required],
       especialidad: ['', Validators.required]
     });
-    this.especialidadesService.obtenerEspecialidad().subscribe({
-      next: especialidades => this.especialidades = especialidades
-    });
   }
+  
 
   onSubmit(): void {
     if (this.registroForm.valid) {
@@ -87,4 +93,5 @@ export class RegisterDoctorComponent implements OnInit {
     else
       alert("Se te olvidó completar un campo maestro!")
   }
+  
 }

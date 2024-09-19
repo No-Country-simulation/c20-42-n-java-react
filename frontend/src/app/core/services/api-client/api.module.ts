@@ -1,15 +1,16 @@
 /* tslint:disable */
 /* eslint-disable */
-import {ModuleWithProviders, NgModule, Optional, SkipSelf} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {ApiConfiguration, ApiConfigurationParams} from './api-configuration';
+import { NgModule, ModuleWithProviders, SkipSelf, Optional } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { ApiConfiguration, ApiConfigurationParams } from './api-configuration';
 
-import {RegistroMedicoControllerService} from './services/registro-medico-controller.service';
-import {PacienteControllerService} from './services/paciente-controller.service';
-import {EspecialidadControllerService} from './services/especialidad-controller.service';
-import {DoctorControllerService} from './services/doctor-controller.service';
-import {UsuarioControllerService} from './services/usuario-controller.service';
-import {HistoriaClinicaControllerService} from './services/historia-clinica-controller.service';
+import { TurnoControllerService } from './services/turno-controller.service';
+import { RegistroMedicoControllerService } from './services/registro-medico-controller.service';
+import { PacienteControllerService } from './services/paciente-controller.service';
+import { EspecialidadControllerService } from './services/especialidad-controller.service';
+import { DoctorControllerService } from './services/doctor-controller.service';
+import { UsuarioControllerService } from './services/usuario-controller.service';
+import { HistoriaClinicaControllerService } from './services/historia-clinica-controller.service';
 
 /**
  * Module that provides all services and configuration.
@@ -19,6 +20,7 @@ import {HistoriaClinicaControllerService} from './services/historia-clinica-cont
   exports: [],
   declarations: [],
   providers: [
+    TurnoControllerService,
     RegistroMedicoControllerService,
     PacienteControllerService,
     EspecialidadControllerService,
@@ -41,7 +43,7 @@ export class ApiModule {
     }
   }
 
-  constructor(
+  constructor( 
     @Optional() @SkipSelf() parentModule: ApiModule,
     @Optional() http: HttpClient
   ) {
@@ -50,7 +52,7 @@ export class ApiModule {
     }
     if (!http) {
       throw new Error('You need to import the HttpClientModule in your AppModule! \n' +
-        'See also https://github.com/angular/angular/issues/20575');
+      'See also https://github.com/angular/angular/issues/20575');
     }
   }
 }

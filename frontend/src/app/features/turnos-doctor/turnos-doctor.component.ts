@@ -1,5 +1,16 @@
-import { ChangeDetectorRef, Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-import { CalendarOptions, EventHoveringArg, EventClickArg } from '@fullcalendar/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+  ViewChild,
+  ElementRef,
+  AfterViewInit,
+} from '@angular/core';
+import {
+  CalendarOptions,
+  EventHoveringArg,
+  EventClickArg,
+} from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { TurnoControllerService } from '../../core/services/api-client/services';
@@ -15,7 +26,6 @@ declare var bootstrap: any;
   templateUrl: './turnos-doctor.component.html',
   styleUrl: './turnos-doctor.component.css',
 })
-
 export class TurnosDoctorComponent implements OnInit {
   @ViewChild('calendar') calendarComponent!: ElementRef;
   events: any[] = [];
@@ -33,7 +43,7 @@ export class TurnosDoctorComponent implements OnInit {
     windowResizeDelay: 100,
     eventMouseEnter: this.handleEventMouseEnter.bind(this),
     eventMouseLeave: this.handleEventMouseLeave.bind(this),
-    eventClick: this.handleEventClick.bind(this)
+    eventClick: this.handleEventClick.bind(this),
   };
 
   constructor(
@@ -49,9 +59,12 @@ export class TurnosDoctorComponent implements OnInit {
         .obtenerTurnoPorDoctor$Response(params)
         .subscribe((response) => {
           const turnos = response.body;
+          turnos.forEach((element) => {
+            localStorage.setItem('usuario', JSON.stringify(element.pacienteId));
+          });
           this.events = turnos.map((turno) => ({
             start: new Date(turno.fechaHora),
-            title: `Turno con ${turno.pacienteId}`,
+            title: `Turno con ${turno.paciente.persona?.nombre}`, // Usa el nombre del paciente con un botón de enlace
             allDay: false,
           }));
           this.calendarOptions = {
@@ -93,10 +106,13 @@ export class TurnosDoctorComponent implements OnInit {
       const modalBody = modal.querySelector('.modal-body');
       if (modalTitle && modalBody) {
         modalTitle.textContent = 'Detalles del Evento';
-        const eventStart = clickInfo.event.start ? new Date(clickInfo.event.start).toLocaleString() : 'Fecha no disponible';
+        const eventStart = clickInfo.event.start
+          ? new Date(clickInfo.event.start).toLocaleString()
+          : 'Fecha no disponible';
         modalBody.innerHTML = `
           <p><strong>Título:</strong> ${clickInfo.event.title}</p>
           <p><strong>Fecha y Hora:</strong> ${eventStart}</p>
+          <p></p>
         `;
       }
       const bootstrapModal = new bootstrap.Modal(modal);

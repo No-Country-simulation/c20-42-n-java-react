@@ -1,37 +1,47 @@
-<!-- <div class="container-fluid mt-0">
-  <h3 class="mt-2 m-2">Medicina General</h3>
-  <div class="row justify-content-center"> Tarjeta de Pacientes 
-    <div class="col-md-4 mb-4" *ngFor="let doctor of doctores">
-      <div class="card h-100">
-        <div class="row g-0">
-          <div class="col-md-4 d-flex flex-column align-items-center">
-            <img alt="{{doctor.persona?.nombre}}"
-              class="img-fluid rounded-start img-padding">
-            <p class="card-text text-center price-text"><small class="text-muted">precio</small></p>
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <h5 class="card-title">{{doctor.persona?.nombre}}</h5>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae ratione quia omnis
-                maxime pariatur debitis architecto, magnam in voluptas libero iure eos eveniet laborum aliquam
-                veritatis? Iusto, aspernatur blanditiis. Ipsum!</p>
+<div *ngFor="let especialidad of especialidades">
+  <div *ngIf="especialidad.id !== undefined && doctoresPorEspecialidad[especialidad.id]">
+    <button class="btn btn-custom mb-2 text-white">
+      <h4>{{ especialidad.nombre }}</h4>
+    </button>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12 col-md-6 col-lg-4 mb-4" *ngFor="let doctor of doctoresPorEspecialidad[especialidad.id]">
+          <div class="card h-100 bg-light">
+            <div class="row g-0">
+              <div class="col-4 col-md-4 col-ms-4">
+                <img [src]="'/assets/images/doctores/foto-doctora.webp'" [alt]="especialidad.nombre"
+                  alt="{{doctor.persona?.nombre}}" class="img-fluid rounded-start img-padding">
+                <p class="text-center">
+                  $ {{ doctor.honorarios }}
+                </p>
+              </div>
+              <div class="col-8 col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">{{doctor.persona?.nombre}}</h5>
+                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae ratione quia
+                    omnis maxime pariatur debitis architecto, magnam in voluptas libero iure eos eveniet laborum aliquam
+                    veritatis? Iusto, aspernatur blanditiis. Ipsum!</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div> -->
-
-
-
-<div *ngFor="let especialidad of especialidades">
-  <div *ngIf="especialidad.id !== undefined && doctoresPorEspecialidad[especialidad.id]">
-    <h2>{{ especialidad.nombre }}</h2>
-    <ul>
-      <li *ngFor="let doctor of doctoresPorEspecialidad[especialidad.id]">
-        {{ doctor.persona?.nombre }}
-      </li>
-    </ul>
-  </div>
 </div>
+
+
+
+
+
+<!-- <div *ngFor="let especialidad of especialidades">
+      <div *ngIf="especialidad.id !== undefined && doctoresPorEspecialidad[especialidad.id]">
+        <h2>{{ especialidad.nombre }}</h2>
+        <ul>
+          <li *ngFor="let doctor of doctoresPorEspecialidad[especialidad.id]">
+            {{ doctor.persona?.nombre }}
+          </li>
+        </ul>
+      </div>
+    </div> -->

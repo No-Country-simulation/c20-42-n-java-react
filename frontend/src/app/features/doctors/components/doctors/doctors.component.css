@@ -2,3 +2,20 @@
     padding: 10px;
     padding-top: 20px; /* Añade padding arriba */
 }
+
+.btn-custom {
+    background-color: #09525e; /* Color verde */
+    color: #073f48;
+    border: 0; /* Sin bordes inicialmente */
+    border-right: 2px solid #073f48; /* Borde en el lado derecho */
+    border-top-right-radius: 100px; /* Esquina superior derecha redondeada */
+    border-bottom-right-radius: 100px; /* Esquina inferior derecha redondeada */
+    padding: 20px; /* Tamaño del padding */
+    font-size: 18px; /* Fuente más grande */
+    cursor: default; /* Cambia el cursor a default */
+    text-align: center; /* Alinea el texto al centro */
+    width: 50vw; /* Ancho del 50% de la ventana */
+    display: block; /* Asegura que el botón se comporte como un bloque */
+    box-sizing: border-box; /* Incluye el borde en el ancho total */
+    pointer-events: none; /* Desactiva los eventos de puntero */
+}

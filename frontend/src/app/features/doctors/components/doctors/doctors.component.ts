@@ -29,7 +29,7 @@ export class DoctorsComponent implements OnInit {
       next: (value) => {
         this.especialidades = value;
         console.log(this.especialidades);
-        
+
         // Iterar sobre cada especialidad y filtrar doctores por su ID
         this.especialidades.forEach((especialidad: Especialidad) => {
           if (especialidad.id !== undefined) {
@@ -63,4 +63,5 @@ export class DoctorsComponent implements OnInit {
         },
       });
   }
+  
 }
