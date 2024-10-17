@@ -1,29 +1,10 @@
-<!-- <div class="container-fluid">
-
-    <div class="container-fluid">
-
-        <div class="row my-5">
-            <div class="col-4 text-center my-2" *ngFor="let especialidad of especialidades">
-                <img class="card-img-top img-fluid custom-img"
-                    [src]="'/assets/images/especialidades/' + especialidad.fotoUrl" [alt]="especialidad.nombre">
-                <div class="card-body my-3">
-                    <h5 class="card-title">{{ especialidad.nombre }}</h5>
-                </div>
-            </div>
-        </div>
-
-    </div>
-</div> -->
-
-
-<div *ngIf="especialidades.length > 0">
-    <h2>Especialidades</h2>
-    <ul>
-      <li *ngFor="let especialidad of especialidades">
-        {{ especialidad.nombre }}
-      </li>
-    </ul>
+<div class="container specialties-container">
+<h1 class="text-center mb-5" style="color: #2c7873;">Nuestras Especialidades</h1>
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 justify-content-center">
+  <div *ngFor="let especialidad of especialidades" class="col text-center">
+    <img [src]="especialidad.fotoUrl" alt="{{especialidad.nombre}}" class="specialty-image">
+    <h3 class="specialty-title">{{ especialidad.nombre }}</h3>
   </div>
-  <div *ngIf="especialidades.length === 0">
-    <p>No hay especialidades disponibles.</p>
-  </div>
+</div>
+</div>
+

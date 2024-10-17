@@ -18,29 +18,12 @@ export class SpecialtiesComponent implements OnInit {
     this.obtenerEspecialidades();
   }
 
-  //   // con filtro de foto
-  // obtenerEspecialidades() {
-  //   this.especialidadService.obtenerEspecialidad().subscribe({
-  //     next: (value) => {
-  //       this.especialidades = value.filter(
-  //         (especialidad) => especialidad.fotoUrl
-  //       );
-  //       console.log(this.especialidades);
-  //     },
-  //     error: (err) => {
-  //       console.error('Error fetching especialidad:', err);
-  //     },
-  //     complete: () => {
-  //       console.log('especialidad fetching completed');
-  //     },
-  //   });
-  // }
 
-  //   // sin fin
+
   obtenerEspecialidades() {
     this.especialidadService.obtenerEspecialidad().subscribe({
       next: (value) => {
-        this.especialidades = value; // Eliminar el filtro
+        this.especialidades = value;
         console.log(this.especialidades);
       },
       error: (err) => {

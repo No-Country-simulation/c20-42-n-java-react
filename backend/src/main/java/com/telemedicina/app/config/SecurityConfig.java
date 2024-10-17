@@ -9,6 +9,8 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.oauth2.jwt.JwtDecoder;
+import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -70,6 +72,13 @@ public class SecurityConfig{
     config.setAllowedMethods(Arrays.asList("GET", "POST", "DELETE", "PUT", "PATCH"));
     source.registerCorsConfiguration("/**", config);
     return new CorsFilter(source);
+  }
+
+  @Bean
+  public JwtDecoder jwtDecoder() {
+    // La URL de Firebase donde se publican las claves JWK para verificar los tokens JWT
+    String jwkSetUri = "https://www.googleapis.com/service_accounts/v1/jwk/securetoken@system.gserviceaccount.com";
+    return NimbusJwtDecoder.withJwkSetUri(jwkSetUri).build();
   }
 
 }

@@ -1,5 +1,24 @@
-.custom-img {
-    width: 100%; /* Ajusta el ancho al 100% del contenedor */
-    max-width: 200px; /* Establece un ancho máximo para las imágenes */
-    height: auto; /* Mantiene la proporción de aspecto */
+.specialties-container {
+  font-family: Arial, sans-serif;
+  background-color: #ffffff;
+  position: relative;
+  overflow-x: hidden;
+}
+.specialty-image {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid #ffffff;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.specialty-title {
+  color: #2c7873;
+  font-weight: 600;
+  margin-top: 1rem;
+  font-size: 1.2rem;
+}
+.specialties-container {
+  padding-top: 2rem;
+  padding-bottom: 4rem;
 }
