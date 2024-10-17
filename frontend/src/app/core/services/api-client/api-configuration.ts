@@ -11,6 +11,7 @@ import {Injectable} from '@angular/core';
   providedIn: 'root',
 })
 export class ApiConfiguration {
+  // rootUrl: string = 'https://telemedicina-backend-306263743918.us-central1.run.app';
   rootUrl: string = 'http://localhost:8080';
 }
 
