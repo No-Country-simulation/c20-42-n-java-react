@@ -11,6 +11,7 @@ import {
 })
 export class SpecialtiesComponent implements OnInit {
   especialidades: Especialidad[] = [];
+  isLoading = true;
 
   constructor(private especialidadService: EspecialidadControllerService) {}
 
@@ -25,6 +26,7 @@ export class SpecialtiesComponent implements OnInit {
       next: (value) => {
         this.especialidades = value;
         console.log(this.especialidades);
+        this.isLoading = false;
       },
       error: (err) => {
         console.error('Error fetching especialidad:', err);
