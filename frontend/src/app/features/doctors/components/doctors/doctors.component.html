@@ -1,5 +1,6 @@
 <div *ngFor="let especialidad of especialidades">
   <div *ngIf="especialidad.id !== undefined && doctoresPorEspecialidad[especialidad.id]">
+<<<<<<< HEAD
     <button class="btn btn-custom mb-2 text-white">
       <h4>{{ especialidad.nombre }}</h4>
     </button>
@@ -45,3 +46,13 @@
         </ul>
       </div>
     </div> -->
+=======
+    <h2>{{ especialidad.nombre }}</h2>
+    <ul>
+      <li *ngFor="let doctor of doctoresPorEspecialidad[especialidad.id]">
+        {{ doctor.persona?.nombre }}
+      </li>
+    </ul>
+  </div>
+</div>
+>>>>>>> 526005ccf41e6db94b549cf0ef29169e8099fdd6

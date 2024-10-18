@@ -3,49 +3,53 @@
         <div class="col-md-8">
 
             <!-- Elegir especialidad -->
-            <div class="mb-3">
+
+            <form [formGroup]="registroForm" (ngSubmit)="onSubmit()">
+              <div class="mb-3">
                 <label for="especialidad" class="form-label">Elegir especialidad</label>
+<<<<<<< HEAD:frontend/src/app/features/turnos/components/turnos.component.html
                 <select id="especialidad" class="form-select" [(ngModel)]="selectedEspecialidad"
                     (change)="onEspecialidadChange()">
                     <option value="" selected>Seleccione Especialidad</option>
                     <option *ngFor="let especialidad of especialidades" [value]="especialidad.id">{{ especialidad.nombre
                         }}</option>
+=======
+                <select id="especialidad" class="form-select" formControlName="especialidad" (change)="obtenerDoctores()">
+                  @for (especialidad of especialidades; track especialidad){
+                    <option [value]="especialidad.id">{{especialidad.nombre}}</option>
+                  }
+>>>>>>> 526005ccf41e6db94b549cf0ef29169e8099fdd6:frontend/src/app/features/turnos/turnos.component.html
                 </select>
-            </div>
+              </div>
 
-            <!-- Elegir doctor -->
-            <div class="mb-3">
+              <!-- Elegir doctor -->
+              <div class="mb-3">
                 <label for="doctor" class="form-label">Elegir doctor</label>
+<<<<<<< HEAD:frontend/src/app/features/turnos/components/turnos.component.html
                 <select id="doctor" class="form-select" [(ngModel)]="selectedDoctor">
                     <option value="" selected>Seleccione Doctor</option>
                     <option *ngFor="let doctor of doctores" [value]="doctor.id">{{ doctor.persona?.nombre }}</option>
                 </select>
             </div>
             
+=======
+                <select id="doctor" class="form-select" formControlName="doctor">
+                  @for (doctor of doctores; track doctor){
+                    <option [value]="doctor.id">{{doctor.persona?.nombre}}</option>
+                  }
+                </select>
+              </div>
+
+>>>>>>> 526005ccf41e6db94b549cf0ef29169e8099fdd6:frontend/src/app/features/turnos/turnos.component.html
             <!-- Elegir fecha -->
             <div class="mb-3">
-                <label for="fecha" class="form-label">Elegir fecha</label>
-                <select id="fecha" class="form-select">
-                    <option>Enero</option>
-                    <option>Febrero</option>
-                    <option>Marzo</option>
-                    <!-- Agrega más meses aquí -->
-                </select>
-            </div>
-
-            <!-- Elegir horario -->
-            <div class="mb-3">
-                <label for="horario" class="form-label">Elegir horario</label>
-                <select id="horario" class="form-select">
-                    <option>14:00 - 14:30</option>
-                    <option>15:00 - 15:30</option>
-                    <option>16:00 - 16:30</option>
-                    <!-- Agrega más horarios aquí -->
-                </select>
+              <input type="datetime-local" formControlName="fechaHora">
             </div>
 
             <!-- Confirmar turno button -->
-            <button type="button" class="btn btn-primary">CONFIRMAR TURNO</button>
+            <button type="submit" class="btn btn-primary" >CONFIRMAR TURNO</button>
+          </form>
+
         </div>
     </div>
 </div>

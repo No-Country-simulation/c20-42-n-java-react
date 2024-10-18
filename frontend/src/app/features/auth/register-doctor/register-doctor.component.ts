@@ -8,6 +8,7 @@ import {Especialidad} from "../../../core/services/api-client/models/especialida
 import {
   EspecialidadControllerService
 } from "../../../core/services/api-client/services/especialidad-controller.service";
+import {DoctorRes} from "../../../core/services/api-client/models/doctor-res";
 
 @Component({
   selector: 'app-register-doctor',
@@ -93,5 +94,10 @@ export class RegisterDoctorComponent implements OnInit {
     else
       alert("Se te olvidó completar un campo maestro!")
   }
+<<<<<<< HEAD
   
+=======
+
+
+>>>>>>> 526005ccf41e6db94b549cf0ef29169e8099fdd6
 }

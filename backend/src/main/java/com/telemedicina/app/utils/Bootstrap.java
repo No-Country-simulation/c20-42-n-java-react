@@ -52,26 +52,47 @@ public class Bootstrap {
     return personas;
   }
 
-  private List<Especialidad> crearEspecialidades(){
-    Map<String, String> especialidadesMedicas = new HashMap<>();
-    especialidadesMedicas.put("Medicina General", "Atención integral para adultos. Diagnóstico, tratamiento y prevención de enfermedades comunes. Consulta para recibir orientación o ser referido a un especialista.");
-    especialidadesMedicas.put("Salud Mental", "Apoyo en problemas emocionales y psicológicos. Diagnóstico y tratamiento de trastornos mentales con psicólogos y psiquiatras especializados.");
-    especialidadesMedicas.put("Pediatría", "Cuidado médico para niños desde el nacimiento hasta la adolescencia. Supervisión del crecimiento, desarrollo y tratamiento de enfermedades infantiles.");
-    especialidadesMedicas.put("Nutrición", "Asesoramiento sobre alimentación saludable. Planes personalizados para mejorar tu dieta y manejar condiciones relacionadas con la nutrición.");
-    especialidadesMedicas.put("Dermatología", "Tratamiento de afecciones de la piel, cabello y uñas. Diagnóstico de problemas como acné, eczema y cáncer de piel.");
-    especialidadesMedicas.put("Ginecología", "Cuidado del sistema reproductivo femenino. Consultas sobre salud menstrual, embarazo, menopausia y enfermedades ginecológicas.");
+  private List<Especialidad> crearEspecialidades() {
+    // Mapa que contiene nombre, descripción y URL de la foto de cada especialidad
+    Map<String, String[]> especialidadesMedicas = new HashMap<>();
+    especialidadesMedicas.put("Medicina General", new String[]{
+        "Atención integral para adultos. Diagnóstico, tratamiento y prevención de enfermedades comunes. Consulta para recibir orientación o ser referido a un especialista.",
+        "https://res.cloudinary.com/dpvs5m9an/image/upload/v1729125317/medicina-general_y3ha4h.png"
+    });
+    especialidadesMedicas.put("Salud Mental", new String[]{
+        "Apoyo en problemas emocionales y psicológicos. Diagnóstico y tratamiento de trastornos mentales con psicólogos y psiquiatras especializados.",
+        "https://res.cloudinary.com/dpvs5m9an/image/upload/v1729125390/salud-mental_mlhc6k.png"});
+    especialidadesMedicas.put("Pediatría", new String[]{
+        "Cuidado médico para niños desde el nacimiento hasta la adolescencia. Supervisión del crecimiento, desarrollo y tratamiento de enfermedades infantiles.",
+        "https://res.cloudinary.com/dpvs5m9an/image/upload/v1729125321/pediatria_zxjt65.png"
+    });
+    especialidadesMedicas.put("Nutrición", new String[]{
+        "Asesoramiento sobre alimentación saludable. Planes personalizados para mejorar tu dieta y manejar condiciones relacionadas con la nutrición.",
+        "https://res.cloudinary.com/dpvs5m9an/image/upload/v1729125318/nutricion_fgk8ji.png"
+    });
+    especialidadesMedicas.put("Dermatología", new String[]{
+        "Tratamiento de afecciones de la piel, cabello y uñas. Diagnóstico de problemas como acné, eczema y cáncer de piel.",
+        "https://res.cloudinary.com/dpvs5m9an/image/upload/v1729125317/dermatologia_q0zyqs.png"
+    });
+    especialidadesMedicas.put("Ginecología", new String[]{
+        "Cuidado del sistema reproductivo femenino. Consultas sobre salud menstrual, embarazo, menopausia y enfermedades ginecológicas.",
+        "https://res.cloudinary.com/dpvs5m9an/image/upload/v1729125317/genecologia_anenp6.png"
+    });
 
+    // Crear la lista de especialidades
     List<Especialidad> especialidades = new ArrayList<>();
-    for (Map.Entry<String, String> entry : especialidadesMedicas.entrySet()){
+    for (Map.Entry<String, String[]> entry : especialidadesMedicas.entrySet()) {
       Especialidad especialidad = Especialidad.builder()
           .nombre(entry.getKey())
-          .descripcion(entry.getValue())
+          .descripcion(entry.getValue()[0])
+          .fotoUrl(entry.getValue()[1]) // Asignar la URL de la foto
           .build();
       especialidades.add(especialidad);
-      especialidadRepo.save(especialidad);
+      especialidadRepo.save(especialidad); // Guardar en la base de datos
     }
     return especialidades;
   }
+
 
   private void cargarDoctores(int n){
     if(tablaVacia("Doctor")){
