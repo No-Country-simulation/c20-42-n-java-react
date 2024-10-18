@@ -33,6 +33,7 @@ export class TurnosDoctorComponent implements OnInit {
   events: any[] = [];
   viewDate: Date = new Date();
   refresh: Subject<any> = new Subject();
+  selectedEvent: any; // Define selectedEvent
 
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth',
@@ -61,13 +62,11 @@ export class TurnosDoctorComponent implements OnInit {
         .obtenerTurnoPorDoctor$Response(params)
         .subscribe((response) => {
           const turnos = response.body;
-          turnos.forEach((element) => {
-            localStorage.setItem('usuario', JSON.stringify(element.pacienteId));
-          });
           this.events = turnos.map((turno) => ({
             start: new Date(turno.fechaHora!),
             title: `Turno con ${turno.paciente?.persona?.nombre}`,
             allDay: false,
+            paciente: turno.paciente // Añadir el paciente a los eventos
           }));
           this.calendarOptions = {
             ...this.calendarOptions,
@@ -102,6 +101,7 @@ export class TurnosDoctorComponent implements OnInit {
   }
 
   handleEventClick(clickInfo: any) {
+    this.selectedEvent = clickInfo.event; // Actualiza selectedEvent
     const modal = document.getElementById('eventDetailsModal');
     if (modal) {
       const modalTitle = modal.querySelector('.modal-title');
@@ -150,5 +150,13 @@ export class TurnosDoctorComponent implements OnInit {
   getDoctorId(): number | null {
     const usuario = this.getUserFromLocalStorage();
     return usuario ? usuario.entidadId : null;
+  }
+
+  onEventClick(event: any) {
+    this.selectedEvent = event.event;
+  }
+
+  onConsultaMedica(paciente: any) {
+    localStorage.setItem('paciente', JSON.stringify(paciente));
   }
 }

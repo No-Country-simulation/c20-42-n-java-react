@@ -9,13 +9,13 @@ import {HomeComponent} from './features/home/components/home/home.component';
 import {SpecialtiesComponent} from './features/specialties/components/specialties/specialties.component';
 import {DoctorsComponent} from './features/doctors/components/doctors/doctors.component';
 import {HistorialMedicoComponent} from './features/historial-medico/historial-medico.component';
-import {TurnosComponent} from './features/turnos/turnos.component';
+import {TurnosComponent} from './features/turnos/components/turnos.component';
 import {authGuard, doctorGuard, patientGuard,} from './core/guards/auth.guard';
 import {AuthLayoutComponent} from './shared/components/auth-layout/auth-layout.component';
 import {RegisterDoctorComponent} from './features/auth/register-doctor/register-doctor.component';
 import {TurnosDoctorComponent} from './features/turnos-doctor/turnos-doctor.component';
 import {PacientesComponent} from "./features/pacientes-doctor/pacientes/pacientes.component";
-import { ConsultaMedicaComponent } from './features/consulta-medica/consulta-medica.component';
+import { ConsultaMedicaComponent } from './features/consulta-medica/components/consulta-medica.component';
 
 const routes: Routes = [
   {

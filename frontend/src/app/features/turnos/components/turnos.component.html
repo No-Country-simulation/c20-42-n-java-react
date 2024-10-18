@@ -1,28 +1,27 @@
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
+
             <!-- Elegir especialidad -->
             <div class="mb-3">
                 <label for="especialidad" class="form-label">Elegir especialidad</label>
-                <select id="especialidad" class="form-select">
-                    <option>Medicina General</option>
-                    <option>Salud Mental</option>
-                    <option>Pediatría</option>
-                    <option>Nutrición</option>
-                    <option>Dermatología</option>
-                    <option>Ginecología</option>
+                <select id="especialidad" class="form-select" [(ngModel)]="selectedEspecialidad"
+                    (change)="onEspecialidadChange()">
+                    <option value="" selected>Seleccione Especialidad</option>
+                    <option *ngFor="let especialidad of especialidades" [value]="especialidad.id">{{ especialidad.nombre
+                        }}</option>
                 </select>
             </div>
 
             <!-- Elegir doctor -->
             <div class="mb-3">
                 <label for="doctor" class="form-label">Elegir doctor</label>
-                <select id="doctor" class="form-select">
-                    <option>Dr. Jonathan Reed</option>
-                    <!-- Agrega más doctores aquí -->
+                <select id="doctor" class="form-select" [(ngModel)]="selectedDoctor">
+                    <option value="" selected>Seleccione Doctor</option>
+                    <option *ngFor="let doctor of doctores" [value]="doctor.id">{{ doctor.persona?.nombre }}</option>
                 </select>
             </div>
-
+            
             <!-- Elegir fecha -->
             <div class="mb-3">
                 <label for="fecha" class="form-label">Elegir fecha</label>
