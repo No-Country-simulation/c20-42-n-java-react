@@ -77,7 +77,7 @@ La plataforma busca eliminar barreras geográficas y de tiempo, ofreciendo atenc
   </dd>
 </dl>
 
-
+<br>
 
 ## 🛠️ Tecnologías
 
@@ -160,11 +160,7 @@ La plataforma busca eliminar barreras geográficas y de tiempo, ofreciendo atenc
 </table>
 <br>
 
-<h1 align="center"> 
-  👨‍💻 Team
-</h1>
-
-<h2 align='center'>✨ Equipo ✨</h2>
+<h2>👨‍💻 Equipo</h2>
 <table align='center'>
   <tr>
     <td align='center'>
@@ -254,119 +250,29 @@ La plataforma busca eliminar barreras geográficas y de tiempo, ofreciendo atenc
 </table>
 
 <br>
-<div align='center'>
+<div>
   <h2>👨‍💻 Deploy Frontend 🌐</h2>
 </div>
-<div align='center'>
+<div>
     <a href="https://telemedicina-536ac.web.app">[ Link a HealthTech ]</a>
 </div>
 
-<div align='center'>
+<div>
   <h2> 🔙 Deploy Backend 🔚</h2>
 </div>
-<div align='center'>
+<div>
     <a href="https://telemedicina-backend-306263743918.us-central1.run.app/swagger-ui/index.html">[ Link a documentación en Swagger ]</a>
 </div>
 
 <br>
 
- <div align='center'>
+ <div>
   <h2> 🎬 Video Demostración ▶ </h2>
 </div>
 
-<div align='center'>
+<div>
   <h2> 🖼 Capturas de pantalla 📷 </h2>
 </div>
 
 
 
-
-
-
-[//]: # (# c20-42-n-java-react-telemedicina)
-
-[//]: # ()
-[//]: # (# HealthTech)
-
-[//]: # (App de telemedicina)
-
-[//]: # ()
-[//]: # (Features)
-
-[//]: # (-)
-
-[//]: # (coming soon...)
-
-[//]: # ()
-[//]: # ()
-[//]: # (Guía para ejecutar el proyecto:)
-
-[//]: # (-)
-
-[//]: # (Requerimientos:)
-
-[//]: # ()
-[//]: # (* JDK 17+)
-
-[//]: # (* Maven 3+)
-
-[//]: # (* MySql)
-
-[//]: # ()
-[//]: # (1&#41; Configuración de la Base de Datos)
-
-[//]: # ()
-[//]: # (    1. Asegúrate de que MySql esté ejecutándose. Por defecto, la aplicación se conectará a la base de datos en el puerto 3306 con el usuario `root` y la contraseña vacía)
-
-[//]: # ()
-[//]: # (    2. En caso de tener una configuración de MySQL distinta, actualiza el puerto en [application.yml]&#40;src/main/resources/application.yml&#41;)
-
-[//]: # ()
-[//]: # (2&#41; Para buildear&#40;?&#41; y ejecutar el proyecto, sigue los siguientes pasos:)
-
-[//]: # ()
-[//]: # ()
-[//]: # (1. Clona el repositorio:)
-
-[//]: # (   ```)
-
-[//]: # (   git clone https://github.com/No-Country-simulation/c20-42-n-java-react.git)
-
-[//]: # (   ```)
-
-[//]: # ()
-[//]: # (2. Navega hasta el directorio `c20-42-n-java-react-telemedicina/backend` :)
-
-[//]: # (   ```)
-
-[//]: # (   cd c20-42-n-java-react/backend)
-
-[//]: # (   ```)
-
-[//]: # (3. Instala las dependencias &#40;asumimos que tienes Maven instalado&#41;:)
-
-[//]: # (   ```)
-
-[//]: # (   mvn clean install -DskipTests)
-
-[//]: # (   ```)
-
-[//]: # (4. Corre el proyecto)
-
-[//]: # (   ```)
-
-[//]: # (   mvn spring-boot:run)
-
-[//]: # (   ```)
-
-[//]: # (5. Accede a la documentación de la api:)
-
-[//]: # ()
-[//]: # (   - Swagger UI:  http://localhost:8080/doc/swagger-ui.html)
-
-[//]: # (   - Api doc : http://localhost:8080/api-docs)
-
-[//]: # (   )
-[//]: # ()
-[//]: # ()
-[//]: # (-> La aplicación estará disponible en  http://localhost:8080)
