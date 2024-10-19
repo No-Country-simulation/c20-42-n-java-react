@@ -1,18 +1,3 @@
-<<<<<<< HEAD
-<div class="container-fluid">
-
-  <div class="row my-5">
-    <div class="col-4 text-center my-2" *ngFor="let especialidad of especialidades">
-      <img class="card-img-top img-fluid custom-img" [src]="'/assets/images/especialidades/' + especialidad.fotoUrl"
-        [alt]="especialidad.nombre">
-      <div class="card-body my-3">
-        <h5 class="card-title">{{ especialidad.nombre }}</h5>
-      </div>
-    </div>
-  </div>
-
-</div>
-=======
 <div class="container specialties-container">
 <h1 class="text-center mb-5" style="color: #2c7873;">Nuestras Especialidades</h1>
   <div *ngIf="isLoading" class="d-flex justify-content-center">
@@ -28,4 +13,3 @@
 </div>
 </div>
 
->>>>>>> 526005ccf41e6db94b549cf0ef29169e8099fdd6
