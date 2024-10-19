@@ -29,6 +29,7 @@
     "@popperjs/core": "^2.11.8",
     "bootstrap": "5.3",
     "date-fns": "^4.0.0-beta.1",
+    "firebase": "^10.14.1",
     "jquery": "^3.7.1",
     "ng-openapi-gen": "^0.52.0",
     "rxjs": "~7.8.0",

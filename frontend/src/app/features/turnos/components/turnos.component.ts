@@ -1,78 +1,69 @@
-import { Component } from '@angular/core';
-import { Doctor, Especialidad } from '../../../core/services/api-client/models';
-import {
-  DoctorControllerService,
-  EspecialidadControllerService,
-} from '../../../core/services/api-client/services';
+import {Component, OnInit} from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DoctorRes, Especialidad } from '../../../core/services/api-client/models';
+import { DoctorControllerService, EspecialidadControllerService, TurnoControllerService } from '../../../core/services/api-client/services';
+import { Router } from '@angular/router';
+import { getUserFromLocalStorage } from '../../../core/guards/auth.guard';
+
 
 @Component({
   selector: 'app-turnos',
   templateUrl: './turnos.component.html',
-  styleUrl: './turnos.component.css',
+  styleUrl: './turnos.component.css'
 })
-export class TurnosComponent {
-  especialidades: Especialidad[] = [];
-  doctores: Doctor[] = [];
-  doctoresPorEspecialidad: { [key: number]: Doctor[] } = {};
-  selectedEspecialidad: number | null = null;
-  selectedDoctor: number | null = null;
+export class TurnosComponent implements OnInit{
+  registroForm!: FormGroup;
+  especialidades?: Especialidad[] = [];
+  doctores?: DoctorRes[];
 
   constructor(
-    private especialidadService: EspecialidadControllerService,
-    private doctorService: DoctorControllerService
+    private _especialidadService : EspecialidadControllerService,
+    private _doctorService: DoctorControllerService,
+    private _router:Router,
+    private _turnoService:TurnoControllerService,
+    private _fb: FormBuilder
   ) {}
 
   ngOnInit(): void {
-    this.obtenerEspecialidades();
-  }
-
-  obtenerEspecialidades() {
-    this.especialidadService.obtenerEspecialidad().subscribe({
+    this._especialidadService.obtenerEspecialidad().subscribe({
       next: (value) => {
         this.especialidades = value;
-        console.log(this.especialidades);
-
-        // Iterar sobre cada especialidad y filtrar doctores por su ID
-        this.especialidades.forEach((especialidad: Especialidad) => {
-          if (especialidad.id !== undefined) {
-            this.filtrarDoctoresPorEspecialidad(especialidad.id);
-          }
-        });
-      },
-      error: (err) => {
-        console.error('Error fetching especialidad:', err);
-      },
-      complete: () => {
-        console.log('especialidad fetching completed');
-      },
+      }
     });
+
+    this.registroForm = this._fb.group({
+      doctor: ['', Validators.required],
+      especialidad: ['', Validators.required],
+      fechaHora: ['', Validators.required]
+    });
+
   }
 
-  filtrarDoctoresPorEspecialidad(especialidadId: number) {
-    this.doctorService
-      .obtenerDoctores({ especialidad: especialidadId })
-      .subscribe({
-        next: (doctores: Doctor[]) => {
-          if (doctores.length > 0) {
-            this.doctoresPorEspecialidad[especialidadId] = doctores;
-          }
-        },
-        error: (err) => {
-          console.error('Error fetching doctores:', err);
-        },
-        complete: () => {
-          console.log('doctores fetching completed');
-        },
-      });
-  }
-
-  onEspecialidadChange() {
-    if (this.selectedEspecialidad !== null) {
-      this.doctores =
-        this.doctoresPorEspecialidad[this.selectedEspecialidad] || [];
-      this.selectedDoctor = null; // Resetear el doctor seleccionado
-    } else {
-      this.doctores = [];
+  onSubmit(){
+    if(this.registroForm.valid){
+      const controls = this.registroForm.controls;
+      this._turnoService.agendarTurno({
+        body:{
+          doctorId: controls['doctor'].value,
+          fechaHora: controls['fechaHora'].value,
+          pacienteId: getUserFromLocalStorage().entidadId,
+        }
+      }).subscribe({
+        next: (value) => {
+          this._router.navigate(['/perfil']);
+        }
+      })
+      alert("Turno agendado exitosamente");
     }
+    else
+      alert("Se te olvidó completar un campo!")
+
   }
+  obtenerDoctores(){
+    this._doctorService.obtenerDoctores({especialidad: this.registroForm.controls['especialidad'].value}).subscribe({
+      next: doctores => this.doctores = doctores
+    })
+  }
+
+
 }
