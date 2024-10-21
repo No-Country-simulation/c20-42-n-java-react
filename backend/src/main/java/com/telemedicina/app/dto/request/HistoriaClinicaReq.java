@@ -1,7 +1,6 @@
 package com.telemedicina.app.dto.request;
 
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.AllArgsConstructor;

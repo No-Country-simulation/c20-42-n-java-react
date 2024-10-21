@@ -2,12 +2,12 @@ package com.telemedicina.app.service;
 
 import com.google.api.client.util.DateTime;
 import com.google.api.services.calendar.Calendar;
-import com.google.api.services.calendar.model.Event;
-import com.google.api.services.calendar.model.EventAttendee;
-import com.google.api.services.calendar.model.EventDateTime;
 import com.google.api.services.calendar.model.ConferenceData;
 import com.google.api.services.calendar.model.ConferenceSolutionKey;
 import com.google.api.services.calendar.model.CreateConferenceRequest;
+import com.google.api.services.calendar.model.Event;
+import com.google.api.services.calendar.model.EventAttendee;
+import com.google.api.services.calendar.model.EventDateTime;
 import com.telemedicina.app.config.GoogleCalendarConfig;
 import com.telemedicina.app.model.Turno;
 import java.io.IOException;

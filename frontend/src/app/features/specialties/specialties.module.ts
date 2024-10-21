@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
-import {CommonModule, NgOptimizedImage} from '@angular/common';
+import {CommonModule} from '@angular/common';
 import {SpecialtiesComponent} from './components/specialties/specialties.component';
+import {SpinnerComponent} from "../../shared/components/spinner/spinner.component";
 
 
 @NgModule({
@@ -9,7 +10,7 @@ import {SpecialtiesComponent} from './components/specialties/specialties.compone
   ],
   imports: [
     CommonModule,
-    NgOptimizedImage
+    SpinnerComponent
   ]
 })
 export class SpecialtiesModule { }

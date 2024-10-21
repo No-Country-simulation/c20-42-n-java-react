@@ -9,6 +9,7 @@ import {
   templateUrl: './specialties.component.html',
   styleUrl: './specialties.component.css',
 })
+
 export class SpecialtiesComponent implements OnInit {
   especialidades: Especialidad[] = [];
   isLoading = true;
@@ -30,6 +31,7 @@ export class SpecialtiesComponent implements OnInit {
       },
       error: (err) => {
         console.error('Error fetching especialidad:', err);
+        this.isLoading = false;
       },
       complete: () => {
         console.log('especialidad fetching completed');

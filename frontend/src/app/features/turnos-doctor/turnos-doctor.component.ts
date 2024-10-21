@@ -1,16 +1,5 @@
-import {
-  ChangeDetectorRef,
-  Component,
-  OnInit,
-  ViewChild,
-  ElementRef,
-  AfterViewInit,
-} from '@angular/core';
-import {
-  CalendarOptions,
-  EventHoveringArg,
-  EventClickArg,
-} from '@fullcalendar/core';
+import {ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild,} from '@angular/core';
+import {CalendarOptions,} from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import {TurnoControllerService} from '../../core/services/api-client/services';

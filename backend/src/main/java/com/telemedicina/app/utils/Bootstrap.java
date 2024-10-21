@@ -1,17 +1,29 @@
 package com.telemedicina.app.utils;
 
 import com.github.javafaker.Faker;
-import com.telemedicina.app.model.*;
+import com.telemedicina.app.model.Doctor;
+import com.telemedicina.app.model.Especialidad;
+import com.telemedicina.app.model.HistoriaClinica;
+import com.telemedicina.app.model.Paciente;
+import com.telemedicina.app.model.Persona;
+import com.telemedicina.app.model.Rol;
+import com.telemedicina.app.model.Usuario;
 import com.telemedicina.app.repository.DoctorRepo;
 import com.telemedicina.app.repository.EspecialidadRepo;
 import com.telemedicina.app.repository.PacienteRepo;
 import com.telemedicina.app.repository.UsuarioRepo;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Random;
+import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.*;
 
 @Service
 @RequiredArgsConstructor

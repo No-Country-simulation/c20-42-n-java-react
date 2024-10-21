@@ -1,9 +1,13 @@
 import {Component, OnInit} from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { DoctorRes, Especialidad } from '../../../core/services/api-client/models';
-import { DoctorControllerService, EspecialidadControllerService, TurnoControllerService } from '../../../core/services/api-client/services';
-import { Router } from '@angular/router';
-import { getUserFromLocalStorage } from '../../../core/guards/auth.guard';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {DoctorRes, Especialidad} from '../../../core/services/api-client/models';
+import {
+  DoctorControllerService,
+  EspecialidadControllerService,
+  TurnoControllerService
+} from '../../../core/services/api-client/services';
+import {Router} from '@angular/router';
+import {getUserFromLocalStorage} from '../../../core/guards/auth.guard';
 
 
 @Component({

@@ -2,7 +2,6 @@ package com.telemedicina.app.controller;
 
 import com.telemedicina.app.dto.request.RegistroMedicoReq;
 import com.telemedicina.app.dto.response.RegistroMedicoRes;
-import com.telemedicina.app.model.RegistroMedico;
 import com.telemedicina.app.service.RegistroMedicoService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;

@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {PacienteControllerService} from "../../../core/services/api-client/services/paciente-controller.service";
-import {Paciente} from "../../../core/services/api-client/models/paciente";
 import {DoctorControllerService} from "../../../core/services/api-client/services/doctor-controller.service";
 import {getUserFromLocalStorage} from "../../../core/guards/auth.guard";
+import {PacienteRes} from "../../../core/services/api-client/models/paciente-res";
 
 @Component({
   selector: 'app-pacientes',
@@ -11,7 +10,7 @@ import {getUserFromLocalStorage} from "../../../core/guards/auth.guard";
 })
 export class PacientesComponent implements OnInit{
   idDoctor!:number;
-  pacientes?: Paciente[];
+  pacientes!: PacienteRes[];
 
   constructor(private _doctorService:DoctorControllerService) {
   }

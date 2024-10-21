@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {HistoriaClinica} from "../../core/services/api-client/models/historia-clinica";
+import {HistoriaClinicaRes} from "../../core/services/api-client/models/historia-clinica-res";
 import {
   HistoriaClinicaControllerService
 } from "../../core/services/api-client/services/historia-clinica-controller.service";
@@ -13,7 +13,7 @@ import {getUserFromLocalStorage} from "../../core/guards/auth.guard";
 })
 export class HistorialMedicoComponent implements OnInit{
 
-  historialMedico?: HistoriaClinica;
+  historialMedico?: HistoriaClinicaRes;
   user: any;
 
   constructor(

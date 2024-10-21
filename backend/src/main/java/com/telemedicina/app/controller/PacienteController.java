@@ -2,7 +2,6 @@ package com.telemedicina.app.controller;
 
 import com.telemedicina.app.dto.request.PacienteReq;
 import com.telemedicina.app.dto.response.PacienteRes;
-import com.telemedicina.app.model.Paciente;
 import com.telemedicina.app.service.PacienteService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;

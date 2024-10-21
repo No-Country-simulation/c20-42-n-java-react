@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../../../core/services/auth/auth.service';
-import { Router } from '@angular/router';
-import { UsuarioControllerService } from '../../../core/services/api-client/services/usuario-controller.service';
-import { DoctorControllerService } from '../../../core/services/api-client/services/doctor-controller.service';
-import { Especialidad } from '../../../core/services/api-client/models/especialidad';
-import { EspecialidadControllerService } from '../../../core/services/api-client/services/especialidad-controller.service';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AuthService} from '../../../core/services/auth/auth.service';
+import {Router} from '@angular/router';
+import {UsuarioControllerService} from '../../../core/services/api-client/services/usuario-controller.service';
+import {DoctorControllerService} from '../../../core/services/api-client/services/doctor-controller.service';
+import {Especialidad} from '../../../core/services/api-client/models/especialidad';
+import {
+  EspecialidadControllerService
+} from '../../../core/services/api-client/services/especialidad-controller.service';
 
 @Component({
   selector: 'app-register-doctor',

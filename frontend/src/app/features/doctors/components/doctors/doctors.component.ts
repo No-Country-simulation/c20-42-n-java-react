@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Doctor} from '../../../../core/services/api-client/models/doctor';
 import {DoctorControllerService} from '../../../../core/services/api-client/services/doctor-controller.service';
-import {Especialidad} from '../../../../core/services/api-client/models';
+import {DoctorRes, Especialidad} from '../../../../core/services/api-client/models';
 import {EspecialidadControllerService} from '../../../../core/services/api-client/services';
 
 //import * as console from "node:console";
@@ -13,7 +12,7 @@ import {EspecialidadControllerService} from '../../../../core/services/api-clien
 })
 export class DoctorsComponent implements OnInit {
   especialidades: Especialidad[] = [];
-  doctoresPorEspecialidad: { [key: number]: Doctor[] } = {};
+  doctoresPorEspecialidad: { [key: number]: DoctorRes[] } = {};
 
   constructor(
     private especialidadService: EspecialidadControllerService,
@@ -50,7 +49,7 @@ export class DoctorsComponent implements OnInit {
     this.doctorService
       .obtenerDoctores({especialidad: especialidadId})
       .subscribe({
-        next: (doctores: Doctor[]) => {
+        next: (doctores: DoctorRes[]) => {
           if (doctores.length > 0) {
             this.doctoresPorEspecialidad[especialidadId] = doctores;
           }

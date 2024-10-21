@@ -7,7 +7,6 @@ import {Router} from "@angular/router";
 import {TurnoControllerService} from "../../core/services/api-client/services/turno-controller.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {getUserFromLocalStorage} from "../../core/guards/auth.guard";
-import {obtenerDoctores} from "../../core/services/api-client/fn/doctor-controller/obtener-doctores";
 
 @Component({
   selector: 'app-turnos',

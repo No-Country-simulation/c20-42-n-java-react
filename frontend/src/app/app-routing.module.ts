@@ -15,7 +15,7 @@ import {AuthLayoutComponent} from './shared/components/auth-layout/auth-layout.c
 import {RegisterDoctorComponent} from './features/auth/register-doctor/register-doctor.component';
 import {TurnosDoctorComponent} from './features/turnos-doctor/turnos-doctor.component';
 import {PacientesComponent} from "./features/pacientes-doctor/pacientes/pacientes.component";
-import { ConsultaMedicaComponent } from './features/consulta-medica/components/consulta-medica.component';
+import {ConsultaMedicaComponent} from './features/consulta-medica/components/consulta-medica.component';
 
 const routes: Routes = [
   {

@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
-import { RegistroMedicoControllerService } from '../../../core/services/api-client/services';
-import { RegistroMedicoReq } from '../../../core/services/api-client/models';
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {RegistroMedicoControllerService} from '../../../core/services/api-client/services';
+import {RegistroMedicoReq} from '../../../core/services/api-client/models';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-consulta-medica',
@@ -28,7 +28,7 @@ export class ConsultaMedicaComponent implements OnInit {
     } else {
       console.warn('No se encontraron datos del paciente en el localStorage.');
     }
-    
+
   }
 
   onSubmit() {
@@ -79,7 +79,7 @@ export class ConsultaMedicaComponent implements OnInit {
     }
     return null;
   };
-  
+
   getPacienteFromLocalStorage = () => {
     const paciente = localStorage.getItem('paciente');
     if (paciente) {

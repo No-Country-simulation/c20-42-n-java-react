@@ -15,6 +15,7 @@ public class PersonaMapper {
                 .telefono(p.getTelefono())
                 .dni(p.getDni())
                 .email(p.getEmail())
+                .fotoUrl(p.getFotoUrl())
                 .build();
     }
 }
