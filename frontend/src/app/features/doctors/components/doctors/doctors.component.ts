@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {DoctorControllerService} from '../../../../core/services/api-client/services/doctor-controller.service';
 import {DoctorRes, Especialidad} from '../../../../core/services/api-client/models';
 import {EspecialidadControllerService} from '../../../../core/services/api-client/services';
+import {faStar, faStarHalf} from "@fortawesome/free-solid-svg-icons";
 
 //import * as console from "node:console";
 
@@ -62,5 +63,7 @@ export class DoctorsComponent implements OnInit {
         },
       });
   }
-  
+
+  protected readonly faStarHalf = faStarHalf;
+  protected readonly faStar = faStar;
 }

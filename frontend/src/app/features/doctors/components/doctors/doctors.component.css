@@ -1,21 +1,71 @@
-.img-padding {
-    padding: 10px;
-    padding-top: 20px; /* Añade padding arriba */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+.especialidad{
+  width: 50%;
+  height: 5em;
+  background-color: #09525e;
+  color: white;
+  padding-left: 4em;
+  padding-top: 0.5em;
+  border-radius: 0 4em 4em 0;
+  margin-top: 3em;
+  @media (max-width: 768px) {
+    width: 80%;
+    padding-left: 2em;
+  }
 }
 
-.btn-custom {
-    background-color: #09525e; /* Color verde */
-    color: #073f48;
-    border: 0; /* Sin bordes inicialmente */
-    border-right: 2px solid #073f48; /* Borde en el lado derecho */
-    border-top-right-radius: 100px; /* Esquina superior derecha redondeada */
-    border-bottom-right-radius: 100px; /* Esquina inferior derecha redondeada */
-    padding: 20px; /* Tamaño del padding */
-    font-size: 18px; /* Fuente más grande */
-    cursor: default; /* Cambia el cursor a default */
-    text-align: center; /* Alinea el texto al centro */
-    width: 50vw; /* Ancho del 50% de la ventana */
-    display: block; /* Asegura que el botón se comporte como un bloque */
-    box-sizing: border-box; /* Incluye el borde en el ancho total */
-    pointer-events: none; /* Desactiva los eventos de puntero */
+
+.doctores{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  margin: 30px 10px;
+  gap: 20px 80px;
+  padding: 60px 60px;
+  @media (max-width: 768px) {
+    margin: 20px 10px;
+    padding: 10px 20px;
+    gap: 10px 20px;
+  }
 }
+
+.doctor{
+  height: 30rem;
+  background-color: #09525e1a;
+  display: flex;
+  gap: 20px 30px;
+  padding: 60px 30px;
+  font-family: "Open Sans", serif;
+  border-radius: 10px;
+  color: #545454;
+  max-width: 800px;
+  @media (max-width: 768px) {
+    height: auto;
+    padding: 20px 30px;
+    max-width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.checked{
+  color: #ffce38;
+}
+
+.doctor-picture{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.doctor img{
+  height: 100%;
+  border-radius: 5%;
+  @media (max-width: 768px) {
+    width: 100%;
+    height: auto;
+  }
+}
+
+
+

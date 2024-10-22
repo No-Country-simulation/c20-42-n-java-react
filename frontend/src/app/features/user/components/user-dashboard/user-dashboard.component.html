@@ -1,18 +1,17 @@
-<div class="container" *ngIf="persona">
-  <h5 class="mt-3"><strong>Mi Perfil</strong></h5>
+<div class="container mt-4" *ngIf="persona">
+  <h2 class="my-3 fw-semibold">Mi Perfil</h2>
   <div class="profile-card mt-4 ms-1">
     <div class="profile-pic">
       <img src="{{persona.fotoUrl}}" alt="Foto de perfil">
       <fa-icon class="pencil-icon fa-lg" [icon]="faPenToSquare" (click)="triggerFileInput()"></fa-icon>
       <input #fileInput type="file" accept="image/jpeg, image/png, image/jpg" (change)="saveFile()">
     </div>
-
     <div class="profile-info">
-      <p class="mb-2"><strong>Nombre y Apellido: </strong>{{persona.nombre}}</p>
-      <p class="mb-2"><strong>Edad: </strong> {{persona.edad}}</p>
-      <p class="mb-2"><strong>Dirección de correo:</strong> {{ persona.email }}</p>
-      <p class="mb-2"><strong>Teléfono:</strong> {{ persona.telefono }}</p>
-      <p class="mb-2"><strong>Dni:</strong> {{ persona.dni }}</p>
+      <p class="mb-3"><strong>Nombre y Apellido: </strong>{{persona.nombre}}</p>
+      <p class="mb-3"><strong>Edad: </strong> {{persona.edad}}</p>
+      <p class="mb-3"><strong>Dirección de correo:</strong> {{ persona.email }}</p>
+      <p class="mb-3"><strong>Teléfono:</strong> {{ persona.telefono }}</p>
+      <p class="mb-3"><strong>Dni:</strong> {{ persona.dni }}</p>
     </div>
   </div>
   @if(usuario.rol === 'PACIENTE'){

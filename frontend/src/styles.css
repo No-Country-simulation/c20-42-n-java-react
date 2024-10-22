@@ -23,21 +23,21 @@ html, body {
     height: 100%;
     margin: 0;
   }
-  
+
   main {
     flex: 1;
   }
-  
+
   app-root {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
   }
-  
+
   app-header {
     /* Estilos del header */
   }
-  
+
   app-footer {
     background: #eee;
     text-align: center;
