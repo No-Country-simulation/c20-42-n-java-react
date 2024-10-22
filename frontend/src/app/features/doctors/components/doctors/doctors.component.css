@@ -19,7 +19,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: left;
-  margin: 30px 10px;
+  margin: 10px 10px;
   gap: 20px 80px;
   padding: 60px 60px;
   @media (max-width: 768px) {
@@ -30,11 +30,12 @@
 }
 
 .doctor{
-  height: 30rem;
+  width: 30rem;
+  height: 20rem;
   background-color: #09525e1a;
   display: flex;
   gap: 20px 30px;
-  padding: 60px 30px;
+  padding: 45px 20px;
   font-family: "Open Sans", serif;
   border-radius: 10px;
   color: #545454;
@@ -56,15 +57,21 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
+  overflow: hidden;
+  width:800px;
 
-.doctor img{
-  height: 100%;
-  border-radius: 5%;
   @media (max-width: 768px) {
     width: 100%;
     height: auto;
   }
+}
+
+
+.doctor img{
+  height: 100%;
+  width: auto;
+  border-radius: 5%;
+  object-fit: cover;
 }
 
 

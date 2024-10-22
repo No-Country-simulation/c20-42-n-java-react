@@ -1,22 +1,23 @@
 <div *ngFor="let especialidad of especialidades">
   <div *ngIf="especialidad.id !== undefined && doctoresPorEspecialidad[especialidad.id]" class="especialidad">
-    <span class="fs-3">{{especialidad.nombre}}</span>
+    <h3>{{especialidad.nombre}}</h3>
   </div>
   <div class="doctores">
-    <div class="doctor fs-4" *ngFor="let doctor of doctoresPorEspecialidad[especialidad!.id!]">
+    <div class="doctor" *ngFor="let doctor of doctoresPorEspecialidad[especialidad!.id!]">
       <div class="doctor-picture">
-        <img src="https://img.freepik.com/foto-gratis/hermosa-joven-doctora-mirando-camara-oficina_1301-7807.jpg">
+        <img src="{{doctor.persona!.fotoUrl}}" alt="foto de perfil del doctor">
         <div class="mt-2 text-center">$ {{doctor.honorarios | number }} /sesión</div>
       </div>
       <div class="doctor-info">
-        <h3 class="fw-bold mb-1">Dr. {{ doctor.persona?.nombre }}</h3>
+        <h4 class="fw-bold mb-1">Dr. {{ doctor.persona?.nombre }}</h4>
         <fa-icon [icon]="faStar" [ngClass]="{'checked' : ((doctor.honorarios! + 4) % 5 + 4)>1}"></fa-icon>
         <fa-icon [icon]="faStar" [ngClass]="{'checked' : ((doctor.honorarios! + 4) % 5 + 4)>2}"></fa-icon>
         <fa-icon [icon]="faStar" [ngClass]="{'checked' : ((doctor.honorarios! + 4) % 5 + 4)>3}"></fa-icon>
         <fa-icon [icon]="faStar" [ngClass]="{'checked' : ((doctor.honorarios! + 4) % 5 + 4)>4}"></fa-icon>
         <fa-icon [icon]="faStar" [ngClass]="{'checked' : ((doctor.honorarios! + 4) % 5 + 4)>=5}"></fa-icon>
-        <p class="mt-3">Es una psicóloga con un título de la Universidad de Edimburgo.
-          Se especializa en terapia cognitivo-conductual y tiene una amplia experiencia en el tratamiento de trastornos de ansiedad y depresión.</p>
+        <p>Es una psicóloga con un título de la Universidad de Edimburgo.
+          Se especializa en terapia cognitivo-conductual y tiene una amplia experiencia en el tratamiento de trastornos de ansiedad y depresión.
+        </p>
       </div>
     </div>
   </div>

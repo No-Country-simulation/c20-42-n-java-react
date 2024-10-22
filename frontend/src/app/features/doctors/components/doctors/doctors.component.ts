@@ -14,6 +14,7 @@ import {faStar, faStarHalf} from "@fortawesome/free-solid-svg-icons";
 export class DoctorsComponent implements OnInit {
   especialidades: Especialidad[] = [];
   doctoresPorEspecialidad: { [key: number]: DoctorRes[] } = {};
+  isLoading: boolean = true;
 
   constructor(
     private especialidadService: EspecialidadControllerService,
@@ -36,13 +37,12 @@ export class DoctorsComponent implements OnInit {
             this.filtrarDoctoresPorEspecialidad(especialidad.id);
           }
         });
+        this.isLoading = false;
       },
       error: (err) => {
         console.error('Error fetching especialidad:', err);
-      },
-      complete: () => {
-        console.log('especialidad fetching completed');
-      },
+        this.isLoading = false;
+      }
     });
   }
 

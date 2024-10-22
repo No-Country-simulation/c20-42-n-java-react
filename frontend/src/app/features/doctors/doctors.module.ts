@@ -3,6 +3,7 @@ import {CommonModule} from '@angular/common';
 import {DoctorsComponent} from './components/doctors/doctors.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {FaIconComponent} from "@fortawesome/angular-fontawesome";
+import {SpinnerComponent} from "../../shared/components/spinner/spinner.component";
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import {FaIconComponent} from "@fortawesome/angular-fontawesome";
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        FaIconComponent
+        FaIconComponent,
+        SpinnerComponent
     ]
 })
 export class DoctorsModule {}
