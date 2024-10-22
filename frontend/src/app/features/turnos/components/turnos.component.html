@@ -7,6 +7,7 @@
             <div class="mb-3">
               <label for="especialidad" class="form-label">Elegir especialidad</label>
               <select id="especialidad" class="form-select" formControlName="especialidad" (change)="obtenerDoctores()">
+                <option [value]="''">Seleccione una especialidad</option>
                 @for (especialidad of especialidades; track especialidad){
                   <option [value]="especialidad.id">{{especialidad.nombre}}</option>
                 }
@@ -17,6 +18,7 @@
             <div class="mb-3">
               <label for="doctor" class="form-label">Elegir doctor</label>
               <select id="doctor" class="form-select" formControlName="doctor">
+                <option [value]="''">Seleccione una doctor</option>
                 @for (doctor of doctores; track doctor){
                   <option [value]="doctor.id">{{doctor.persona?.nombre}}</option>
                 }
@@ -31,6 +33,8 @@
           <!-- Confirmar turno button -->
           <button type="submit" class="btn btn-primary" >CONFIRMAR TURNO</button>
         </form>
+
+      <pre *ngIf="submittedData">{{ submittedData | json }}</pre>
 
       </div>
   </div>
