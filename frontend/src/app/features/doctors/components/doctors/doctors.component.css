@@ -45,7 +45,7 @@
   padding: 45px 20px;
   font-family: "Open Sans", serif;
   border-radius: 10px;
-  color: #545454;
+  color: #343434;
   max-width: 800px;
   @media (max-width: 768px) {
     height: auto;

@@ -1,6 +1,8 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {HomeComponent} from './components/home/home.component';
+import {FaIconComponent} from "@fortawesome/angular-fontawesome";
+import {RouterLink} from "@angular/router";
 
 
 @NgModule({
@@ -8,7 +10,9 @@ import {HomeComponent} from './components/home/home.component';
     HomeComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FaIconComponent,
+    RouterLink
   ]
 })
 export class HomeModule { }

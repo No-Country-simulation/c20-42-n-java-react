@@ -1,3 +1,9 @@
+<nav class="container float-start">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a [routerLink]="['/specialties']" >Especialidades</a></li>
+    <li class="breadcrumb-item" [ngClass]="{active : true}">{{ especialidad.nombre }}</li>
+  </ol>
+</nav>
 <div *ngIf="especialidad">
   <div class="especialidad">
     <h3>{{especialidad.nombre}}</h3>

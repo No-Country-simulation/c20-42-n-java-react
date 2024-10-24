@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
 .jumbotron1 {
     background-color: rgba(13, 115, 133, 0.47); /* Color #0d7385 con 47% de opacidad */
     color: white; /* Asegura que el texto sea blanco y no transparente */
@@ -18,4 +20,74 @@
     font-size: 1.25rem;
     margin-top: 1.5rem;
 }
+#carousel-doctores{
+  display: flex;
+  height: 500px;
+  @media (max-width: 768px) {
+    height: auto;
+    padding: 20px 30px;
+    max-width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+.doctor-card{
+  background-color: #74A6A3;
+  display: flex;
+  border-radius: 10px;
+  height: 90%;
+  width: 60%;
+  text-align: left;
+  margin: auto;
+  padding: 30px 20px;
+  color: #141414;
+  font-family: "Open Sans", serif;
+  @media (max-width: 768px) {
+    height: auto;
+    padding: 20px 30px;
+    width: 95%;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+.doctor-picture{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width:800px;
+}
 
+.checked{
+  color: #ffce38;
+}
+
+.carousel-item{
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-content: center;
+}
+.carousel-item img{
+  height: 100%;
+  width: 80%;
+  margin: auto;
+  object-fit: cover;
+  border-radius: 15px;
+  @media (max-width: 768px) {
+    width: 300px;
+    height: 500px;
+  }
+}
+
+#carousel-btn{
+  width: 50%;
+  margin: 20px auto;
+  color: white;
+  border: 2px solid white;
+}
+
+#carousel-btn:active{
+  background-color: #74A6A3;
+  color: white;
+  border: 2px solid white;
+}
