@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {RegistroMedicoControllerService} from '../../../core/services/api-client/services';
-import {RegistroMedicoReq} from '../../../core/services/api-client/models';
 import {Router} from '@angular/router';
+import {RegistroMedicoControllerService, RegistroMedicoReq} from "../../../core/services/api-client";
 
 @Component({
   selector: 'app-consulta-medica',
@@ -51,10 +50,9 @@ export class ConsultaMedicaComponent implements OnInit {
           fecha: controls['fecha'].value, // O el valor adecuado para la fecha
         };
         console.log(registroMedico);
-        this.registroMedicoService.crearRegistroMedico({
-          body: registroMedico,
-          pacienteId: paciente.id
-        }).subscribe(response => {
+        this.registroMedicoService.crearRegistroMedico(
+           paciente.id, registroMedico
+        ).subscribe(response => {
           console.log('Registro médico creado:', response);
           // Redirigir a la página de pacientes
           this.router.navigate(['/pacientes']);

@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {DoctorControllerService} from "../../../core/services/api-client/services/doctor-controller.service";
 import {getUserFromLocalStorage} from "../../../core/guards/auth.guard";
-import {PacienteRes} from "../../../core/services/api-client/models/paciente-res";
+import {DoctorControllerService, PacienteRes} from "../../../core/services/api-client";
 
 @Component({
   selector: 'app-pacientes',
@@ -17,7 +16,7 @@ export class PacientesComponent implements OnInit{
 
   ngOnInit(): void {
     this.idDoctor = getUserFromLocalStorage().entidadId;
-    this._doctorService.obtenerPacientes1({id:this.idDoctor}).subscribe({
+    this._doctorService.obtenerPacientes1(this.idDoctor).subscribe({
       next: (value) => {
         this.pacientes = value;
       },

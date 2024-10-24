@@ -2,8 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../../core/services/auth/auth.service';
 import {Router} from '@angular/router';
-import {UsuarioControllerService} from '../../../core/services/api-client/services/usuario-controller.service';
-import {PacienteControllerService} from '../../../core/services/api-client/services/paciente-controller.service';
+import {PacienteControllerService, UsuarioControllerService} from "../../../core/services/api-client";
 
 @Component({
   selector: 'app-register',
@@ -20,7 +19,8 @@ export class RegisterComponent implements OnInit {
     private router: Router,
     private usuarioService: UsuarioControllerService,
     private pacienteService: PacienteControllerService
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.initializeForm();
@@ -37,7 +37,7 @@ export class RegisterComponent implements OnInit {
         telefono: ['', [Validators.required, Validators.pattern('^[0-9]{9}$')]],
         edad: ['', [Validators.required, Validators.min(18), Validators.max(100)]],
       },
-      { validator: this.passwordMatchValidator } // <-- Aquí se aplica el validador
+      {validator: this.passwordMatchValidator} // <-- Aquí se aplica el validador
     );
   }
 
@@ -45,7 +45,7 @@ export class RegisterComponent implements OnInit {
   passwordMatchValidator(formGroup: FormGroup) {
     const password = formGroup.get('password')?.value;
     const confirmPassword = formGroup.get('confirmPassword')?.value;
-    return password === confirmPassword ? null : { mismatch: true };
+    return password === confirmPassword ? null : {mismatch: true};
   }
 
   onSubmit(): void {
@@ -61,25 +61,22 @@ export class RegisterComponent implements OnInit {
           next: () => {
             this.pacienteService
               .crearPaciente({
-                body: {
                   persona: {
                     dni: controls['dni'].value,
                     edad: controls['edad'].value,
                     email: controls['email'].value,
                     nombre: controls['username'].value,
-                    telefono: controls['telefono'].value,
-                  },
-                },
-              })
+                    telefono: controls['telefono'].value
+                  }
+                }
+              )
               .subscribe({
                 next: (paciente) => {
                   this.usuarioService
                     .crearUsuario({
-                      body: {
-                        rol: 'PACIENTE',
-                        email: controls['email'].value,
-                        entidadId: paciente.id,
-                      },
+                      rol: 'PACIENTE',
+                      email: controls['email'].value,
+                      entidadId: paciente.id
                     })
                     .subscribe({
                       next: (backendUser) =>

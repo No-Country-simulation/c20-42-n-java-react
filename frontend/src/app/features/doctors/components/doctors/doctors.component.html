@@ -1,9 +1,10 @@
-<div *ngFor="let especialidad of especialidades">
-  <div *ngIf="especialidad.id !== undefined && doctoresPorEspecialidad[especialidad.id]" class="especialidad">
+<div *ngIf="especialidad">
+  <div class="especialidad">
     <h3>{{especialidad.nombre}}</h3>
   </div>
-  <div class="doctores">
-    <div class="doctor" *ngFor="let doctor of doctoresPorEspecialidad[especialidad!.id!]">
+  <app-spinner *ngIf="isLoading"></app-spinner>
+  <div *ngIf="doctores" class="doctores">
+    <div class="doctor" *ngFor="let doctor of doctores">
       <div class="doctor-picture">
         <img src="{{doctor.persona!.fotoUrl}}" alt="foto de perfil del doctor">
         <div class="mt-2 text-center">$ {{doctor.honorarios | number }} /sesión</div>
@@ -22,5 +23,8 @@
     </div>
   </div>
 </div>
+
+
+
 
 

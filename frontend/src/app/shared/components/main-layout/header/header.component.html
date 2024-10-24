@@ -20,11 +20,11 @@
                          [ngClass]="{'text-black': isSpecialtiesOrDoctors() || router.url === '/specialties', 'text-white': !isSpecialtiesOrDoctors() && router.url !== '/specialties'}"
                          routerLink="/specialties" [class.active]="router.url === '/specialties'">Especialidades</a>
                     </li>
-                    <li class="nav-item me-4">
-                      <a class="nav-link"
-                         [ngClass]="{'text-black': isSpecialtiesOrDoctors() || router.url === '/doctors', 'text-white': !isSpecialtiesOrDoctors() && router.url !== '/doctors'}"
-                         routerLink="/doctors" [class.active]="router.url === '/doctors'">Médicos</a>
-                    </li>
+<!--                    <li class="nav-item me-4">-->
+<!--                      <a class="nav-link"-->
+<!--                         [ngClass]="{'text-black': isSpecialtiesOrDoctors() || router.url === '/doctors', 'text-white': !isSpecialtiesOrDoctors() && router.url !== '/doctors'}"-->
+<!--                         routerLink="/doctors" [class.active]="router.url === '/doctors'">Médicos</a>-->
+<!--                    </li>-->
 <!--                    <li class="nav-item me-4" *ngIf="_authService.isDoctor()">-->
 <!--                      <a class="nav-link"-->
 <!--                         [ngClass]="{'text-black': isSpecialtiesOrDoctors() || router.url === '/historial-medico', 'text-white': !isSpecialtiesOrDoctors() && router.url !== '/historial-medico'}"-->

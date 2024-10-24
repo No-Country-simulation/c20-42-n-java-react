@@ -24,7 +24,9 @@ const routes: Routes = [
     children: [
       { path: '', component: HomeComponent },
       { path: 'specialties', component: SpecialtiesComponent },
-      { path: 'doctors', component: DoctorsComponent },
+      { path: 'specialties/:id',
+        component: DoctorsComponent
+      },
       {
         path: 'historial-medico/:id',
         canActivate: [doctorGuard],

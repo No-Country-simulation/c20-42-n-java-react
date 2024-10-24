@@ -299,7 +299,7 @@
         "tags": [
           "especialidad-controller"
         ],
-        "operationId": "obtenerEspecialidad_1",
+        "operationId": "obtenerEspecialidadPorId",
         "parameters": [
           {
             "name": "id",
@@ -776,12 +776,18 @@
           {
             "name": "especialidad",
             "in": "query",
-            "description": "ID de la especialidad"
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
           },
           {
             "name": "nombre",
             "in": "query",
-            "description": "Nombre del doctor"
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {

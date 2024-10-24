@@ -21,7 +21,7 @@ export class HeaderComponent {
 
   isSpecialtiesOrDoctors(): boolean {
     return (
-      this.router.url === '/specialties' ||
+      this.router.url.includes('/specialties') ||
       this.router.url === '/doctor' ||
       this.router.url === '/doctors' ||
       this.router.url === '/turnos' ||

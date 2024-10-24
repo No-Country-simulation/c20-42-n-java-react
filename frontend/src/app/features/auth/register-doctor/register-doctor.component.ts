@@ -2,12 +2,12 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../../core/services/auth/auth.service';
 import {Router} from '@angular/router';
-import {UsuarioControllerService} from '../../../core/services/api-client/services/usuario-controller.service';
-import {DoctorControllerService} from '../../../core/services/api-client/services/doctor-controller.service';
-import {Especialidad} from '../../../core/services/api-client/models/especialidad';
 import {
-  EspecialidadControllerService
-} from '../../../core/services/api-client/services/especialidad-controller.service';
+  DoctorControllerService,
+  Especialidad,
+  EspecialidadControllerService,
+  UsuarioControllerService
+} from "../../../core/services/api-client";
 
 @Component({
   selector: 'app-register-doctor',
@@ -26,7 +26,8 @@ export class RegisterDoctorComponent implements OnInit {
     private usuarioService: UsuarioControllerService,
     private doctorService: DoctorControllerService,
     private especialidadesService: EspecialidadControllerService
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.initializeForm();
@@ -52,7 +53,7 @@ export class RegisterDoctorComponent implements OnInit {
         licencia: ['', Validators.required],
         especialidad: ['', Validators.required],
       },
-      { validators: this.passwordMatchValidator }
+      {validators: this.passwordMatchValidator}
     );
   }
 
@@ -60,7 +61,7 @@ export class RegisterDoctorComponent implements OnInit {
   passwordMatchValidator(formGroup: FormGroup) {
     const password = formGroup.get('password')?.value;
     const confirmPassword = formGroup.get('confirmPassword')?.value;
-    return password === confirmPassword ? null : { mismatch: true };
+    return password === confirmPassword ? null : {mismatch: true};
   }
 
   onSubmit(): void {
@@ -76,28 +77,24 @@ export class RegisterDoctorComponent implements OnInit {
           next: () => {
             this.doctorService
               .crearDoctor({
-                body: {
-                  persona: {
-                    dni: controls['dni'].value,
-                    edad: controls['edad'].value,
-                    email: controls['email'].value,
-                    nombre: controls['username'].value,
-                    telefono: controls['telefono'].value,
-                  },
-                  especialidadId: controls['especialidad'].value,
-                  licencia: controls['licencia'].value,
-                  honorarios: 80000,
+                persona: {
+                  dni: controls['dni'].value,
+                  edad: controls['edad'].value,
+                  email: controls['email'].value,
+                  nombre: controls['username'].value,
+                  telefono: controls['telefono'].value,
                 },
+                especialidadId: controls['especialidad'].value,
+                licencia: controls['licencia'].value,
+                honorarios: 80000,
               })
               .subscribe({
                 next: (doctor) => {
                   this.usuarioService
                     .crearUsuario({
-                      body: {
-                        rol: 'DOCTOR',
-                        email: controls['email'].value,
-                        entidadId: doctor.id,
-                      },
+                      rol: 'DOCTOR',
+                      email: controls['email'].value,
+                      entidadId: doctor.id,
                     })
                     .subscribe({
                       next: (backendUser) =>

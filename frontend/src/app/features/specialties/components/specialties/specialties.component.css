@@ -26,3 +26,8 @@
 .doctor-info{
   display: flex;
 }
+
+.especialidad :hover{
+  cursor: pointer;
+}
+

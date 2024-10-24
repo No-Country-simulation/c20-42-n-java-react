@@ -2,7 +2,7 @@
 <h1 class="text-center mb-5" style="color: #2c7873;">Nuestras Especialidades</h1>
   <app-spinner *ngIf="isLoading"></app-spinner>
 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 justify-content-center">
-  <div *ngFor="let especialidad of especialidades" class="col text-center">
+  <div *ngFor="let especialidad of especialidades" class="col text-center especialidad" (click)="redirigirADoctores(especialidad.id)" >
     <img [src]="especialidad.fotoUrl" alt="{{especialidad.nombre}}" class="specialty-image">
     <h3 class="specialty-title">{{ especialidad.nombre }}</h3>
   </div>

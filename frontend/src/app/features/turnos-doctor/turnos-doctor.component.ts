@@ -2,13 +2,10 @@ import {ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild,} from '@ang
 import {CalendarOptions,} from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
-import {TurnoControllerService} from '../../core/services/api-client/services';
-import {
-  ObtenerTurnoPorDoctor$Params
-} from '../../core/services/api-client/fn/turno-controller/obtener-turno-por-doctor';
 import {Subject} from 'rxjs';
 import {createPopper} from '@popperjs/core';
 import esLocale from '@fullcalendar/core/locales/es';
+import {TurnoControllerService} from "../../core/services/api-client";
 
 declare var bootstrap: any;
 
@@ -46,11 +43,9 @@ export class TurnosDoctorComponent implements OnInit {
   ngOnInit(): void {
     const doctorId = this.getDoctorId();
     if (doctorId !== null) {
-      const params: ObtenerTurnoPorDoctor$Params = { idDoctor: doctorId };
       this.turnoControllerService
-        .obtenerTurnoPorDoctor$Response(params)
-        .subscribe((response) => {
-          const turnos = response.body;
+        .obtenerTurnoPorDoctor(doctorId)
+        .subscribe((turnos) => {
           this.events = turnos.map((turno) => ({
             start: new Date(turno.fechaHora!),
             title: `Turno con ${turno.paciente?.persona?.nombre}`,
