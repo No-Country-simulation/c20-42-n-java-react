@@ -16,7 +16,6 @@ import {MainLayoutComponent} from './shared/components/main-layout/main-layout/m
 import {HighlightDirective} from './shared/directives/highlight.directive';
 import {CustomPipe} from './shared/pipes/custom.pipe';
 import {provideHttpClient, withInterceptors} from '@angular/common/http';
-import {TurnosComponent} from './features/turnos/turnos.component';
 import {HistorialMedicoComponent} from './features/historial-medico/historial-medico.component';
 import {getAuth, provideAuth} from '@angular/fire/auth';
 import {initializeApp, provideFirebaseApp} from '@angular/fire/app';
@@ -28,6 +27,9 @@ import {authInterceptor} from './core/interceptors/auth.interceptor';
 import {AuthLayoutComponent} from './shared/components/auth-layout/auth-layout.component';
 import {TurnosDoctorComponent} from './features/turnos-doctor/turnos-doctor.component';
 import {PacientesModule} from "./features/pacientes-doctor/pacientes.module";
+import {ConsultaMedicaComponent} from './features/consulta-medica/components/consulta-medica.component';
+import {CommonModule} from '@angular/common';
+import {TurnosModule} from './features/turnos/turnos.module';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyD9S8qVCdnWpzM0rtJN_EKlkcW3V3FhlPQ',
@@ -47,10 +49,11 @@ const firebaseConfig = {
     MainLayoutComponent,
     HighlightDirective,
     CustomPipe,
-    TurnosComponent,
     HistorialMedicoComponent,
     AuthLayoutComponent,
-    TurnosDoctorComponent
+    TurnosDoctorComponent,
+    ConsultaMedicaComponent
+
   ],
   imports: [
     BrowserModule,
@@ -65,7 +68,10 @@ const firebaseConfig = {
     AngularFireAuthModule,
     AuthModule,
     FullCalendarModule,
-    PacientesModule
+    PacientesModule,
+    TurnosModule,
+    CommonModule
+
   ],
   providers: [
     provideHttpClient(withInterceptors([authInterceptor])),

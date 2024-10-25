@@ -1,6 +1,5 @@
 package com.telemedicina.app.dto.response;
 
-import com.telemedicina.app.model.RegistroMedico;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

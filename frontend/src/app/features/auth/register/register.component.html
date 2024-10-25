@@ -19,7 +19,7 @@
                                 <input type="text" class="form-control" id="nombres" formControlName="username">
                                 <div *ngIf="registroForm.get('username')?.invalid && registroForm.get('username')?.touched"
                                     class="text-danger">
-                                    El nombre es requerido.
+                                    El nombre debe tener al menos 3 caracteres.
                                 </div>
                             </div>
                             <div class="mb-3 col-12 col-md-6">
@@ -29,18 +29,30 @@
                         </div>
                         <div class="row">
                             <div class="mb-3 col-12 col-md-6">
-                                <label for="edad" class="form-label">Edad</label>
+                                <label for="edad" class="form-label">Edad *</label>
                                 <input type="number" class="form-control" id="edad" formControlName="edad">
+                                <div *ngIf="registroForm.get('edad')?.invalid && registroForm.get('edad')?.touched"
+                                    class="text-danger">
+                                    La edad debe ser mayor a 18 años
+                                </div>
                             </div>
                             <div class="mb-3 col-12 col-md-6">
-                                <label for="telefono" class="form-label">Teléfono</label>
+                                <label for="telefono" class="form-label">Teléfono *</label>
                                 <input type="tel" class="form-control" id="telefono" formControlName="telefono">
+                                <div *ngIf="registroForm.get('telefono')?.invalid && registroForm.get('telefono')?.touched"
+                                    class="text-danger">
+                                    El teléfono debe tener 9 dígitos.
+                                </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="mb-3 col-12 col-md-6">
-                                <label for="dni" class="form-label">Dni</label>
+                                <label for="dni" class="form-label">DNI *</label>
                                 <input type="number" class="form-control" id="dni" formControlName="dni">
+                                <div *ngIf="registroForm.get('dni')?.invalid && registroForm.get('dni')?.touched"
+                                    class="text-danger">
+                                    El DNI debe tener 8 dígitos.
+                                </div>
                             </div>
                             <div class="mb-3 col-12 col-md-6">
                                 <label for="email" class="form-label">Correo Electrónico *</label>
@@ -48,6 +60,9 @@
                                 <div *ngIf="registroForm.get('email')?.invalid && registroForm.get('email')?.touched"
                                     class="text-danger">
                                     Email no válido.
+                                </div>
+                                <div *ngIf="emailInUse" class="text-danger">
+                                    Este correo electrónico ya está en uso. Por favor, prueba con otro.
                                 </div>
                             </div>
                         </div>
@@ -60,12 +75,16 @@
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label for="confirm-password" class="form-label">Confirmar tu contraseña</label>
-                            <input type="password" class="form-control" id="confirm-password">
+                            <label for="confirm-password" class="form-label">Confirmar tu contraseña *</label>
+                            <input type="password" class="form-control" id="confirm-password"
+                                formControlName="confirmPassword">
                         </div>
                         <div class="row">
                             <div class="d-grid">
-                                <button type="submit" class="btn btn-primary">Regístrate</button>
+                                <button type="submit" class="btn btn-primary"
+                                    [disabled]="registroForm.invalid || emailInUse">
+                                    Regístrate
+                                </button>
                             </div>
                         </div>
                     </form>

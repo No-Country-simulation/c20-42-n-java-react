@@ -1,14 +1,11 @@
-import {ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {CalendarOptions} from '@fullcalendar/core';
+import {ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild,} from '@angular/core';
+import {CalendarOptions,} from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
-import {TurnoControllerService} from '../../core/services/api-client/services';
-import {
-  ObtenerTurnoPorDoctor$Params
-} from '../../core/services/api-client/fn/turno-controller/obtener-turno-por-doctor';
 import {Subject} from 'rxjs';
 import {createPopper} from '@popperjs/core';
 import esLocale from '@fullcalendar/core/locales/es';
+import {TurnoControllerService} from "../../core/services/api-client";
 
 declare var bootstrap: any;
 
@@ -17,12 +14,12 @@ declare var bootstrap: any;
   templateUrl: './turnos-doctor.component.html',
   styleUrl: './turnos-doctor.component.css',
 })
-
 export class TurnosDoctorComponent implements OnInit {
   @ViewChild('calendar') calendarComponent!: ElementRef;
   events: any[] = [];
   viewDate: Date = new Date();
   refresh: Subject<any> = new Subject();
+  selectedEvent: any; // Define selectedEvent
 
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth',
@@ -35,7 +32,7 @@ export class TurnosDoctorComponent implements OnInit {
     windowResizeDelay: 100,
     eventMouseEnter: this.handleEventMouseEnter.bind(this),
     eventMouseLeave: this.handleEventMouseLeave.bind(this),
-    eventClick: this.handleEventClick.bind(this)
+    eventClick: this.handleEventClick.bind(this),
   };
 
   constructor(
@@ -46,15 +43,14 @@ export class TurnosDoctorComponent implements OnInit {
   ngOnInit(): void {
     const doctorId = this.getDoctorId();
     if (doctorId !== null) {
-      const params: ObtenerTurnoPorDoctor$Params = { idDoctor: doctorId };
       this.turnoControllerService
-        .obtenerTurnoPorDoctor$Response(params)
-        .subscribe((response) => {
-          const turnos = response.body;
+        .obtenerTurnoPorDoctor(doctorId)
+        .subscribe((turnos) => {
           this.events = turnos.map((turno) => ({
             start: new Date(turno.fechaHora!),
             title: `Turno con ${turno.paciente?.persona?.nombre}`,
             allDay: false,
+            paciente: turno.paciente // Añadir el paciente a los eventos
           }));
           this.calendarOptions = {
             ...this.calendarOptions,
@@ -89,16 +85,20 @@ export class TurnosDoctorComponent implements OnInit {
   }
 
   handleEventClick(clickInfo: any) {
+    this.selectedEvent = clickInfo.event; // Actualiza selectedEvent
     const modal = document.getElementById('eventDetailsModal');
     if (modal) {
       const modalTitle = modal.querySelector('.modal-title');
       const modalBody = modal.querySelector('.modal-body');
       if (modalTitle && modalBody) {
         modalTitle.textContent = 'Detalles del Evento';
-        const eventStart = clickInfo.event.start ? new Date(clickInfo.event.start).toLocaleString() : 'Fecha no disponible';
+        const eventStart = clickInfo.event.start
+          ? new Date(clickInfo.event.start).toLocaleString()
+          : 'Fecha no disponible';
         modalBody.innerHTML = `
           <p><strong>Título:</strong> ${clickInfo.event.title}</p>
           <p><strong>Fecha y Hora:</strong> ${eventStart}</p>
+          <p></p>
         `;
       }
       const bootstrapModal = new bootstrap.Modal(modal);
@@ -134,5 +134,13 @@ export class TurnosDoctorComponent implements OnInit {
   getDoctorId(): number | null {
     const usuario = this.getUserFromLocalStorage();
     return usuario ? usuario.entidadId : null;
+  }
+
+  onEventClick(event: any) {
+    this.selectedEvent = event.event;
+  }
+
+  onConsultaMedica(paciente: any) {
+    localStorage.setItem('paciente', JSON.stringify(paciente));
   }
 }

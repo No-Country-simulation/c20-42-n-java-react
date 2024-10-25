@@ -55,21 +55,45 @@
             </div>
         </div>
 
-        <div class="row text-center my-2">
-            <div class="col-6 col-md-6">
-                <img src="/assets/images/especialistas-decorativo-inicio.png" 
-                class="img-fluid">
+        <div *ngIf="doctoresCarousel" class="row text-center" >
+          <div class="row text-center">
+            <h2>Profesionales de confianza, comprometidos con tu salud</h2>
+          </div>
+          <div id="carousel-doctores" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div *ngFor="let doctor of doctoresCarousel; let i = index;" class="carousel-item" [ngClass]="{active:i===0}">
+                <div class="doctor-card">
+                  <div class="doctor-picture">
+                    <img src="{{doctor.persona!.fotoUrl}}" alt="foto de perfil del doctor">
+                    <div class="mt-2 text-center">$ {{doctor.honorarios | number }} /sesión</div>
+                  </div>
+                  <div class="doctor-info">
+                    <h4 class="fw-bold mb-2">Dr. {{ doctor.persona?.nombre }}</h4>
+                    <fa-icon [icon]="faStar" [ngClass]="{'checked' : ((doctor.honorarios! + 4) % 5 + 4)>1}"></fa-icon>
+                    <fa-icon [icon]="faStar" [ngClass]="{'checked' : ((doctor.honorarios! + 4) % 5 + 4)>2}"></fa-icon>
+                    <fa-icon [icon]="faStar" [ngClass]="{'checked' : ((doctor.honorarios! + 4) % 5 + 4)>3}"></fa-icon>
+                    <fa-icon [icon]="faStar" [ngClass]="{'checked' : ((doctor.honorarios! + 4) % 5 + 4)>4}"></fa-icon>
+                    <fa-icon [icon]="faStar" [ngClass]="{'checked' : ((doctor.honorarios! + 4) % 5 + 4)>=5}"></fa-icon>
+                    <p class="text-start mt-2">Es una psicóloga con un título de la Universidad de Edimburgo.
+                      Se especializa en terapia cognitivo-conductual y tiene una amplia experiencia en el tratamiento de trastornos de ansiedad y depresión.
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="col-6 col-md-6 bg-white text-dark p-3 border border-white">
-                <h2>Nuestros Especialistas</h2>
-                <p>Conocé el staff de profesionales</p>
-                <button class="btn custom-btn-verde">VER MÁS</button>
-            </div>
-            <div class="col-12">
-                <button class="btn custom-btn-verde btn-lg">SACAR TURNO</button>
-            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carousel-doctores" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carousel-doctores" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+          <a [routerLink]="['/specialties']">
+            <button id="carousel-btn" type="button" class="btn bt "><h3>ELEGIR POR ESPECIALIDAD</h3></button>
+          </a>
         </div>
-
 
     </div>
 </div>

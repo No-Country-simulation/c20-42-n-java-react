@@ -1,23 +1,49 @@
+.pencil-icon{
+  position: absolute;
+  bottom: 15%;
+  right: 20%;
+}
+
+.pencil-icon:hover{
+  color: #44AAFF;
+  cursor: pointer;
+}
+
+
+input[type='file']{
+  display: none;
+}
+
+.profile-pic{
+  position: relative;
+}
+
 .profile-card {
-  background-color: #e9eef1; /* Color de fondo */
+  background-color: #09525e1a; /* Color de fondo */
   border-radius: 10px;
-  padding: 20px;
+  padding: 30px 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   display: flex;
-  align-items: center;
-  max-width: 700px;
+  align-items: start;
+  max-width: 1500px;
+  font-size: 1.2em;
 }
 
 .profile-card img {
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   object-fit: cover;
-  margin-right: 20px;
+}
+
+.profile-pic{
+  margin: 0 20px;
+  padding: 25px;
 }
 
 .profile-info {
   text-align: left;
+  padding: 20px;
 }
 
 .profile-info h5 {
@@ -27,9 +53,9 @@
 
 .profile-info p {
   margin: 0;
-  color: #333;
 }
 
 .profile-info p strong {
   font-weight: bold;
+  color: #09525e;
 }

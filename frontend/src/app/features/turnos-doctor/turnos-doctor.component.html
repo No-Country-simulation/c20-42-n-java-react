@@ -1,5 +1,5 @@
 <div class="container">
-  <full-calendar #calendar [options]="calendarOptions"></full-calendar>
+  <full-calendar #calendar [options]="calendarOptions" (eventClick)="handleEventClick($event)"></full-calendar>
 </div>
 
 <!-- Modal -->
@@ -14,6 +14,7 @@
         <!-- Los detalles del evento se llenarán dinámicamente -->
       </div>
       <div class="modal-footer">
+        <button type="button" data-bs-dismiss="modal" class="btn custom-btn-verde text-white" (click)="onConsultaMedica(selectedEvent.extendedProps.paciente)" routerLink="/consulta-medica">Consulta Medica</button>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
       </div>
     </div>

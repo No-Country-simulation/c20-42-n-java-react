@@ -3,10 +3,8 @@ package com.telemedicina.app.service.mapper;
 import com.telemedicina.app.dto.request.DoctorReq;
 import com.telemedicina.app.dto.response.DoctorRes;
 import com.telemedicina.app.model.Doctor;
-import com.telemedicina.app.model.Especialidad;
 import com.telemedicina.app.repository.EspecialidadRepo;
 import jakarta.persistence.EntityNotFoundException;
-import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

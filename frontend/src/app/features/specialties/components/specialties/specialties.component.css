@@ -22,3 +22,12 @@
   padding-top: 2rem;
   padding-bottom: 4rem;
 }
+
+.doctor-info{
+  display: flex;
+}
+
+.especialidad :hover{
+  cursor: pointer;
+}
+

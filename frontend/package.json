@@ -8,7 +8,7 @@
     "build-prod": "ng build --configuration production --aot",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "api-gen": "ng-openapi-gen --input ./src/openapi/openapi.json --output ./src/app/core/services/api-client"
+    "api-gen": "openapi-generator-cli generate -i src/openapi/openapi.json -g typescript-angular -o src/app/core/services/api-client --skip-validate-spec "
   },
   "private": true,
   "dependencies": {
@@ -21,6 +21,9 @@
     "@angular/platform-browser": "^18.2.0",
     "@angular/platform-browser-dynamic": "^18.2.0",
     "@angular/router": "^18.2.0",
+    "@fortawesome/angular-fontawesome": "^0.15.0",
+    "@fortawesome/free-regular-svg-icons": "^6.6.0",
+    "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "@fullcalendar/angular": "^6.1.15",
     "@fullcalendar/bootstrap5": "^6.1.15",
     "@fullcalendar/core": "^6.1.15",
@@ -31,7 +34,6 @@
     "date-fns": "^4.0.0-beta.1",
     "firebase": "^10.14.1",
     "jquery": "^3.7.1",
-    "ng-openapi-gen": "^0.52.0",
     "rxjs": "~7.8.0",
     "telemedicina-app": "file:",
     "tslib": "^2.3.0",

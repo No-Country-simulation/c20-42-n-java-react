@@ -1,0 +1,65 @@
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+            <div *ngIf="paciente">
+                <h4>Detalles del Paciente : {{ paciente.persona.nombre }} - {{ paciente.persona.edad }} años</h4>
+            </div>
+            <div *ngIf="!paciente">
+                <p>No se encontraron datos del paciente.</p>
+            </div>
+
+            <form [formGroup]="consultaForm" (ngSubmit)="onSubmit()">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="motivo" class="form-label">Motivo de la consulta</label>
+                        <input type="text" class="form-control" id="motivo" placeholder="Motivo breve"
+                            formControlName="motivo">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="fecha" class="form-label">Fecha</label>
+                        <input type="date" class="form-control" id="fecha" formControlName="fecha">
+                    </div>
+                </div>
+                <!-- <div class="mb-3">
+                    <label for="sintomas" class="form-label">Síntomas</label>
+                    <textarea class="form-control" id="sintomas" rows="3"
+                        placeholder="Describa los síntomas detalladamente" formControlName="sintomas"></textarea>
+                </div> -->
+                <div formArrayName="sintomas">
+                    <div *ngFor="let sintoma of sintomas.controls; let i = index">
+                        <label for="sintoma-{{ i }}">Síntoma </label>
+                        <input id="sintoma-{{ i }}" [formControlName]="i" />
+                        <button type="button" (click)="removeSintoma(i)">Eliminar</button>
+                    </div>
+                    <button type="button" (click)="addSintoma()">Agregar Síntoma</button>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="diagnostico" class="form-label">Diagnóstico</label>
+                        <textarea class="form-control" id="diagnostico" rows="3" placeholder="Ingrese el diagnóstico"
+                            formControlName="diagnostico"></textarea>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="tratamiento" class="form-label">Tratamiento</label>
+                        <textarea class="form-control" id="tratamiento" rows="3" placeholder="Describa el tratamiento"
+                            formControlName="tratamiento"></textarea>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="seguimiento" class="form-label">Seguimiento</label>
+                        <textarea class="form-control" id="seguimiento" rows="3" placeholder="Detalles del seguimiento"
+                            formControlName="seguimiento"></textarea>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="observaciones" class="form-label">Observaciones</label>
+                        <textarea class="form-control" id="observaciones" rows="3"
+                            placeholder="Observaciones adicionales" formControlName="observaciones"></textarea>
+                    </div>
+                </div>
+                <button type="submit" class="btn custom-btn-verde">Enviar Formulario</button>
+            </form>
+
+        </div>
+    </div>
+</div>

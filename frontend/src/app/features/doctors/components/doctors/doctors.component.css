@@ -1,4 +1,85 @@
-.img-padding {
-    padding: 10px;
-    padding-top: 20px; /* Añade padding arriba */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+.especialidad{
+  width: 50%;
+  height: 5em;
+  background-color: #09525e;
+  color: white;
+  padding-left: 4em;
+  padding-top: 0.5em;
+  border-radius: 0 4em 4em 0;
+  margin-top: 3em;
+  @media (max-width: 768px) {
+    width: 80%;
+    padding-left: 2em;
+  }
 }
+
+#search-input{
+  border-radius: 0 4em 4em 0;
+}
+#search-button{
+  border-radius: 4em 0 0 4em;
+}
+
+
+.doctores{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  margin: 10px 10px;
+  gap: 20px 80px;
+  padding: 60px 60px;
+  @media (max-width: 768px) {
+    margin: 20px 10px;
+    padding: 10px 20px;
+    gap: 10px 20px;
+  }
+}
+
+.doctor{
+  width: 30rem;
+  height: 20rem;
+  background-color: #09525e1a;
+  display: flex;
+  gap: 20px 30px;
+  padding: 45px 20px;
+  font-family: "Open Sans", serif;
+  border-radius: 10px;
+  color: #343434;
+  max-width: 800px;
+  @media (max-width: 768px) {
+    height: auto;
+    padding: 20px 30px;
+    max-width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.checked{
+  color: #ffce38;
+}
+
+.doctor-picture{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  width:800px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    height: auto;
+  }
+}
+
+
+.doctor img{
+  height: 100%;
+  width: auto;
+  border-radius: 5%;
+  object-fit: cover;
+}
+
+
+

@@ -30,6 +30,13 @@ public class EspecialidadController {
     public List<Especialidad> obtenerEspecialidad(){
         return especialidadService.obtenerEspecialidades();
     }
+
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Especialidad obtenerEspecialidadPorId(@PathVariable Long id){
+        return especialidadService.encontrarEspecialidad(id);
+    }
+
     
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -50,10 +57,5 @@ public class EspecialidadController {
         especialidadService.eliminarEspecialidad(id);
         return "Especialidad eliminada correctamente";
     }
-    
-    @GetMapping("/{id}")
-    @ResponseStatus(HttpStatus.FOUND)
-    public Especialidad obtenerEspecialidad(@PathVariable Long id){
-        return especialidadService.encontrarEspecialidad(id);
-    }
+
 }

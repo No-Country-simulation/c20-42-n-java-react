@@ -1,10 +1,14 @@
 import {Component, OnInit} from '@angular/core';
-import {Doctor} from '../../../../core/services/api-client/models/doctor';
-import {DoctorControllerService} from '../../../../core/services/api-client/services/doctor-controller.service';
-import {Especialidad} from '../../../../core/services/api-client/models';
-import {EspecialidadControllerService} from '../../../../core/services/api-client/services';
+import {faStar} from "@fortawesome/free-solid-svg-icons";
+import {ActivatedRoute} from "@angular/router";
+import {
+  DoctorControllerService,
+  DoctorRes,
+  Especialidad,
+  EspecialidadControllerService
+} from "../../../../core/services/api-client";
+import {from, lastValueFrom} from "rxjs";
 
-//import * as console from "node:console";
 
 @Component({
   selector: 'app-doctors',
@@ -12,55 +16,39 @@ import {EspecialidadControllerService} from '../../../../core/services/api-clien
   styleUrl: './doctors.component.css',
 })
 export class DoctorsComponent implements OnInit {
+  especialidad! : Especialidad;
+  doctores! : DoctorRes[];
   especialidades: Especialidad[] = [];
-  doctoresPorEspecialidad: { [key: number]: Doctor[] } = {};
+  isLoading: boolean = true;
 
   constructor(
+    private _route: ActivatedRoute,
     private especialidadService: EspecialidadControllerService,
     private doctorService: DoctorControllerService
   ) {}
 
-  ngOnInit(): void {
-    this.obtenerEspecialidades();
+  ngOnInit() {
+    let especialidadId = this._route.snapshot.params['id'];
+    this.obtenerEspecialidad(especialidadId);
+    this.obtenerDoctores(especialidadId);
   }
 
-  obtenerEspecialidades() {
-    this.especialidadService.obtenerEspecialidad().subscribe({
-      next: (value) => {
-        this.especialidades = value;
-        console.log(this.especialidades);
-
-        // Iterar sobre cada especialidad y filtrar doctores por su ID
-        this.especialidades.forEach((especialidad: Especialidad) => {
-          if (especialidad.id !== undefined) {
-            this.filtrarDoctoresPorEspecialidad(especialidad.id);
-          }
-        });
-      },
-      error: (err) => {
-        console.error('Error fetching especialidad:', err);
-      },
-      complete: () => {
-        console.log('especialidad fetching completed');
-      },
-    });
+  obtenerEspecialidad(especialidadId : number) {
+    this.especialidadService.obtenerEspecialidadPorId(especialidadId).subscribe({
+      next : especialidad  => {this.especialidad = especialidad}
+    })
   }
 
-  filtrarDoctoresPorEspecialidad(especialidadId: number) {
-    this.doctorService
-      .obtenerDoctores({especialidad: especialidadId})
-      .subscribe({
-        next: (doctores: Doctor[]) => {
-          if (doctores.length > 0) {
-            this.doctoresPorEspecialidad[especialidadId] = doctores;
-          }
-        },
-        error: (err) => {
-          console.error('Error fetching doctores:', err);
-        },
-        complete: () => {
-          console.log('doctores fetching completed');
-        },
-      });
+  obtenerDoctores(especialidadId : number){
+
+    this.doctorService.obtenerDoctores(especialidadId.toString()).subscribe({
+      next : (doctores : DoctorRes[]) => {
+        this.doctores = doctores;
+        this.isLoading = false;
+        }
+      }
+    );
   }
+
+  protected readonly faStar = faStar;
 }
