@@ -108,6 +108,14 @@
             <artifactId>google-http-client-jackson2</artifactId>
             <version>1.45.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-mysql</artifactId>
+        </dependency>
         <!-- ****************************************************************************************** -->
     </dependencies>
 

@@ -6,7 +6,8 @@ import {
   DoctorControllerService,
   DoctorRes,
   Especialidad,
-  EspecialidadControllerService, TurnoControllerService
+  EspecialidadControllerService,
+  TurnoControllerService
 } from "../../../core/services/api-client";
 
 

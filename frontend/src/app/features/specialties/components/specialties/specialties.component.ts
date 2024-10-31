@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Especialidad, EspecialidadControllerService} from "../../../../core/services/api-client";
-import {ActivatedRoute, Router} from "@angular/router";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-specialties',

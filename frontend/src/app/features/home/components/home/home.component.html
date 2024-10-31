@@ -74,8 +74,7 @@
                     <fa-icon [icon]="faStar" [ngClass]="{'checked' : ((doctor.honorarios! + 4) % 5 + 4)>3}"></fa-icon>
                     <fa-icon [icon]="faStar" [ngClass]="{'checked' : ((doctor.honorarios! + 4) % 5 + 4)>4}"></fa-icon>
                     <fa-icon [icon]="faStar" [ngClass]="{'checked' : ((doctor.honorarios! + 4) % 5 + 4)>=5}"></fa-icon>
-                    <p class="text-start mt-2">Es una psicóloga con un título de la Universidad de Edimburgo.
-                      Se especializa en terapia cognitivo-conductual y tiene una amplia experiencia en el tratamiento de trastornos de ansiedad y depresión.
+                    <p class="text-start mt-2">{{doctor.descripcion}}
                     </p>
                   </div>
                 </div>

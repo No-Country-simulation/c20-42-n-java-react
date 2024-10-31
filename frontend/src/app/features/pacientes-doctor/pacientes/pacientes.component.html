@@ -15,7 +15,7 @@
           @for (paciente of pacientes; track paciente){
             <tr class="row">
               <td>{{ paciente.persona?.nombre }}</td>
-              <td >{{ paciente.persona?.edad }}</td>
+              <td >{{ paciente.persona?.fdn }}</td>
               <td >{{ paciente.persona?.telefono }}</td>
               <td >{{ paciente.persona?.email }}</td>
               <td class="view-history"><a [routerLink]="['/historial-medico', paciente.id]">Ver Historial</a></td>

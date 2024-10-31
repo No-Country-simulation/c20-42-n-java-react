@@ -22,5 +22,4 @@ public class Especialidad {
     private String descripcion;
     private String fotoUrl;
     
-    
 }

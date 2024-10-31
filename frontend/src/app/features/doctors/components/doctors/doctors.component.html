@@ -1,7 +1,7 @@
-<nav class="container float-start">
+<nav *ngIf="especialidad" class="container float-start">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a [routerLink]="['/specialties']" >Especialidades</a></li>
-    <li class="breadcrumb-item" [ngClass]="{active : true}">{{ especialidad.nombre }}</li>
+    <li class="breadcrumb-item" [ngClass]="{active : true}">{{ especialidad!.nombre! }}</li>
   </ol>
 </nav>
 <div *ngIf="especialidad">
@@ -16,14 +16,14 @@
         <div class="mt-2 text-center">$ {{doctor.honorarios | number }} /sesión</div>
       </div>
       <div class="doctor-info">
-        <h4 class="fw-bold mb-1">Dr. {{ doctor.persona?.nombre }}</h4>
+        <h4 class="fw-bold mb-1"><span *ngIf="doctor.persona!.sexo ==='F'">Dra.</span><span *ngIf="doctor.persona?.sexo ==='M'">Dr.</span>
+          {{ doctor.persona?.nombre + " " + doctor.persona?.apellido}}</h4>
         <fa-icon [icon]="faStar" [ngClass]="{'checked' : ((doctor.honorarios! + 4) % 5 + 4)>1}"></fa-icon>
         <fa-icon [icon]="faStar" [ngClass]="{'checked' : ((doctor.honorarios! + 4) % 5 + 4)>2}"></fa-icon>
         <fa-icon [icon]="faStar" [ngClass]="{'checked' : ((doctor.honorarios! + 4) % 5 + 4)>3}"></fa-icon>
         <fa-icon [icon]="faStar" [ngClass]="{'checked' : ((doctor.honorarios! + 4) % 5 + 4)>4}"></fa-icon>
         <fa-icon [icon]="faStar" [ngClass]="{'checked' : ((doctor.honorarios! + 4) % 5 + 4)>=5}"></fa-icon>
-        <p>Es una psicóloga con un título de la Universidad de Edimburgo.
-          Se especializa en terapia cognitivo-conductual y tiene una amplia experiencia en el tratamiento de trastornos de ansiedad y depresión.
+        <p>{{doctor.descripcion}}
         </p>
       </div>
     </div>

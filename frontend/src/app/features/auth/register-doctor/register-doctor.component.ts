@@ -40,18 +40,18 @@ export class RegisterDoctorComponent implements OnInit {
   private initializeForm(): void {
     this.registroForm = this.fb.group(
       {
-        username: ['', [Validators.required, Validators.minLength(3)]],
+        nombre: ['', [Validators.required, Validators.minLength(3)]],
+        apellido: ['', [Validators.required, Validators.minLength(3)]],
+        sexo: ['', [Validators.required]],
         email: ['', [Validators.required, Validators.email]],
         password: ['', [Validators.required, Validators.minLength(6)]],
         confirmPassword: ['', Validators.required],
         dni: ['', [Validators.required, Validators.pattern('^[0-9]{8}$')]],
         telefono: ['', [Validators.required, Validators.pattern('^[0-9]{9}$')]],
-        edad: [
-          '',
-          [Validators.required, Validators.min(18), Validators.max(100)],
-        ],
+        fdn: ['', Validators.required],
         licencia: ['', Validators.required],
         especialidad: ['', Validators.required],
+        descripcion: ['', Validators.required],
       },
       {validators: this.passwordMatchValidator}
     );
@@ -69,7 +69,7 @@ export class RegisterDoctorComponent implements OnInit {
       const controls = this.registroForm.controls;
       this.authService
         .register(
-          controls['username'].value,
+          controls['nombre'].value,
           controls['email'].value,
           controls['password'].value
         )
@@ -79,14 +79,17 @@ export class RegisterDoctorComponent implements OnInit {
               .crearDoctor({
                 persona: {
                   dni: controls['dni'].value,
-                  edad: controls['edad'].value,
+                  fdn: controls['fdn'].value,
+                  sexo: controls['sexo'].value,
                   email: controls['email'].value,
-                  nombre: controls['username'].value,
+                  nombre: controls['nombre'].value,
+                  apellido: controls['apellido'].value,
                   telefono: controls['telefono'].value,
                 },
                 especialidadId: controls['especialidad'].value,
                 licencia: controls['licencia'].value,
                 honorarios: 80000,
+                descripcion: controls['descripcion'].value
               })
               .subscribe({
                 next: (doctor) => {

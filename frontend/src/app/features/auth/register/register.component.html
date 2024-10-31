@@ -15,27 +15,43 @@
                     <form [formGroup]="registroForm" (ngSubmit)="onSubmit()">
                         <div class="row">
                             <div class="mb-3 col-12 col-md-6">
-                                <label for="nombres" class="form-label">Nombres *</label>
-                                <input type="text" class="form-control" id="nombres" formControlName="username">
-                                <div *ngIf="registroForm.get('username')?.invalid && registroForm.get('username')?.touched"
+                                <label for="nombres" class="form-label">Nombre *</label>
+                                <input type="text" class="form-control" id="nombres" formControlName="nombre">
+                                <div *ngIf="registroForm.get('nombre')?.invalid && registroForm.get('nombre')?.touched"
                                     class="text-danger">
                                     El nombre debe tener al menos 3 caracteres.
                                 </div>
                             </div>
-                            <div class="mb-3 col-12 col-md-6">
-                                <label for="apellidos" class="form-label">Apellidos</label>
-                                <input type="text" class="form-control" id="apellidos">
+                          <div class="mb-3 col-12 col-md-6">
+                            <label for="apellido" class="form-label">Apellido *</label>
+                            <input type="text" class="form-control" id="apellido" formControlName="apellido">
+                            <div *ngIf="registroForm.get('apellido')?.invalid && registroForm.get('apellido')?.touched"
+                                 class="text-danger">
+                              El apellido debe tener al menos 3 caracteres.
                             </div>
+                          </div>
                         </div>
                         <div class="row">
                             <div class="mb-3 col-12 col-md-6">
-                                <label for="edad" class="form-label">Edad *</label>
-                                <input type="number" class="form-control" id="edad" formControlName="edad">
-                                <div *ngIf="registroForm.get('edad')?.invalid && registroForm.get('edad')?.touched"
+                                <label for="fdn" class="form-label">Fecha de nacimiento *</label>
+                                <input type="date" class="form-control" id="fdn" formControlName="fdn">
+                                <div *ngIf="registroForm.get('fdn')?.invalid && registroForm.get('fdn')?.touched"
                                     class="text-danger">
-                                    La edad debe ser mayor a 18 años
+                                    Debe ingresar su fecha de nacimiento
                                 </div>
                             </div>
+                          <div class="mb-3 col-12 col-md-6">
+                            <label for="sexo" class="form-label">Sexo *</label>
+                            <select  class="form-select" id="sexo" formControlName="sexo">
+                              <option selected value="M">Masculino</option>
+                              <option value="F">Femenino</option>
+                            </select>
+                            <div *ngIf="registroForm.get('sexo')?.invalid && registroForm.get('sexo')?.touched"
+                                 class="text-danger">
+                              Debe seleccionar una opción
+                            </div>
+                          </div>
+
                             <div class="mb-3 col-12 col-md-6">
                                 <label for="telefono" class="form-label">Teléfono *</label>
                                 <input type="tel" class="form-control" id="telefono" formControlName="telefono">

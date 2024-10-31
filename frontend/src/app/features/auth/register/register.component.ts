@@ -29,13 +29,15 @@ export class RegisterComponent implements OnInit {
   private initializeForm(): void {
     this.registroForm = this.fb.group(
       {
-        username: ['', [Validators.required, Validators.minLength(3)]],
+        nombre: ['', [Validators.required, Validators.minLength(3)]],
+        apellido: ['', [Validators.required, Validators.minLength(3)]],
+        sexo: ['', [Validators.required]],
         email: ['', [Validators.required, Validators.email]],
         password: ['', [Validators.required, Validators.minLength(6)]],
         confirmPassword: ['', Validators.required],
         dni: ['', [Validators.required, Validators.pattern('^[0-9]{8}$')]],
         telefono: ['', [Validators.required, Validators.pattern('^[0-9]{9}$')]],
-        edad: ['', [Validators.required, Validators.min(18), Validators.max(100)]],
+        fdn: ['', Validators.required]
       },
       {validator: this.passwordMatchValidator} // <-- Aquí se aplica el validador
     );
@@ -53,7 +55,7 @@ export class RegisterComponent implements OnInit {
       const controls = this.registroForm.controls;
       this.authService
         .register(
-          controls['username'].value,
+          controls['nombre'].value,
           controls['email'].value,
           controls['password'].value
         )
@@ -61,12 +63,14 @@ export class RegisterComponent implements OnInit {
           next: () => {
             this.pacienteService
               .crearPaciente({
-                  persona: {
-                    dni: controls['dni'].value,
-                    edad: controls['edad'].value,
-                    email: controls['email'].value,
-                    nombre: controls['username'].value,
-                    telefono: controls['telefono'].value
+                persona: {
+                  dni: controls['dni'].value,
+                  fdn: controls['fdn'].value,
+                  sexo: controls['sexo'].value,
+                  email: controls['email'].value,
+                  nombre: controls['nombre'].value,
+                  apellido: controls['apellido'].value,
+                  telefono: controls['telefono'].value,
                   }
                 }
               )

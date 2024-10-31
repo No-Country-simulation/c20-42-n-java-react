@@ -11,10 +11,20 @@
 
 export interface PersonaReq { 
     nombre: string;
-    edad: number;
+    apellido: string;
+    fdn: string;
+    sexo: PersonaReq.SexoEnum;
     dni: string;
     telefono: string;
     email: string;
     fotoUrl?: string;
 }
+export namespace PersonaReq {
+    export type SexoEnum = 'M' | 'F';
+    export const SexoEnum = {
+        M: 'M' as SexoEnum,
+        F: 'F' as SexoEnum
+    };
+}
+
 

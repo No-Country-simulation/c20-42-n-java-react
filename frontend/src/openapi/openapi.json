@@ -312,8 +312,8 @@
           }
         ],
         "responses": {
-          "302": {
-            "description": "Found",
+          "200": {
+            "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
@@ -1012,6 +1012,9 @@
           },
           "especialidad": {
             "$ref": "#/components/schemas/EspecialidadReq"
+          },
+          "descripcion": {
+            "type": "string"
           }
         }
       },
@@ -1055,9 +1058,19 @@
           "nombre": {
             "type": "string"
           },
-          "edad": {
-            "type": "integer",
-            "format": "int32"
+          "apellido": {
+            "type": "string"
+          },
+          "fdn": {
+            "type": "string",
+            "format": "date"
+          },
+          "sexo": {
+            "type": "string",
+            "enum": [
+              "M",
+              "F"
+            ]
           },
           "dni": {
             "type": "string"
@@ -1191,10 +1204,12 @@
       },
       "PersonaReq": {
         "required": [
+          "apellido",
           "dni",
-          "edad",
           "email",
+          "fdn",
           "nombre",
+          "sexo",
           "telefono"
         ],
         "type": "object",
@@ -1202,9 +1217,19 @@
           "nombre": {
             "type": "string"
           },
-          "edad": {
-            "type": "integer",
-            "format": "int32"
+          "apellido": {
+            "type": "string"
+          },
+          "fdn": {
+            "type": "string",
+            "format": "date"
+          },
+          "sexo": {
+            "type": "string",
+            "enum": [
+              "M",
+              "F"
+            ]
           },
           "dni": {
             "type": "string"
@@ -1259,6 +1284,9 @@
           "especialidadId": {
             "type": "integer",
             "format": "int64"
+          },
+          "descripcion": {
+            "type": "string"
           }
         }
       },

@@ -15,36 +15,54 @@
                     <form [formGroup]="registroForm" (ngSubmit)="onSubmit()">
                         <div class="row">
                             <div class="mb-2 col-12 col-md-6">
-                                <label for="nombres" class="form-label">Nombres *</label>
-                                <input type="text" class="form-control" id="nombres" formControlName="username">
-                                <div *ngIf="registroForm.get('username')?.invalid && registroForm.get('username')?.touched"
+                                <label for="nombres" class="form-label">Nombre *</label>
+                                <input type="text" class="form-control" id="nombres" formControlName="nombre">
+                                <div *ngIf="registroForm.get('nombre')?.invalid && registroForm.get('nombre')?.touched"
                                     class="text-danger">
                                     El nombre debe tener al menos 3 caracteres.
                                 </div>
                             </div>
                             <div class="mb-2 col-12 col-md-6">
                                 <label for="apellidos" class="form-label">Apellidos</label>
-                                <input type="text" class="form-control" id="apellidos">
+                                <input type="text" class="form-control" id="apellidos" formControlName="apellido">
+                              <div *ngIf="registroForm.get('apellido')?.invalid && registroForm.get('apellido')?.touched"
+                                   class="text-danger">
+                                El apellido debe tener al menos 3 caracteres.
+                              </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="mb-2 col-12 col-md-6">
-                                <label for="edad" class="form-label">Edad *</label>
-                                <input type="number" class="form-control" id="edad" formControlName="edad">
-                                <div *ngIf="registroForm.get('edad')?.invalid && registroForm.get('edad')?.touched"
-                                    class="text-danger">
-                                    La edad debe ser mayor a 18 años
-                                </div>
+                                <label for="fdn" class="form-label">Fecha de nacimiento *</label>
+                                <input type="date" class="form-control" id="fdn" formControlName="fdn">
+                              <div *ngIf="registroForm.get('fdn')?.invalid && registroForm.get('fdn')?.touched"
+                                   class="text-danger">
+                                Debe ingresar su fecha de nacimiento
+                              </div>
                             </div>
-                            <div class="mb-2 col-12 col-md-6">
-                                <label for="telefono" class="form-label">Teléfono *</label>
-                                <input type="tel" class="form-control" id="telefono" formControlName="telefono">
-                                <div *ngIf="registroForm.get('telefono')?.invalid && registroForm.get('telefono')?.touched"
-                                    class="text-danger">
-                                    El teléfono debe tener 9 dígitos.
-                                </div>
+                          <div class="mb-3 col-12 col-md-6">
+                            <label for="sexo" class="form-label">Sexo *</label>
+                            <select  class="form-select" id="sexo" formControlName="sexo">
+                              <option selected value="M">Masculino</option>
+                              <option value="F">Femenino</option>
+                            </select>
+                            <div *ngIf="registroForm.get('sexo')?.invalid && registroForm.get('sexo')?.touched"
+                                 class="text-danger">
+                              Debe seleccionar una opción
                             </div>
+                          </div>
                         </div>
+
+                          <div class="row">
+                            <div class="mb-2 col-12 col-md-12">
+                              <label for="telefono" class="form-label">Teléfono *</label>
+                              <input type="tel" class="form-control" id="telefono" formControlName="telefono">
+                              <div *ngIf="registroForm.get('telefono')?.invalid && registroForm.get('telefono')?.touched"
+                                   class="text-danger">
+                                El teléfono debe tener 9 dígitos.
+                              </div>
+                            </div>
+                          </div>
                         <div class="row">
                             <div class="mb-2 col-12 col-md-6">
                                 <label for="dni" class="form-label">DNI *</label>
@@ -54,7 +72,7 @@
                                     El DNI debe tener 8 dígitos.
                                 </div>
                             </div>
-                            <div class="mb-2 col-12 col-md-6">
+                            <div class=" mb-2 col-12 col-md-6">
                                 <label for="email" class="form-label">Correo Electrónico *</label>
                                 <input type="email" class="form-control" id="email" formControlName="email">
 
@@ -78,6 +96,16 @@
                                 </div>
                             </div>
                         </div>
+                          <div class="row">
+                            <div class="mb-2 col-12 col-md-12">
+                              <label for="descripcion" class="form-label">Descripcion *</label>
+                              <input type="text" class="form-control" id="descripcion" formControlName="descripcion">
+                              <div *ngIf="registroForm.get('descripcion')?.invalid && registroForm.get('descripcion')?.touched"
+                                   class="text-danger">
+                                La descripcion es obligatoria.
+                              </div>
+                            </div>
+                          </div>
                         <div class="row">
                             <div class="mb-2 col-12 col-md-12">
                                 <label for="especialidad" class="form-label">Especialidad*</label>
@@ -93,23 +121,28 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-2">
-                            <label for="password" class="form-label">Contraseña *</label>
-                            <input type="password" class="form-control" id="password" formControlName="password">
-                            <div *ngIf="registroForm.get('password')?.invalid && registroForm.get('password')?.touched"
-                                class="text-danger">
+                          <div class="row">
+                            <div class="mb-2">
+                              <label for="password" class="form-label">Contraseña *</label>
+                              <input type="password" class="form-control" id="password" formControlName="password">
+                              <div *ngIf="registroForm.get('password')?.invalid && registroForm.get('password')?.touched"
+                                   class="text-danger">
                                 La contraseña debe tener al menos 6 caracteres.
+                              </div>
                             </div>
-                        </div>
-                        <div class="mb-2">
+                          </div>
+                        <div class="row">
+                          <div class="mb-2">
                             <label for="confirmPassword" class="form-label">Confirmar Contraseña *</label>
                             <input type="password" class="form-control" id="confirmPassword"
-                                formControlName="confirmPassword">
+                                   formControlName="confirmPassword">
                             <div *ngIf="registroForm.errors?.['mismatch'] && registroForm.get('confirmPassword')?.touched"
-                                class="text-danger">
-                                Las contraseñas no coinciden.
+                                 class="text-danger">
+                              Las contraseñas no coinciden.
                             </div>
+                          </div>
                         </div>
+
                         <div class="row">
                             <div class="d-grid mb-1">
                                 <button type="submit" class="btn btn-primary"

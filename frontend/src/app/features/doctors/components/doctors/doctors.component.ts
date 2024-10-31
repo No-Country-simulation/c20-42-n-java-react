@@ -7,7 +7,6 @@ import {
   Especialidad,
   EspecialidadControllerService
 } from "../../../../core/services/api-client";
-import {from, lastValueFrom} from "rxjs";
 
 
 @Component({

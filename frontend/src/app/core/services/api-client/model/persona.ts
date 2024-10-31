@@ -12,10 +12,20 @@
 export interface Persona { 
     id?: number;
     nombre?: string;
-    edad?: number;
+    apellido?: string;
+    fdn?: string;
+    sexo?: Persona.SexoEnum;
     dni?: string;
     telefono?: string;
     email?: string;
     fotoUrl?: string;
 }
+export namespace Persona {
+    export type SexoEnum = 'M' | 'F';
+    export const SexoEnum = {
+        M: 'M' as SexoEnum,
+        F: 'F' as SexoEnum
+    };
+}
+
 

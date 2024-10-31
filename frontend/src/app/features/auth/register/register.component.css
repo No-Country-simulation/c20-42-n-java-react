@@ -18,8 +18,15 @@ label {
     border-color: #106270;
     color: #106270;
 }
+.form-select {
+  border-color: #106270;
+  color: #106270;
+}
 .form-control::placeholder {
     color: #106270;
+}
+.form-select::placeholder {
+  color: #106270;
 }
 
 .btn-primary {
