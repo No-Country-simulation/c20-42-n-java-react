@@ -19,4 +19,5 @@ public class DoctorReq {
     private double honorarios;
     @NotNull(message = "El campo especialidad no puede estar vacío")
     private Long especialidadId;
+    private String descripcion;
 }

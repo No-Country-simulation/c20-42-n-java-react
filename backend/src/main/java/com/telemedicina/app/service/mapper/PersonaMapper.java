@@ -11,7 +11,9 @@ public class PersonaMapper {
     Persona toPersona(PersonaReq p){
         return Persona.builder()
                 .nombre(p.getNombre())
-                .edad(p.getEdad())
+                .apellido(p.getApellido())
+                .fdn(p.getFdn())
+                .sexo(p.getSexo())
                 .telefono(p.getTelefono())
                 .dni(p.getDni())
                 .email(p.getEmail())

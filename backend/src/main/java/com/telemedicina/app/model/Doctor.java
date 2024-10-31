@@ -33,6 +33,7 @@ public class Doctor{
     private double honorarios;
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Especialidad especialidad;
+    private String descripcion;
     @ManyToMany(cascade = CascadeType.ALL)
     private Set<Paciente> pacientes = new HashSet<>();
 }

@@ -13,4 +13,5 @@ public class DoctorRes {
     private String licencia;
     private double honorarios;
     private EspecialidadReq especialidad;
+    private String descripcion;
 }

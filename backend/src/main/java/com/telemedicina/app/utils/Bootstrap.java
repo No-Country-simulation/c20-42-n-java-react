@@ -40,7 +40,7 @@ public class Bootstrap {
     if(tablaVacia("Doctor")&& tablaVacia("Paciente")&& tablaVacia("Usuario")){
       cargarEspecialidades();
       cargarDoctores(10);
-      cargarPacientes(30);
+      cargarPacientes(10);
       agregarPacientesADoctores();
       agregarUsuariosDePrueba();
     }
@@ -55,7 +55,6 @@ public class Bootstrap {
       Persona persona = Persona.builder()
           .nombre(nombre + " " + apellido)
           .dni(faker.number().digits(8))
-          .edad(faker.number().numberBetween(18,100))
           .email((nombre + "-" + apellido + "@gmail.com").toLowerCase().trim())
           .telefono(faker.phoneNumber().cellPhone())
           .build();

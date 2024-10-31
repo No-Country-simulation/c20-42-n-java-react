@@ -22,6 +22,7 @@ public class DoctorMapper {
                 .especialidad(especialidadMapper.toEspecialidadReq(doctor.getEspecialidad()))
                 .licencia(doctor.getLicencia())
                 .honorarios(doctor.getHonorarios())
+                .descripcion(doctor.getDescripcion())
                 .build();
     }
 
@@ -31,6 +32,7 @@ public class DoctorMapper {
                 .especialidad(especialidadRepo.findById(d.getEspecialidadId()).orElseThrow(()-> new EntityNotFoundException("Especialidad no encontrada")))
                 .honorarios(d.getHonorarios())
                 .licencia(d.getLicencia())
+                .descripcion(d.getDescripcion())
                 .build();
     }
 }
