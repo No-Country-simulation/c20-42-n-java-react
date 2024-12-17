@@ -12,7 +12,6 @@ public class OpenApiConfig {
   public OpenAPI apiGatewayAPI(){
     return new OpenAPI()
         .info(new Info().title("Telemedicina API")
-            .description(":V")
             .version("v0.0.1")
             .license(new License().name("Apache 2.0")));
   }

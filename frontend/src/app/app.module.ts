@@ -30,6 +30,8 @@ import {PacientesModule} from "./features/pacientes-doctor/pacientes.module";
 import {ConsultaMedicaComponent} from './features/consulta-medica/components/consulta-medica.component';
 import {CommonModule} from '@angular/common';
 import {TurnosModule} from './features/turnos/turnos.module';
+import {BASE_PATH} from "./core/services/api-client";
+import {environment} from "../environments/environment";
 
 const firebaseConfig = {
   apiKey: 'AIzaSyD9S8qVCdnWpzM0rtJN_EKlkcW3V3FhlPQ',
@@ -77,6 +79,7 @@ const firebaseConfig = {
     provideHttpClient(withInterceptors([authInterceptor])),
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
     provideAuth(() => getAuth()),
+    {provide: BASE_PATH, useValue: environment.apiUrl}
   ],
   bootstrap: [AppComponent],
 })
