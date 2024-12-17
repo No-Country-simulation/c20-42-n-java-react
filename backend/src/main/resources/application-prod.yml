@@ -1,21 +1,12 @@
 spring:
   datasource:
-    url: ${MYSQL_URL:jdbc:mysql://34.29.5.202:3306/telemedicinadb}
-    username: ${MYSQL_USER:telemedicinadb}
-    password: ${MYSQL_PASS:telemedicinadb}
-  sql:
-    init:
-      mode: always
-  jpa:
-    database: mysql
-    hibernate:
-      ddl-auto: none
+    url: ${DB_URL}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
 
-  cloud:
-    gcp:
-      sql:
-        database-name: telemedicinadb
-        instance-connection-name: telemedicina-434605:us-central1:telemedicinadb
+  jpa:
+    hibernate:
+      ddl-auto: update
 
 server:
   port: 8080
