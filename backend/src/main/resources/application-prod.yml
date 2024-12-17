@@ -8,12 +8,6 @@ spring:
     hibernate:
       ddl-auto: update
 
-  cloud:
-    gcp:
-      core:
-        enabled: false
-      sql:
-        enabled: false
 
 server:
   port: 8080
