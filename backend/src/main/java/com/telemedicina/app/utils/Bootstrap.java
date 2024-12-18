@@ -37,15 +37,14 @@ public class Bootstrap {
 
   @Transactional
   public void cargarTablas(){
-    if(tablaVacia("Doctor")&& tablaVacia("Paciente")&& tablaVacia("Usuario")){
+    if(tablaVacia("Doctor") && tablaVacia("Paciente")&& tablaVacia("Usuario")){
       cargarEspecialidades();
-      cargarDoctores(10);
-      cargarPacientes(10);
+      cargarDoctores(60);
+      cargarPacientes(15);
       agregarPacientesADoctores();
       agregarUsuariosDePrueba();
     }
   }
-
 
   private List<Persona> crearPersonas(int n){
     List<Persona> personas = new ArrayList<>();
@@ -104,7 +103,6 @@ public class Bootstrap {
     return especialidades;
   }
 
-
   private void cargarDoctores(int n){
     if(tablaVacia("Doctor")){
       List<Especialidad> especialidades = especialidadRepo.findAll();
@@ -113,7 +111,7 @@ public class Bootstrap {
       personas.forEach(persona -> {
         Doctor doctor = Doctor.builder()
             .licencia(UUID.randomUUID().toString())
-            .honorarios(faker.number().numberBetween(50000,500000))
+            .honorarios(faker.number().numberBetween(100,450))
             .persona(persona)
             .especialidad(especialidades.get(random.nextInt(especialidades.size()-1)))
             .pacientes(new HashSet<>())
