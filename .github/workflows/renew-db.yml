@@ -79,7 +79,7 @@ jobs:
           --header 'content-type: application/json' \
             --data "{\"value\":\"$password\"}"
 
-      - name: redeploy
+      - name: redeploy service
         run: |
           curl --request POST \
           --url https://api.render.com/v1/services/${{ secrets.SERVICE_ID }}/deploys \
