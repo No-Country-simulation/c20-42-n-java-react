@@ -1,0 +1,98 @@
+name: renew expired database
+on:
+  schedule:
+    - cron: 0 */3 * ? * *
+jobs:
+  renew-db:
+    name: renew expired database
+    runs-on: ubuntu-latest
+    steps:
+      - name: install jq
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y jq
+      - name: delete expired database
+        run: |
+          dbid=$(curl --request GET \
+          --url https://api.render.com/v1/postgres \
+          --header 'accept: application/json' \
+          --header 'authorization: Bearer ${{ secrets.RENDER_API_KEY }}'| jq -r '.[].postgres.id')
+          
+          echo $dbid
+          
+          curl --request DELETE \
+          --url https://api.render.com/v1/postgres/${dbid} \
+          --header 'accept: application/json' \
+          --header 'authorization: Bearer ${{ secrets.RENDER_API_KEY }}'
+
+      - name: create new database
+        run: |
+          dbid=$(curl --request POST \
+          --url https://api.render.com/v1/postgres \
+          --header 'accept: application/json' \
+          --header 'authorization: Bearer ${{ secrets.RENDER_API_KEY }}' \
+          --header 'content-type: application/json' \
+          --data '
+          {
+            "databaseName": "healthtech",
+            "databaseUser": "kenti",
+            "enableHighAvailability": false,
+            "plan": "free",
+            "version": "16",
+            "name": "healthtech",
+            "ownerId": "tea-ctgehiqlqhvc739jf640"
+          }'| jq -r '.id')
+
+      - name: retrieve connection info
+        run: |
+          body=$(curl --request GET \
+          --url https://api.render.com/v1/postgres/${dbid}/connection-info \
+          --header 'accept: application/json' \
+          --header 'authorization: Bearer ${{ secrets.RENDER_API_KEY }}')
+  
+          url=$(echo $body | jq -r '.externalConnectionString')
+          url="${url:0:13}${url:52}"
+          
+          password=$(echo $body | jq -r '.password')
+          user=kenti
+
+      - name: change env variables
+        run: |
+          curl --request PUT \
+          --url https://api.render.com/v1/services/${{ secrets.SERVICE_ID }}/env-vars/DB_URL \
+          --header 'accept: application/json' \
+          --header 'authorization: Bearer ${{ secrets.RENDER_API_KEY }}' \
+          --header 'content-type: application/json' \
+          --data "{\"value\":\"jdbc:$url\"}"
+  
+          curl --request PUT \
+          --url https://api.render.com/v1/services/${{ secrets.SERVICE_ID }}/env-vars/DB_USER \
+          --header 'accept: application/json' \
+          --header 'authorization: Bearer ${{ secrets.RENDER_API_KEY }}' \
+          --header 'content-type: application/json' \
+            --data "{\"value\":\"$user\"}"
+  
+          curl --request PUT \
+          --url https://api.render.com/v1/services/${{ secrets.SERVICE_ID }}/env-vars/DB_PASSWORD \
+          --header 'accept: application/json' \
+          --header 'authorization: Bearer ${{ secrets.RENDER_API_KEY }}' \
+          --header 'content-type: application/json' \
+            --data "{\"value\":\"$password\"}"
+
+      - name: redeploy
+        run: |
+          curl --request POST \
+          --url https://api.render.com/v1/services/${{ secrets.SERVICE_ID }}/deploys \
+          --header 'accept: application/json' \
+          --header 'authorization: Bearer ${{ secrets.RENDER_API_KEY }}' \
+          --header 'content-type: application/json' \
+          --data '
+          {
+            "clearCache": "do_not_clear"
+          }
+          '
+          
+      
+
+
+
