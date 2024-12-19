@@ -8,8 +8,16 @@ spring:
     hibernate:
       ddl-auto: update
 
+
+  flyway:
+    defaultSchema: public
+    user: ${DB_USER}
+    password: ${DB_PASSWORD}
+
 springdoc:
-    default-produces-media-type: application/json
+  default-produces-media-type: application/json
+
+  ic:
 
 backend:
   url: ${BACKEND_URL}
