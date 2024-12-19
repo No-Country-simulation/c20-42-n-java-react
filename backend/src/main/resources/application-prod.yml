@@ -6,18 +6,12 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
 
-
-  flyway:
-    defaultSchema: public
-    user: ${DB_USER}
-    password: ${DB_PASSWORD}
 
 springdoc:
   default-produces-media-type: application/json
 
-  ic:
 
 backend:
   url: ${BACKEND_URL}

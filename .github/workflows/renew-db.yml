@@ -1,7 +1,10 @@
 name: renew expired database
 on:
+  push:
+    branches:
+      - master
   schedule:
-    - cron: '0 */6 * * *'
+    - cron: '0 0 1-31/28 * *'
 jobs:
   renew-db:
     name: renew expired database
@@ -18,7 +21,7 @@ jobs:
           --header 'accept: application/json' \
           --header 'authorization: Bearer ${{ secrets.RENDER_API_KEY }}'| jq -r '.[].postgres.id')
           
-          echo $dbid
+          echo dbid: $dbid
           
           curl --request DELETE \
           --url https://api.render.com/v1/postgres/${dbid} \
@@ -42,19 +45,53 @@ jobs:
             "name": "healthtech",
             "ownerId": "tea-ctgehiqlqhvc739jf640"
           }'| jq -r '.id')
-
+          
+          echo dbid: $dbid
+          echo "dbid=$dbid" >> $GITHUB_ENV
       - name: retrieve connection info
         run: |
+          echo dbid:$dbid
+          max_retries=10
+          retries=0
+          body=""
+          while [ $retries -lt $max_retries ]; do
+          echo "Attempt $(($retries + 1)) to fetch connection info..."
           body=$(curl --request GET \
-          --url https://api.render.com/v1/postgres/${dbid}/connection-info \
+          --url "https://api.render.com/v1/postgres/${dbid}/connection-info" \
           --header 'accept: application/json' \
           --header 'authorization: Bearer ${{ secrets.RENDER_API_KEY }}')
-  
-          url=$(echo $body | jq -r '.externalConnectionString')
-          url="${url:0:13}${url:52}"
+          echo curl --request GET \
+          --url https://api.render.com/v1/postgres/$dbid/connection-info \
+          --header 'accept: application/json' \
+          --header 'authorization: Bearer ${{ secrets.RENDER_API_KEY }}'
+          
+          if echo "$body" | jq -e '.externalConnectionString' >/dev/null; then
+          echo "Connection info retrieved successfully."
+          break
+          fi
+          
+          echo "Database not ready yet. Waiting for 10 seconds..."
+          sleep 10
+          retries=$(($retries + 1))
+          done
+
+            if [ $retries -eq $max_retries ]; then
+            echo "Failed to fetch connection info after $max_retries attempts."
+            exit 1
+            fi
+          
+          
+          url=$(echo $body | jq -r '.internalConnectionString')
+          url=jdbc:"${url:0:13}${url:52}"
+          echo url: $url
+          echo "url=$url" >> $GITHUB_ENV   
           
           password=$(echo $body | jq -r '.password')
+          echo password: $password
+          echo "password=$password" >> $GITHUB_ENV
+          
           user=kenti
+          echo "user=$user" >> $GITHUB_ENV
 
       - name: change env variables
         run: |
@@ -63,15 +100,15 @@ jobs:
           --header 'accept: application/json' \
           --header 'authorization: Bearer ${{ secrets.RENDER_API_KEY }}' \
           --header 'content-type: application/json' \
-          --data "{\"value\":\"jdbc:$url\"}"
-  
+          --data "{\"value\":\"$url\"}"
+          
           curl --request PUT \
           --url https://api.render.com/v1/services/${{ secrets.SERVICE_ID }}/env-vars/DB_USER \
           --header 'accept: application/json' \
           --header 'authorization: Bearer ${{ secrets.RENDER_API_KEY }}' \
           --header 'content-type: application/json' \
             --data "{\"value\":\"$user\"}"
-  
+          
           curl --request PUT \
           --url https://api.render.com/v1/services/${{ secrets.SERVICE_ID }}/env-vars/DB_PASSWORD \
           --header 'accept: application/json' \
@@ -92,7 +129,3 @@ jobs:
           }
           '
           
-      
-
-
-

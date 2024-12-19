@@ -1,10 +1,10 @@
 CREATE TABLE doctor (
-                               id bigint NOT NULL,
-                               descripcion character varying(255),
-                               honorarios double precision NOT NULL,
-                               licencia character varying(255),
-                               especialidad_id bigint,
-                               persona_id bigint
+                        id bigint NOT NULL,
+                        descripcion character varying(255),
+                        honorarios double precision NOT NULL,
+                        licencia character varying(255),
+                        especialidad_id bigint,
+                        persona_id bigint
 );
 
 
@@ -13,23 +13,23 @@ CREATE TABLE doctor (
 
 
 CREATE TABLE doctor_pacientes (
-                                         doctor_id bigint NOT NULL,
-                                         pacientes_id bigint NOT NULL
+                                  doctor_id bigint NOT NULL,
+                                  pacientes_id bigint NOT NULL
 );
 
 
 
 CREATE TABLE especialidad (
-                                     id bigint NOT NULL,
-                                     nombre character varying(255),
-                                     descripcion character varying(255),
-                                     foto_url character varying(255)
+                              id bigint NOT NULL,
+                              nombre character varying(255),
+                              descripcion character varying(255),
+                              foto_url character varying(255)
 );
 
 
 
 CREATE TABLE historia_clinica (
-                                         id bigint NOT NULL
+                                  id bigint NOT NULL
 );
 
 
@@ -37,71 +37,71 @@ CREATE TABLE historia_clinica (
 
 
 CREATE TABLE paciente (
-                                 id bigint NOT NULL,
-                                 historia_clinica_id bigint,
-                                 persona_id bigint
+                          id bigint NOT NULL,
+                          historia_clinica_id bigint,
+                          persona_id bigint
 );
 
 
 
 CREATE TABLE pdf_file (
-                                 id bigint NOT NULL,
-                                 fecha_de_subido timestamp without time zone,
-                                 file bytea,
-                                 file_name character varying(255)
+                          id bigint NOT NULL,
+                          fecha_de_subido timestamp without time zone,
+                          file bytea,
+                          file_name character varying(255)
 );
 
 
 
 CREATE TABLE persona (
-                                id bigint NOT NULL,
-                                nombre character varying(255),
-                                apellido character varying(255),
-                                dni character varying(255),
-                                email character varying(255),
-                                fdn date,
-                                foto_url character varying(255),
-                                sexo smallint,
-                                telefono character varying(255)
+                         id bigint NOT NULL,
+                         nombre character varying(255),
+                         apellido character varying(255),
+                         dni character varying(255),
+                         email character varying(255),
+                         fdn date,
+                         foto_url character varying(255),
+                         sexo smallint,
+                         telefono character varying(255)
 );
 
 
 CREATE TABLE registro_medico (
-                                        id bigint NOT NULL,
-                                        diagnostico character varying(255),
-                                        expediente character varying(255),
-                                        fecha date,
-                                        motivo_de_la_consulta character varying(255),
-                                        observaciones character varying(255),
-                                        seguimiento character varying(255),
-                                        tratamiento character varying(255),
-                                        doctor_id bigint,
-                                        historia_clinica_id bigint
+                                 id bigint NOT NULL,
+                                 diagnostico character varying(255),
+                                 expediente character varying(255),
+                                 fecha date,
+                                 motivo_de_la_consulta character varying(255),
+                                 observaciones character varying(255),
+                                 seguimiento character varying(255),
+                                 tratamiento character varying(255),
+                                 doctor_id bigint,
+                                 historia_clinica_id bigint
 );
 
 
 
 CREATE TABLE registro_medico_sintomas (
-                                                 registro_medico_id bigint NOT NULL,
-                                                 sintomas character varying(255)
+                                          registro_medico_id bigint NOT NULL,
+                                          sintomas character varying(255)
 );
 
 
 CREATE TABLE turno (
-                              id bigint NOT NULL,
-                              estado_turno smallint,
-                              event_id character varying(255),
-                              fecha_hora timestamp without time zone,
-                              doctor_id bigint,
-                              paciente_id bigint
+                       id bigint NOT NULL,
+                       estado_turno smallint,
+                       event_id character varying(255),
+                       fecha_hora timestamp without time zone,
+                       doctor_id bigint,
+                       paciente_id bigint
 );
 
 
 CREATE TABLE usuario (
-                                id bigint NOT NULL,
-                                email character varying(255) NOT NULL,
-                                entidad_id bigint,
-                                rol smallint
+                         id bigint NOT NULL,
+                         email character varying(255) NOT NULL,
+                         entidad_id bigint,
+                         rol smallint
 );
 
 COPY doctor (id, descripcion, honorarios, licencia, especialidad_id, persona_id) FROM stdin;
@@ -678,4 +678,3 @@ ALTER TABLE ONLY turno
 --
 -- PostgreSQL database dump complete
 --
-

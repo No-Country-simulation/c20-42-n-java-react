@@ -21,11 +21,15 @@ spring:
           jwk-set-uri: "https://www.googleapis.com/service_accounts/v1/jwk/securetoken%40system.gserviceaccount.com"
           issuer-uri: "https://securetoken.google.com/telemedicina-536ac"
 
+  flyway:
+    enabled: false
+
 server:
   port: 8080
 
 backend:
   url: http://localhost:8080
+
 
 springdoc:
   default-produces-media-type: application/json
