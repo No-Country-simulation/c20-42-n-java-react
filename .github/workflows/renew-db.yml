@@ -2,6 +2,7 @@ name: renew expired database
 on:
   schedule:
     - cron: '0 0 1-31/28 * *'
+  workflow_dispatch:
 jobs:
   renew-db:
     name: renew expired database
